@@ -92,7 +92,7 @@ const Metronome: React.FC = () => {
         </div>
 
         <div className="stat">
-          <div className="stat-title">Current</div>
+          <div className="stat-title">Note</div>
           <div className="stat-value">{currentNote}</div>
           <div className="stat-desc">
             next up:{" "}
@@ -106,7 +106,7 @@ const Metronome: React.FC = () => {
         </div>
 
         <div className="stat">
-          <div className="stat-title">Current Beat</div>
+          <div className="stat-title">Beat</div>
           <div className="stat-value">
             <span className="countdown">{currentBeat}</span>
           </div>
@@ -114,7 +114,7 @@ const Metronome: React.FC = () => {
         </div>
 
         <div className="stat">
-          <div className="stat-title">Current bar</div>
+          <div className="stat-title">Bar</div>
           <div className="stat-value">
             <span className="countdown">{currentBar}</span>
           </div>
@@ -132,12 +132,12 @@ const Metronome: React.FC = () => {
       />
 
       <button
-        className={`btn btn-active ${
+        className={`btn-lg w-48 btn btn-active ${
           isPlaying ? "btn-secondary" : "btn-primary"
         }`}
         onClick={toggleMetronome}
       >
-        {isPlaying ? "Stop Metronome" : "Start Metronome"}
+        {isPlaying ? "Stop" : "Start"}
       </button>
     </div>
   );
