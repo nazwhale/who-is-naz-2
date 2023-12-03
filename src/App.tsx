@@ -1,6 +1,5 @@
 import "./App.css";
 import Metronome from "./Metronome.tsx";
-import BuyMeACoffee from "./BuyMeACoffee.tsx";
 
 function App() {
   return (
@@ -11,8 +10,6 @@ function App() {
       </h1>
 
       <Metronome />
-
-      <BuyMeACoffee />
     </>
   );
 }
