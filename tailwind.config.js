@@ -5,5 +5,8 @@ export default {
     extend: {},
   },
   plugins: [require("daisyui")],
-  darkMode: "class",
+  daisyui: {
+    themes: ["light", "cupcake", "retro"], // List only the themes you want to allow
+  },
+  darkMode: false,
 };

@@ -14,7 +14,7 @@ const StatsDisplay: React.FC<StatsDisplayProps> = ({
   currentBar,
 }) => {
   return (
-    <div className="stats stats-vertical sm:stats-horizontal shadow flex flex-grow max-w-md mx-auto">
+    <div className="bg-neutral-content stats stats-vertical sm:stats-horizontal shadow flex flex-grow max-w-md mx-auto">
       <div className="stat">
         <div className="stat-title">Note</div>
         <div className="stat-value">{currentNote}</div>

@@ -45,7 +45,7 @@ const Metronome: React.FC = () => {
       <div>
         <button
           className={`btn-lg w-48 btn btn-active ${
-            isPlaying ? "btn-secondary" : "btn-primary"
+            isPlaying ? "btn-accent" : "btn-primary"
           }`}
           onClick={toggleMetronome}
         >
