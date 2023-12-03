@@ -3,14 +3,14 @@ import Metronome from "./Metronome.tsx";
 
 function App() {
   return (
-    <>
+    <div>
       <h1 className="mb-8 text-4xl font-bold text-gray-800">
         circle of 5<span className="text-sm align-super">ths</span>{" "}
-        <span className="text-gray-400">metronome</span>
+        <span className="text-gray-500">metronome</span>
       </h1>
 
       <Metronome />
-    </>
+    </div>
   );
 }
 
