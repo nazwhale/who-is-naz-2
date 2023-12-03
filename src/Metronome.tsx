@@ -21,9 +21,10 @@ const Metronome: React.FC = () => {
   const [bpm, setBpm] = useState(120);
   const beatRef = useRef(0);
   const barCountRef = useRef(0);
-  const [currentNote, setCurrentNote] = useState(circleOfFifths[0]);
   const [currentBeat, setCurrentBeat] = useState(1);
   const [currentBar, setCurrentBar] = useState(1);
+
+  const currentNoteRef = useRef(circleOfFifths[0]);
 
   useEffect(() => {
     // Create a Tone.js Transport to handle timing
@@ -40,21 +41,33 @@ const Metronome: React.FC = () => {
           barCountRef.current % 4 === 0 ? 4 : barCountRef.current % 4,
         );
 
-        console.log("bar count", barCountRef.current);
         if (barCountRef.current >= 5 && (barCountRef.current - 5) % 4 === 0) {
           const nextNoteIndex =
             (Math.floor((barCountRef.current - 5) / 4) + 1) %
             circleOfFifths.length;
-          setCurrentNote(circleOfFifths[nextNoteIndex]);
+
+          console.log("setting current note", circleOfFifths[nextNoteIndex]);
+          // setCurrentNote(circleOfFifths[nextNoteIndex]);
+          currentNoteRef.current = circleOfFifths[nextNoteIndex];
         }
       }
 
+      console.log(currentNoteRef.current);
+
       if (currentBeatRef === 1) {
         // Play a different sound on the 1st beat
-        fourthBeatSynth.triggerAttackRelease("C4", "8n", time);
+        fourthBeatSynth.triggerAttackRelease(
+          currentNoteRef.current + "4",
+          "8n",
+          time,
+        );
       } else {
         // Play the regular sound
-        regularSynth.triggerAttackRelease("C5", "8n", time);
+        regularSynth.triggerAttackRelease(
+          currentNoteRef.current + "5",
+          "8n",
+          time,
+        );
       }
     }, calculateInterval(bpm)); // "1n" means once every quarter note
 
@@ -82,7 +95,7 @@ const Metronome: React.FC = () => {
 
   return (
     <div className="space-y-8">
-      <div className="stats shadow">
+      <div>
         <div className="stat">
           <div className="stat-title">BPM</div>
           <div className="stat-value">{bpm}</div>
@@ -91,14 +104,25 @@ const Metronome: React.FC = () => {
           </div>
         </div>
 
+        <input
+          type="range"
+          min={40}
+          max={200}
+          value={bpm}
+          className="range"
+          onChange={handleBpmChange}
+        />
+      </div>
+
+      <div className="stats stats-vertical sm:stats-horizontal shadow flex flex-grow max-w-md mx-auto">
         <div className="stat">
           <div className="stat-title">Note</div>
-          <div className="stat-value">{currentNote}</div>
+          <div className="stat-value">{currentNoteRef.current}</div>
           <div className="stat-desc">
             next up:{" "}
             {
               circleOfFifths[
-                (circleOfFifths.indexOf(currentNote) + 1) %
+                (circleOfFifths.indexOf(currentNoteRef.current) + 1) %
                   circleOfFifths.length
               ]
             }
@@ -122,23 +146,16 @@ const Metronome: React.FC = () => {
         </div>
       </div>
 
-      <input
-        type="range"
-        min={40}
-        max={200}
-        value={bpm}
-        className="range"
-        onChange={handleBpmChange}
-      />
-
-      <button
-        className={`btn-lg w-48 btn btn-active ${
-          isPlaying ? "btn-secondary" : "btn-primary"
-        }`}
-        onClick={toggleMetronome}
-      >
-        {isPlaying ? "Stop" : "Start"}
-      </button>
+      <div>
+        <button
+          className={`btn-lg w-48 btn btn-active ${
+            isPlaying ? "btn-secondary" : "btn-primary"
+          }`}
+          onClick={toggleMetronome}
+        >
+          {isPlaying ? "Stop" : "Start"}
+        </button>
+      </div>
     </div>
   );
 };
