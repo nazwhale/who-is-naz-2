@@ -71,7 +71,7 @@ const Metronome: React.FC = () => {
     setIsPlaying(!isPlaying);
   };
 
-  const handleBpmChange = (event) => {
+  const handleBpmChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newBpm = Number(event.target.value);
     setBpm(newBpm);
   };
