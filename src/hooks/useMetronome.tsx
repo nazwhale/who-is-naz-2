@@ -1,7 +1,11 @@
 import { useState, useEffect, useRef, ChangeEvent } from "react";
 import * as Tone from "tone";
-import { fourthBeatSynth, regularSynth } from "../synth.tsx";
-import { circleOfFifths } from "../circleOfFifths.tsx";
+import { fourthBeatSynth, regularSynth } from "../synth";
+import { circleOfFifths } from "../circleOfFifths";
+
+const BEATS_PER_BAR = 4;
+const FIRST_CHANGE_BAR = 5;
+const BARS_BETWEEN_CHANGES = 4;
 
 const useMetronome = (initialBpm: number) => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -14,47 +18,78 @@ const useMetronome = (initialBpm: number) => {
 
   useEffect(() => {
     const scheduleId = Tone.Transport.scheduleRepeat((time) => {
-      beatRef.current = (beatRef.current % 4) + 1;
-      setCurrentBeat(beatRef.current);
-
-      if (beatRef.current === 1) {
-        barCountRef.current += 1;
-        setCurrentBar(
-          barCountRef.current % 4 === 0 ? 4 : barCountRef.current % 4,
-        );
-
-        if (barCountRef.current >= 5 && (barCountRef.current - 5) % 4 === 0) {
-          const nextNoteIndex =
-            (Math.floor((barCountRef.current - 5) / 4) + 1) %
-            circleOfFifths.length;
-          currentNoteRef.current = circleOfFifths[nextNoteIndex];
-        }
-      }
-
-      // Your logic for triggering sounds goes here...
-      if (beatRef.current === 1) {
-        // Play a different sound on the 1st beat
-        fourthBeatSynth.triggerAttackRelease(
-          currentNoteRef.current + "4",
-          "8n",
-          time,
-        );
-      } else {
-        // Play the regular sound
-        regularSynth.triggerAttackRelease(
-          currentNoteRef.current + "5",
-          "8n",
-          time,
-        );
-      }
-    }, calculateInterval(bpm));
+      updateBeat();
+      updateBarAndNote();
+      triggerSynth(time);
+    }, calculateNoteInterval(bpm));
 
     return () => {
       Tone.Transport.clear(scheduleId);
     };
   }, [bpm]);
 
+  const updateBeat = () => {
+    beatRef.current = (beatRef.current % BEATS_PER_BAR) + 1;
+    setCurrentBeat(beatRef.current);
+  };
+
+  const updateBarAndNote = () => {
+    if (isFirstBeat()) {
+      barCountRef.current += 1;
+      updateCurrentBar();
+      maybeUpdateCurrentNote();
+    }
+  };
+
+  const isFirstBeat = () => beatRef.current === 1;
+
+  const updateCurrentBar = () => {
+    setCurrentBar(getBarDisplayValue(barCountRef.current));
+  };
+
+  const getBarDisplayValue = (barCount: number) => {
+    return barCount % BEATS_PER_BAR === 0
+      ? BEATS_PER_BAR
+      : barCount % BEATS_PER_BAR;
+  };
+
+  const maybeUpdateCurrentNote = () => {
+    if (shouldChangeNote()) {
+      currentNoteRef.current = getNextNote(currentNoteRef.current);
+    }
+  };
+
+  const shouldChangeNote = () => {
+    return (
+      barCountRef.current >= FIRST_CHANGE_BAR &&
+      (barCountRef.current - FIRST_CHANGE_BAR) % BARS_BETWEEN_CHANGES === 0
+    );
+  };
+
+  const triggerSynth = (time: number) => {
+    if (isFirstBeat()) {
+      fourthBeatSynth.triggerAttackRelease(
+        currentNoteRef.current + "4",
+        "8n",
+        time,
+      );
+    } else {
+      regularSynth.triggerAttackRelease(
+        currentNoteRef.current + "5",
+        "8n",
+        time,
+      );
+    }
+  };
+
   const toggleMetronome = async () => {
+    // Check if the context is in "suspended" state which is the case
+    // when the AudioContext has been created but not yet started.
+    if (Tone.context.state === "suspended") {
+      await Tone.context.resume();
+    }
+
+    // Start or stop the transport
     if (isPlaying) {
       Tone.Transport.stop();
       setIsPlaying(false);
@@ -82,11 +117,11 @@ const useMetronome = (initialBpm: number) => {
   };
 };
 
-function calculateInterval(bpm: number): number {
+const calculateNoteInterval = (bpm: number): number => {
   return 60 / bpm;
-}
+};
 
-export const getNextNote = (currentNote: string): string => {
+const getNextNote = (currentNote: string): string => {
   const currentNoteIndex = circleOfFifths.indexOf(currentNote);
   const nextNoteIndex = (currentNoteIndex + 1) % circleOfFifths.length;
   return circleOfFifths[nextNoteIndex];
