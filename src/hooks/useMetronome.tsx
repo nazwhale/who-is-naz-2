@@ -83,20 +83,22 @@ const useMetronome = (initialBpm: number) => {
   };
 
   const toggleMetronome = async () => {
-    // Check if the context is in "suspended" state which is the case
-    // when the AudioContext has been created but not yet started.
-    if (Tone.context.state === "suspended") {
-      await Tone.context.resume();
-    }
-
-    // Start or stop the transport
-    if (isPlaying) {
-      Tone.Transport.stop();
-      setIsPlaying(false);
-    } else {
-      await Tone.start();
-      Tone.Transport.start();
-      setIsPlaying(true);
+    // Ensure this function is directly triggered by a user interaction
+    try {
+      // Only call Tone.start() if the context is not already running
+      if (Tone.context.state !== "running") {
+        await Tone.start(); // This starts the audio context
+        console.log("Playback resumed successfully");
+      }
+      // Then start or stop the metronome
+      if (isPlaying) {
+        Tone.Transport.stop();
+      } else {
+        Tone.Transport.start();
+      }
+      setIsPlaying(!isPlaying); // Update the state to reflect the new playing status
+    } catch (e) {
+      console.error("Could not start audio context:", e);
     }
   };
 
