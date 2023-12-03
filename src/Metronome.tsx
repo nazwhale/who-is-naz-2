@@ -125,7 +125,9 @@ const Metronome: React.FC = () => {
       />
 
       <button
-        className={`btn btn-active btn-${isPlaying ? "secondary" : "primary"}`}
+        className={`btn btn-active ${
+          isPlaying ? "btn-secondary" : "btn-primary"
+        }`}
         onClick={toggleMetronome}
       >
         {isPlaying ? "Stop Metronome" : "Start Metronome"}
