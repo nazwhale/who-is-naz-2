@@ -23,6 +23,7 @@ const Metronome: React.FC = () => {
   const barCountRef = useRef(0);
   const [currentNote, setCurrentNote] = useState(circleOfFifths[0]);
   const [currentBeat, setCurrentBeat] = useState(1);
+  const [currentBar, setCurrentBar] = useState(1);
 
   useEffect(() => {
     // Create a Tone.js Transport to handle timing
@@ -35,13 +36,16 @@ const Metronome: React.FC = () => {
       if (beatRef.current === 1) {
         barCountRef.current += 1;
 
+        setCurrentBar(
+          barCountRef.current % 4 === 0 ? 4 : barCountRef.current % 4,
+        );
+
         console.log("bar count", barCountRef.current);
         if (barCountRef.current >= 5 && (barCountRef.current - 5) % 4 === 0) {
           const nextNoteIndex =
             (Math.floor((barCountRef.current - 5) / 4) + 1) %
             circleOfFifths.length;
           setCurrentNote(circleOfFifths[nextNoteIndex]);
-          console.log("next note", circleOfFifths[nextNoteIndex]);
         }
       }
 
@@ -78,40 +82,43 @@ const Metronome: React.FC = () => {
 
   return (
     <div className="space-y-8">
-      <div
-        className="tooltip tooltip-right z-100"
-        data-tip="every 4 bars, we'll move to the next note in the circle of fifths"
-      >
-        <div className="stats shadow">
-          <div className="stat">
-            <div className="stat-title">BPM</div>
-            <div className="stat-value">{bpm}</div>
-            <div className="stat-desc">
-              every {calculateInterval(bpm).toFixed(2)}s
-            </div>
+      <div className="stats shadow">
+        <div className="stat">
+          <div className="stat-title">BPM</div>
+          <div className="stat-value">{bpm}</div>
+          <div className="stat-desc">
+            every {calculateInterval(bpm).toFixed(2)}s
           </div>
+        </div>
 
-          <div className="stat">
-            <div className="stat-title">Current</div>
-            <div className="stat-value">{currentNote}</div>
-            <div className="stat-desc">
-              next up:{" "}
-              {
-                circleOfFifths[
-                  (circleOfFifths.indexOf(currentNote) + 1) %
-                    circleOfFifths.length
-                ]
-              }
-            </div>
+        <div className="stat">
+          <div className="stat-title">Current</div>
+          <div className="stat-value">{currentNote}</div>
+          <div className="stat-desc">
+            next up:{" "}
+            {
+              circleOfFifths[
+                (circleOfFifths.indexOf(currentNote) + 1) %
+                  circleOfFifths.length
+              ]
+            }
           </div>
+        </div>
 
-          <div className="stat">
-            <div className="stat-title">Current Beat</div>
-            <div className="stat-value">
-              <span className="countdown">{currentBeat}</span>
-            </div>
-            <div className="stat-desc">out of 4</div>
+        <div className="stat">
+          <div className="stat-title">Current Beat</div>
+          <div className="stat-value">
+            <span className="countdown">{currentBeat}</span>
           </div>
+          <div className="stat-desc">out of 4</div>
+        </div>
+
+        <div className="stat">
+          <div className="stat-title">Current bar</div>
+          <div className="stat-value">
+            <span className="countdown">{currentBar}</span>
+          </div>
+          <div className="stat-desc">next note after 4</div>
         </div>
       </div>
 
