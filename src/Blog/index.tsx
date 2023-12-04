@@ -51,12 +51,10 @@ const Blog = () => {
       setPosts(loadedPosts);
     };
 
-    loadPosts().catch((error) => {
-      console.error("Error loading posts:", error);
-    });
+    loadPosts();
   }, []);
 
-  console.log(posts);
+  console.log("posts", posts);
 
   return (
     <div>
