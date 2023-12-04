@@ -1,5 +1,4 @@
-// blog/index.tsx
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import grayMatter from "gray-matter";
 import { Buffer } from "buffer";
@@ -28,7 +27,7 @@ const Blog = () => {
       });
 
       const markdownPromises = Object.entries(markdownImports).map(
-        async ([path, resolver]) => {
+        async ([resolver]) => {
           const markdownContent = await resolver();
           // Parse the front matter using gray-matter
           const matterResult = grayMatter(markdownContent);

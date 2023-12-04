@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import grayMatter from "gray-matter";
 import ReactMarkdown from "react-markdown";
@@ -8,7 +8,7 @@ import { formatDateStr } from "./utils.tsx";
 
 const BlogPost = () => {
   const [postContent, setPostContent] = useState("");
-  const [postData, setPostData] = useState();
+  const [postData, setPostData] = useState<{ [key: string]: any }>();
   const { slug } = useParams();
 
   useEffect(() => {
