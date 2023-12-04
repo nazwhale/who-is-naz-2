@@ -15,7 +15,7 @@ const BlogPost = () => {
     const loadPost = async () => {
       // Make sure the path is relative and the markdown files are now in the src directory
 
-      const markdownImports = import.meta.glob("/public/blog-posts/*.md", {
+      const markdownImports = import.meta.glob("../blog-posts/*.md", {
         as: "raw",
       });
 
