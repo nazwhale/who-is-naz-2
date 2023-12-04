@@ -4,14 +4,11 @@ import grayMatter from "gray-matter";
 import ReactMarkdown from "react-markdown";
 import rehypeSanitize from "rehype-sanitize";
 import rehypeRaw from "rehype-raw";
-import { BlogPostMetadata } from "./index.tsx";
-import { format, parseISO } from "date-fns";
-import remarkExternalLinks from "remark-external-links";
 import { formatDateStr } from "./utils.tsx";
 
 const BlogPost = () => {
   const [postContent, setPostContent] = useState("");
-  const [postData, setPostData] = useState<BlogPostMetadata>(null);
+  const [postData, setPostData] = useState();
   const { slug } = useParams();
 
   useEffect(() => {
