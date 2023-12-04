@@ -2,6 +2,7 @@ import React from "react";
 import StatsDisplay from "./StatsDisplay.tsx";
 import { useMetronome } from "../hooks/useMetronome.tsx";
 import BPMSlider from "./BPMSlider.tsx";
+import PlayButton from "./PlayButton.tsx";
 
 const CircleOfFifths: React.FC = () => {
   const {
@@ -26,16 +27,7 @@ const CircleOfFifths: React.FC = () => {
         currentBar={currentBar}
       />
 
-      <div>
-        <button
-          className={`btn-lg w-48 btn btn-active ${
-            isPlaying ? "btn-accent" : "btn-primary"
-          }`}
-          onClick={toggleMetronome}
-        >
-          {isPlaying ? "stop" : "start"}
-        </button>
-      </div>
+      <PlayButton isPlaying={isPlaying} onToggle={toggleMetronome} />
     </div>
   );
 };

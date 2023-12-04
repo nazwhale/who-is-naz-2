@@ -1,6 +1,7 @@
 import { useMetronome } from "../hooks/useMetronome.tsx";
 import React from "react";
 import BPMSlider from "./BPMSlider.tsx";
+import PlayButton from "./PlayButton.tsx";
 
 const Standard: React.FC = () => {
   const {
@@ -15,19 +16,8 @@ const Standard: React.FC = () => {
   return (
     <div className="space-y-8">
       <BPMSlider bpm={bpm} onBpmChange={handleBpmChange} />
-
       <StandardStatsDisplay currentBeat={currentBeat} currentBar={currentBar} />
-
-      <div>
-        <button
-          className={`btn-lg w-48 btn btn-active ${
-            isPlaying ? "btn-accent" : "btn-primary"
-          }`}
-          onClick={toggleMetronome}
-        >
-          {isPlaying ? "stop" : "start"}
-        </button>
-      </div>
+      <PlayButton isPlaying={isPlaying} onToggle={toggleMetronome} />
     </div>
   );
 };
