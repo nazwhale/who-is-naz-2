@@ -5,3 +5,26 @@
 html, body {
     @apply m-0 p-0 min-h-screen;
 }
+
+/* Example: Apply Tailwind CSS styles to headers */
+.markdown h1 {
+    @apply text-2xl font-bold my-4; /* Customize styles as needed */
+}
+
+.markdown h2 {
+    @apply text-xl font-bold mt-6 mb-2; /* Customize styles as needed */
+}
+
+.markdown h3 {
+    @apply text-lg font-bold mt-6 mb-2; /* Customize styles as needed */
+}
+
+.markdown p {
+    @apply my-4; /* Customize styles as needed */
+}
+
+.markdown a {
+    @apply link; /* Customize styles as needed */
+}
+
+/* Add similar classes for h3, h4, etc. */

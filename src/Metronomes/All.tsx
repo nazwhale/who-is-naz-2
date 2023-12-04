@@ -1,6 +1,7 @@
 // Metronomes.ts
 import StandardMetronome from "./Standard.tsx";
 import CircleOfFifthsMetronome from "./CircleOfFifths.tsx";
+import Blog from "../Blog";
 
 const All = [
   {
@@ -12,6 +13,11 @@ const All = [
     path: "/circle-of-fifths-metronome",
     component: CircleOfFifthsMetronome,
     name: "circle of fifths metronome",
+  },
+  {
+    path: "/articles",
+    component: Blog,
+    name: "articles",
   },
 ];
 
