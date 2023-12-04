@@ -2,12 +2,16 @@ import { useState, useEffect, useRef, ChangeEvent } from "react";
 import * as Tone from "tone";
 import { fourthBeatSynth, regularSynth } from "../synth";
 import { circleOfFifths } from "../circleOfFifths";
+import { calculateInterval } from "../utils";
 
 const BEATS_PER_BAR = 4;
 const FIRST_CHANGE_BAR = 5;
 const BARS_BETWEEN_CHANGES = 4;
 
-const useMetronome = (initialBpm: number) => {
+const useMetronome = (
+  initialBpm: number,
+  updateNoteEveryFourBars: boolean = false,
+) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [bpm, setBpm] = useState(initialBpm);
   const beatRef = useRef(0);
@@ -19,25 +23,25 @@ const useMetronome = (initialBpm: number) => {
   useEffect(() => {
     const scheduleId = Tone.Transport.scheduleRepeat((time) => {
       updateBeat();
-      updateBarAndNote();
+      updateBarAndNote(updateNoteEveryFourBars);
       triggerSynth(time);
-    }, calculateNoteInterval(bpm));
+    }, calculateInterval(bpm));
 
     return () => {
       Tone.Transport.clear(scheduleId);
     };
-  }, [bpm]);
+  }, [bpm, updateNoteEveryFourBars]);
 
   const updateBeat = () => {
     beatRef.current = (beatRef.current % BEATS_PER_BAR) + 1;
     setCurrentBeat(beatRef.current);
   };
 
-  const updateBarAndNote = () => {
+  const updateBarAndNote = (updateNoteEveryFourBars: boolean) => {
     if (isFirstBeat()) {
       barCountRef.current += 1;
       updateCurrentBar();
-      maybeUpdateCurrentNote();
+      maybeUpdateCurrentNote(updateNoteEveryFourBars);
     }
   };
 
@@ -53,8 +57,8 @@ const useMetronome = (initialBpm: number) => {
       : barCount % BEATS_PER_BAR;
   };
 
-  const maybeUpdateCurrentNote = () => {
-    if (shouldChangeNote()) {
+  const maybeUpdateCurrentNote = (updateNoteEveryFourBars: boolean) => {
+    if (updateNoteEveryFourBars && shouldChangeNote()) {
       currentNoteRef.current = getNextNote(currentNoteRef.current);
     }
   };
@@ -117,10 +121,6 @@ const useMetronome = (initialBpm: number) => {
     toggleMetronome,
     handleBpmChange,
   };
-};
-
-const calculateNoteInterval = (bpm: number): number => {
-  return 60 / bpm;
 };
 
 const getNextNote = (currentNote: string): string => {

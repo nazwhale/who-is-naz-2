@@ -1,8 +1,8 @@
 import React from "react";
 import StatsDisplay from "./StatsDisplay.tsx";
-import { useMetronome } from "./hooks/useMetronome.tsx";
+import { useMetronome } from "../hooks/useMetronome.tsx";
 
-const Metronome: React.FC = () => {
+const CircleOfFifths: React.FC = () => {
   const {
     isPlaying,
     bpm,
@@ -12,7 +12,7 @@ const Metronome: React.FC = () => {
     nextNote,
     toggleMetronome,
     handleBpmChange,
-  } = useMetronome(120);
+  } = useMetronome(120, true);
 
   return (
     <div className="space-y-8">
@@ -56,7 +56,7 @@ const Metronome: React.FC = () => {
   );
 };
 
-export default Metronome;
+export default CircleOfFifths;
 
 function calculateInterval(bpm: number): number {
   return 60 / bpm;
