@@ -8,7 +8,3 @@ declare module "*.md" {
 interface ImportMeta {
   globEager: (globPattern: string) => { [key: string]: any };
 }
-
-interface Window {
-  Buffer: typeof Buffer;
-}
