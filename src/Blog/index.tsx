@@ -27,7 +27,7 @@ const Blog = () => {
       });
 
       const markdownPromises = Object.entries(markdownImports).map(
-        async ([resolver]) => {
+        async ([path, resolver]) => {
           const markdownContent = await resolver();
           // Parse the front matter using gray-matter
           const matterResult = grayMatter(markdownContent);
