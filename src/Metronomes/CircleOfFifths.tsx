@@ -1,6 +1,7 @@
 import React from "react";
 import StatsDisplay from "./StatsDisplay.tsx";
 import { useMetronome } from "../hooks/useMetronome.tsx";
+import BPMSlider from "./BPMSlider.tsx";
 
 const CircleOfFifths: React.FC = () => {
   const {
@@ -16,24 +17,7 @@ const CircleOfFifths: React.FC = () => {
 
   return (
     <div className="space-y-8">
-      <div>
-        <div className="stat">
-          <div className="stat-title">BPM</div>
-          <div className="stat-value">{bpm}</div>
-          <div className="stat-desc">
-            every {calculateInterval(bpm).toFixed(2)}s
-          </div>
-        </div>
-
-        <input
-          type="range"
-          min={40}
-          max={200}
-          value={bpm}
-          className="range"
-          onChange={handleBpmChange}
-        />
-      </div>
+      <BPMSlider bpm={bpm} onBpmChange={handleBpmChange} />
 
       <StatsDisplay
         currentNote={currentNote}
@@ -49,7 +33,7 @@ const CircleOfFifths: React.FC = () => {
           }`}
           onClick={toggleMetronome}
         >
-          {isPlaying ? "Stop" : "Start"}
+          {isPlaying ? "stop" : "start"}
         </button>
       </div>
     </div>
@@ -57,7 +41,3 @@ const CircleOfFifths: React.FC = () => {
 };
 
 export default CircleOfFifths;
-
-function calculateInterval(bpm: number): number {
-  return 60 / bpm;
-}

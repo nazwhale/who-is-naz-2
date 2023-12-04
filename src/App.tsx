@@ -1,7 +1,8 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
 import All from "./Metronomes/All";
-import Navigation from "./Nav"; // Import the new Navigation component
+import Navigation from "./Nav";
+import StandardMetronome from "./Metronomes/Standard.tsx"; // Import the new Navigation component
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         </div>
 
         <Routes>
+          <Route path="/" element={<StandardMetronome />} />{" "}
           {All.map((metronome) => (
             <Route
               key={metronome.path}

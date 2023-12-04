@@ -16,13 +16,13 @@ const StatsDisplay: React.FC<StatsDisplayProps> = ({
   return (
     <div className="bg-neutral-content stats stats-vertical sm:stats-horizontal shadow flex flex-grow max-w-md mx-auto">
       <div className="stat">
-        <div className="stat-title">Note</div>
+        <div className="stat-title">note</div>
         <div className="stat-value">{currentNote}</div>
         <div className="stat-desc">next up: {nextNote}</div>
       </div>
 
       <div className="stat">
-        <div className="stat-title">Beat</div>
+        <div className="stat-title">beat</div>
         <div className="stat-value">
           <span className="countdown">{currentBeat}</span>
         </div>
@@ -30,7 +30,7 @@ const StatsDisplay: React.FC<StatsDisplayProps> = ({
       </div>
 
       <div className="stat">
-        <div className="stat-title">Bar</div>
+        <div className="stat-title">bar</div>
         <div className="stat-value">
           <span className="countdown">{currentBar}</span>
         </div>

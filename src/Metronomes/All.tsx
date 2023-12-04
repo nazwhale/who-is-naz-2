@@ -6,12 +6,12 @@ const All = [
   {
     path: "/online-metronome",
     component: StandardMetronome,
-    name: "Basic Metronome",
+    name: "basic metronome",
   },
   {
     path: "/circle-of-fifths-metronome",
     component: CircleOfFifthsMetronome,
-    name: "Circle of Fifths Metronome",
+    name: "circle of fifths metronome",
   },
 ];
 
