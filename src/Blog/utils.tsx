@@ -3,6 +3,8 @@ import remarkParse from "remark-parse";
 import remarkHtml from "remark-html";
 import { format, parseISO } from "date-fns";
 
+export const FOLDER_PATH_TO_BLOG_POSTS = "/public/blog-posts/";
+
 export async function parseMarkdown(markdown: string): Promise<string> {
   const result = await unified()
     .use(remarkParse)

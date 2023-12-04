@@ -4,7 +4,7 @@ import grayMatter from "gray-matter";
 import ReactMarkdown from "react-markdown";
 import rehypeSanitize from "rehype-sanitize";
 import rehypeRaw from "rehype-raw";
-import { formatDateStr } from "./utils.tsx";
+import { FOLDER_PATH_TO_BLOG_POSTS, formatDateStr } from "./utils.tsx";
 
 const BlogPost = () => {
   const [postContent, setPostContent] = useState("");
@@ -14,14 +14,15 @@ const BlogPost = () => {
   useEffect(() => {
     const loadPost = async () => {
       // Make sure the path is relative and the markdown files are now in the src directory
-      const markdownImports = import.meta.glob("../blog-posts/*.md", {
+
+      const markdownImports = import.meta.glob("/public/blog-posts/*.md", {
         as: "raw",
       });
 
       if (slug) {
         try {
           const markdownContent =
-            await markdownImports[`../blog-posts/${slug}.md`]();
+            await markdownImports[`${FOLDER_PATH_TO_BLOG_POSTS}${slug}.md`]();
           const { content, data } = grayMatter(markdownContent);
 
           // Set the post content and title from the front matter

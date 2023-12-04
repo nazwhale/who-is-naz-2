@@ -22,7 +22,7 @@ const Blog = () => {
   useEffect(() => {
     const loadPosts = async () => {
       // Dynamically import all .md files from the blog-posts directory
-      const markdownImports = import.meta.glob("/src/blog-posts/*.md", {
+      const markdownImports = import.meta.glob("/public/blog-posts/*.md", {
         as: "raw",
       });
 
