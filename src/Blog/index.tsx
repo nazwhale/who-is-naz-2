@@ -1,10 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import grayMatter from "gray-matter";
-import { Buffer } from "buffer";
 import { formatDateStr } from "./utils.tsx";
-
-window.Buffer = Buffer; // Assign it to the window to make it globally available
 
 export interface BlogPostMetadata {
   title: string;
