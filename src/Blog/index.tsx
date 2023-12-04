@@ -28,9 +28,13 @@ const Blog = () => {
 
       const markdownPromises = Object.entries(markdownImports).map(
         async ([, resolver]) => {
+          console.log("resolver", resolver);
+
           const markdownContent = await resolver();
           // Parse the front matter using gray-matter
           const matterResult = grayMatter(markdownContent);
+
+          console.log("matterResult", matterResult);
 
           // Extract the slug and title from the front matter
           const slug = matterResult.data.slug;
