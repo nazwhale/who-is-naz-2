@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import grayMatter from "gray-matter";
 import { formatDateStr } from "./utils.tsx";
+import frontMatter from "front-matter";
 
 export interface BlogPostMetadata {
   title: string;
@@ -25,18 +25,15 @@ const Blog = () => {
 
       const markdownPromises = Object.entries(markdownImports).map(
         async ([, resolver]) => {
-          console.log("resolver", resolver);
-
           const markdownContent = await resolver();
-          // Parse the front matter using gray-matter
-          const matterResult = grayMatter(markdownContent);
 
-          console.log("matterResult", matterResult);
+          const { attributes }: { attributes: BlogPostMetadata } =
+            frontMatter(markdownContent);
 
           // Extract the slug and title from the front matter
-          const slug = matterResult.data.slug;
-          const title = matterResult.data.title || "No Title";
-          const date = matterResult.data.date || "No Date";
+          const slug = attributes.slug;
+          const title = attributes.title || "No Title";
+          const date = attributes.date || "No Date";
 
           return {
             metadata: {

@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import grayMatter from "gray-matter";
 import ReactMarkdown from "react-markdown";
 import rehypeSanitize from "rehype-sanitize";
 import rehypeRaw from "rehype-raw";
 import { FOLDER_PATH_TO_BLOG_POSTS, formatDateStr } from "./utils.tsx";
+import frontMatter from "front-matter";
+import { BlogPostMetadata } from "./index.tsx";
 
 const BlogPost = () => {
   const [postContent, setPostContent] = useState("");
-  const [postData, setPostData] = useState<{ [key: string]: any }>();
+  const [postData, setPostData] = useState<BlogPostMetadata>();
   const { slug } = useParams();
 
   useEffect(() => {
@@ -23,11 +24,15 @@ const BlogPost = () => {
         try {
           const markdownContent =
             await markdownImports[`${FOLDER_PATH_TO_BLOG_POSTS}${slug}.md`]();
-          const { content, data } = grayMatter(markdownContent);
+          const {
+            attributes,
+            body,
+          }: { attributes: BlogPostMetadata; body: string } =
+            frontMatter(markdownContent);
 
           // Set the post content and title from the front matter
-          setPostContent(content);
-          setPostData(data);
+          setPostContent(body);
+          setPostData(attributes);
         } catch (error) {
           console.error("Error loading post:", error);
           // Handle the error accordingly
