@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import grayMatter from "gray-matter";
 import { Buffer } from "buffer";
+import { formatDateStr } from "./utils.tsx";
 
 window.Buffer = Buffer; // Assign it to the window to make it globally available
 
@@ -67,6 +68,10 @@ const Blog = () => {
             >
               {post.metadata.title}
             </Link>
+            <span className="text-secondary-content/50">
+              {" "}
+              • {formatDateStr(post.metadata.date)}
+            </span>
           </li>
         ))}
       </ul>

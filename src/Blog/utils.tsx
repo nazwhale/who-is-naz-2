@@ -1,6 +1,7 @@
 import { unified } from "unified";
 import remarkParse from "remark-parse";
 import remarkHtml from "remark-html";
+import { format, parseISO } from "date-fns";
 
 export async function parseMarkdown(markdown: string): Promise<string> {
   const result = await unified()
@@ -8,4 +9,8 @@ export async function parseMarkdown(markdown: string): Promise<string> {
     .use(remarkHtml)
     .process(markdown);
   return result.toString();
+}
+
+export function formatDateStr(date: string): string {
+  return format(parseISO(date), "dd MMMM, ''yy");
 }

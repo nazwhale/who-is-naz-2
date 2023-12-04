@@ -7,6 +7,7 @@ import rehypeRaw from "rehype-raw";
 import { BlogPostMetadata } from "./index.tsx";
 import { format, parseISO } from "date-fns";
 import remarkExternalLinks from "remark-external-links";
+import { formatDateStr } from "./utils.tsx";
 
 const BlogPost = () => {
   const [postContent, setPostContent] = useState("");
@@ -47,7 +48,7 @@ const BlogPost = () => {
       <article className="markdown">
         <div>
           <div className="text-secondary-content/50">
-            {format(parseISO(postData?.date), "dd MMMM, ''yy")}
+            {formatDateStr(postData?.date)}
           </div>
           <h1>{postData?.title}</h1>
         </div>
