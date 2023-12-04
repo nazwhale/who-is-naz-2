@@ -27,7 +27,7 @@ const Blog = () => {
       });
 
       const markdownPromises = Object.entries(markdownImports).map(
-        async ([path, resolver]) => {
+        async ([, resolver]) => {
           const markdownContent = await resolver();
           // Parse the front matter using gray-matter
           const matterResult = grayMatter(markdownContent);
@@ -51,7 +51,9 @@ const Blog = () => {
       setPosts(loadedPosts);
     };
 
-    loadPosts();
+    loadPosts().catch((error) => {
+      console.error("Error loading posts:", error);
+    });
   }, []);
 
   console.log(posts);
