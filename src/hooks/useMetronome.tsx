@@ -73,7 +73,7 @@ const useMetronome = (
   const triggerSynth = (time: number) => {
     if (isFirstBeat()) {
       fourthBeatSynth.triggerAttackRelease(
-        currentNoteRef.current + "4",
+        currentNoteRef.current + "6",
         "8n",
         time,
       );

@@ -1,4 +1,3 @@
-// Metronomes.ts
 import StandardMetronome from "./Standard.tsx";
 import CircleOfFifthsMetronome from "./CircleOfFifths.tsx";
 import Blog from "../Blog";
