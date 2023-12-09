@@ -61,7 +61,7 @@ const BlogPost = () => {
         </ReactMarkdown>
       </article>
 
-      <div className="mt-12">
+      <div className="my-12">
         <Link className={`link link-neutral`} to={`/articles`}>
           View more articles →
         </Link>
