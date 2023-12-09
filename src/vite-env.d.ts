@@ -6,5 +6,6 @@ declare module "*.md" {
 }
 
 interface ImportMeta {
+  glob: (pattern: string) => Record<string, () => Promise<any>>;
   globEager: (globPattern: string) => { [key: string]: any };
 }

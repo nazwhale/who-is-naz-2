@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@vercel/analytics": "^1.1.1",
+    "@vercel/speed-insights": "^1.0.1",
     "autoprefixer": "^10.4.16",
     "buffer": "^6.0.3",
     "daisyui": "^4.4.18",

@@ -52,8 +52,6 @@ const Blog = () => {
     loadPosts();
   }, []);
 
-  console.log("posts", posts);
-
   return (
     <div>
       <ul>
