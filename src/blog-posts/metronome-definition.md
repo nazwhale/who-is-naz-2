@@ -1,5 +1,4 @@
 ---
-slug: "metronome-definition"
 title: "What is a Metronome?"
 date: "2023-12-04"
 ---

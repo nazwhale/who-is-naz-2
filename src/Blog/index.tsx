@@ -5,8 +5,8 @@ import frontMatter from "front-matter";
 
 export interface BlogPostMetadata {
   title: string;
-  slug: string;
   date: string;
+  slug: string;
 }
 
 interface BlogPost {
@@ -24,22 +24,24 @@ const Blog = () => {
       });
 
       const markdownPromises = Object.entries(markdownImports).map(
-        async ([, resolver]) => {
+        async ([filePath, resolver]) => {
           const markdownContent = await resolver();
 
           const { attributes }: { attributes: BlogPostMetadata } =
             frontMatter(markdownContent);
 
+          // get post slug from file name
+          const slug = filePath.split("/").pop()?.split(".")[0] || "";
+
           // Extract the slug and title from the front matter
-          const slug = attributes.slug;
           const title = attributes.title || "No Title";
           const date = attributes.date || "No Date";
 
           return {
             metadata: {
               title,
-              slug,
               date,
+              slug,
             },
           };
         },
@@ -49,7 +51,9 @@ const Blog = () => {
       setPosts(loadedPosts);
     };
 
-    loadPosts();
+    loadPosts().catch((error) => {
+      console.error("Error loading posts:", error);
+    });
   }, []);
 
   return (
