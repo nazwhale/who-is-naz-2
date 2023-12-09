@@ -19,6 +19,10 @@ When you slide the block down, the stick swings back and forth really fast, like
 
 The metronome has a special spring inside it that helps the stick keep swinging back and forth without stopping.
 
+When you wind it up, you're putting energy into that spring. The spring wants to unwind, and as it does, it releases the energy slowly and steadily. That's how metronomes stay at the same pace, not slowing down or speeding up.
+
+This energy is what makes the metronome's arm (the one with the little weight on it) swing back and forth.
+
 Every time the stick swings to one side, it makes a 'tick' sound, and when it swings to the other side, it makes a 'tock' sound. So, it goes 'tick-tock, tick-tock,' just like the hands of a clock.
 
 When you play music, you can listen to the 'tick-tock' and try to match the notes you're playing with the sound. If you can play your music in time with the 'tick-tock,' you’re keeping a steady beat! 
@@ -30,6 +34,8 @@ These are digital and can include a variety of features.
 They produce a beep, drumming tap, or other sound to denote each beat. The tempo can be adjusted with buttons, and digital displays show the tempo marking. 
 
 Some electronic metronomes also include other time-keeping features like different beat patterns, visual cues (like flashing lights), or a tuner.
+
+In modern electronic metronomes, there's no spring, but they use a battery to provide a steady flow of electrical energy, which keeps them going at the same pace until the battery runs out.
 
 ### Software/App Metronomes 
 
