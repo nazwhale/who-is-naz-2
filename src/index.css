@@ -28,3 +28,7 @@ html, body {
 }
 
 /* Add similar classes for h3, h4, etc. */
+
+/*Ko-fi widget styling*/
+.floatingchat-container-wrap { left:unset; right: 16px; }
+.floating-chat-kofi-popup-iframe { left:unset; right: 16px; }
