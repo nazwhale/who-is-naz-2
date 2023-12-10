@@ -21,7 +21,12 @@ const useMetronome = (
   const [currentBar, setCurrentBar] = useState(1);
 
   useEffect(() => {
+    // Debug: Log the BPM and the state of Tone.Transport
+    console.log(`Initializing metronome with BPM: ${bpm}`);
+    console.log(`Tone.Transport state: ${Tone.Transport.state}`);
+
     const scheduleId = Tone.Transport.scheduleRepeat((time) => {
+      console.log("Scheduled repeat triggered."); // Debug statement
       updateBeat();
       updateBarAndNote(updateNoteEveryFourBars);
       triggerSynth(time);
@@ -29,6 +34,7 @@ const useMetronome = (
 
     return () => {
       Tone.Transport.clear(scheduleId);
+      console.log("Transport cleared."); // Debug statement
     };
   }, [bpm, updateNoteEveryFourBars]);
 
@@ -71,13 +77,16 @@ const useMetronome = (
   };
 
   const triggerSynth = (time: number) => {
+    console.log("Triggering synth."); // Debug statement
     if (isFirstBeat()) {
+      console.log(`First beat: Playing ${currentNoteRef.current}6`); // Debug statement
       fourthBeatSynth.triggerAttackRelease(
         currentNoteRef.current + "6",
         "8n",
         time,
       );
     } else {
+      console.log(`Regular beat: Playing ${currentNoteRef.current}5`); // Debug statement
       regularSynth.triggerAttackRelease(
         currentNoteRef.current + "5",
         "8n",
@@ -87,6 +96,8 @@ const useMetronome = (
   };
 
   const toggleMetronome = async () => {
+    console.log(`Metronome toggled. Current state isPlaying: ${isPlaying}`); // Debug statement
+
     // Ensure this function is directly triggered by a user interaction
     try {
       // Resume the audio context in response to user interaction
