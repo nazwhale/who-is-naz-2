@@ -80,18 +80,26 @@ const useMetronome = (
     console.log("Triggering synth."); // Debug statement
     if (isFirstBeat()) {
       console.log(`First beat: Playing ${currentNoteRef.current}6`); // Debug statement
-      fourthBeatSynth.triggerAttackRelease(
-        currentNoteRef.current + "6",
-        "8n",
-        time,
-      );
+      try {
+        fourthBeatSynth.triggerAttackRelease(
+          currentNoteRef.current + "6",
+          "8n",
+          time,
+        );
+      } catch (error) {
+        console.error("Error triggering fourthBeatSynth:", error);
+      }
     } else {
       console.log(`Regular beat: Playing ${currentNoteRef.current}5`); // Debug statement
-      regularSynth.triggerAttackRelease(
-        currentNoteRef.current + "5",
-        "8n",
-        time,
-      );
+      try {
+        regularSynth.triggerAttackRelease(
+          currentNoteRef.current + "5",
+          "8n",
+          time,
+        );
+      } catch (error) {
+        console.error("Error triggering regularSynth:", error);
+      }
     }
   };
 
