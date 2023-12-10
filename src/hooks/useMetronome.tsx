@@ -78,8 +78,12 @@ const useMetronome = (
 
   const triggerSynth = (time: number) => {
     console.log("Triggering synth."); // Debug statement
+    console.log(`AudioContext State before playing: ${Tone.context.state}`);
+    console.log(`Synth volume: ${regularSynth.volume.value}`);
+
     if (isFirstBeat()) {
       console.log(`First beat: Playing ${currentNoteRef.current}6`); // Debug statement
+
       try {
         fourthBeatSynth.triggerAttackRelease(
           currentNoteRef.current + "6",
