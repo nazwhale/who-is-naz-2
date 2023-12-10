@@ -89,6 +89,9 @@ const useMetronome = (
   const toggleMetronome = async () => {
     // Ensure this function is directly triggered by a user interaction
     try {
+      // Resume the audio context in response to user interaction
+      await Tone.context.resume();
+
       // Only call Tone.start() if the context is not already running
       if (Tone.context.state !== "running") {
         await Tone.start(); // This starts the audio context
