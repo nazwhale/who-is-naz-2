@@ -1,19 +1,33 @@
-import React from "react";
+import React, { ChangeEvent } from "react";
 
 type BPMSliderProps = {
   bpm: number;
-  onBpmChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  setBpm: React.Dispatch<React.SetStateAction<number>>;
 };
 
-const BPMSlider: React.FC<BPMSliderProps> = ({ bpm, onBpmChange }) => {
+const BPMSlider: React.FC<BPMSliderProps> = ({ bpm, setBpm }) => {
+  const onBpmChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const newBpm = Number(event.target.value);
+    setBpm(newBpm);
+  };
+
   return (
-    <div>
-      <div className="stat">
-        <div className="stat-title">BPM</div>
-        <div className="stat-value">{bpm}</div>
-        <div className="stat-desc">
-          every {calculateInterval(bpm).toFixed(2)}s
+    <div className="flex flex-col items-center">
+      <div className="flex items-center w-fit mb-4">
+        <button className="btn btn-secondary" onClick={() => setBpm(bpm - 5)}>
+          -5
+        </button>
+        <div className="stat">
+          <div className="stat-title">BPM</div>
+          <div className="stat-value">{bpm}</div>
+          <div className="stat-desc">
+            every {calculateInterval(bpm).toFixed(2)}s
+          </div>
         </div>
+
+        <button className="btn btn-secondary" onClick={() => setBpm(bpm + 5)}>
+          +5
+        </button>
       </div>
 
       <input

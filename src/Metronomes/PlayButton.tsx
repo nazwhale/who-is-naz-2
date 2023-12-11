@@ -2,13 +2,13 @@ import React from "react";
 
 type PropsT = {
   isPlaying: boolean;
-  onToggle: () => void;
+  onToggle: (event: React.MouseEvent | React.TouchEvent) => void;
 };
 
 const PlayButton: React.FC<PropsT> = ({ isPlaying, onToggle }) => {
   const handleInteraction = (event: React.MouseEvent | React.TouchEvent) => {
     event.preventDefault(); // Prevents double firing of events
-    onToggle();
+    onToggle(event);
   };
 
   return (

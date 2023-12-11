@@ -4,18 +4,12 @@ import BPMSlider from "./BPMSlider.tsx";
 import PlayButton from "./PlayButton.tsx";
 
 const Standard: React.FC = () => {
-  const {
-    isPlaying,
-    bpm,
-    currentBeat,
-    currentBar,
-    toggleMetronome,
-    handleBpmChange,
-  } = useMetronome(120);
+  const { isPlaying, bpm, currentBeat, currentBar, toggleMetronome, setBpm } =
+    useMetronome(120);
 
   return (
     <div className="space-y-8">
-      <BPMSlider bpm={bpm} onBpmChange={handleBpmChange} />
+      <BPMSlider bpm={bpm} setBpm={setBpm} />
       <StandardStatsDisplay currentBeat={currentBeat} currentBar={currentBar} />
       <PlayButton isPlaying={isPlaying} onToggle={toggleMetronome} />
     </div>

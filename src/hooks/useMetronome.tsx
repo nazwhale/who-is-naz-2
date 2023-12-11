@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, ChangeEvent } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import * as Tone from "tone";
 import { fourthBeatSynth, regularSynth } from "../synth";
 import { circleOfFifths } from "../circleOfFifths";
@@ -107,34 +107,49 @@ const useMetronome = (
     }
   };
 
-  const toggleMetronome = async () => {
-    console.log(`Metronome toggled. Current state isPlaying: ${isPlaying}`); // Debug statement
+  const toggleMetronome = async (
+    event: React.MouseEvent | React.TouchEvent,
+  ) => {
+    // Log the type of user event triggering this function
+    console.log(`Metronome toggled by user event: ${event?.type || "unknown"}`);
+    console.log(`Metronome toggled. Current state isPlaying: ${isPlaying}`);
+    console.log(`Tone.Context state before resume: ${Tone.context.state}`);
 
-    // Ensure this function is directly triggered by a user interaction
     try {
+      // Log the current time for reference
+      console.log(`Current time: ${new Date().toISOString()}`);
+
       // Resume the audio context in response to user interaction
       await Tone.context.resume();
+      console.log(`Tone.Context state after resume: ${Tone.context.state}`);
 
       // Only call Tone.start() if the context is not already running
       if (Tone.context.state !== "running") {
+        console.log("Attempting to start Tone...");
         await Tone.start(); // This starts the audio context
         console.log("Playback resumed successfully");
       }
+
+      // Log the state of Tone.Transport
+      console.log(
+        `Tone.Transport state before toggle: ${Tone.Transport.state}`,
+      );
+
       // Then start or stop the metronome
       if (isPlaying) {
         Tone.Transport.stop();
+        console.log("Metronome stopped");
       } else {
         Tone.Transport.start();
+        console.log("Metronome started");
       }
-      setIsPlaying(!isPlaying); // Update the state to reflect the new playing status
+
+      // Update the state to reflect the new playing status
+      setIsPlaying(!isPlaying);
+      console.log(`Metronome playing state is now: ${!isPlaying}`);
     } catch (e) {
       console.error("Could not start audio context:", e);
     }
-  };
-
-  const handleBpmChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const newBpm = Number(event.target.value);
-    setBpm(newBpm);
   };
 
   return {
@@ -145,7 +160,7 @@ const useMetronome = (
     currentNote: currentNoteRef.current,
     nextNote: getNextNote(currentNoteRef.current),
     toggleMetronome,
-    handleBpmChange,
+    setBpm,
   };
 };
 

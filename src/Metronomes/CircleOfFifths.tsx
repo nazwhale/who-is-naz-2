@@ -13,12 +13,12 @@ const CircleOfFifths: React.FC = () => {
     currentNote,
     nextNote,
     toggleMetronome,
-    handleBpmChange,
+    setBpm,
   } = useMetronome(120, true);
 
   return (
     <div className="space-y-8">
-      <BPMSlider bpm={bpm} onBpmChange={handleBpmChange} />
+      <BPMSlider bpm={bpm} setBpm={setBpm} />
 
       <StatsDisplay
         currentNote={currentNote}
