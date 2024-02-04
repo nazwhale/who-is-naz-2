@@ -31,7 +31,7 @@ function Events() {
                     <ul>
                         {events.map((event, index) => (
                             <li key={index} className="mb-4">
-                                <h3>{event.venue} // {event.name}</h3>
+                                <h3 className="font-semibold">{event.venue} // {event.name}</h3>
                                 <p>{event.description}</p>
                                 <p>{event.date === "" ? event.recurs_on : event.date}</p>
                                 <p>{event.start_time} – {event.end_time}</p>
