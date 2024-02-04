@@ -27,7 +27,6 @@ function Events() {
 
     return (
                 <div>
-                    <h2 className="mb-4 text-2xl font-semibold text-secondary-content">Events</h2>
                     <ul>
                         {events.map((event, index) => (
                             <li key={index} className="mb-4">
