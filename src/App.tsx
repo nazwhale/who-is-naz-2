@@ -9,7 +9,7 @@ function App() {
       <div>
         <div className="mb-8">
           <h1 className="mb-4 text-4xl font-semibold text-primary-content">
-            tempotick <span className="text-primary-content/60">metronome</span>
+            edinburgh <span className="text-primary-content/60">events</span>
           </h1>
           <div className="divider">
             <Navigation />

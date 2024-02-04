@@ -1,12 +1,11 @@
-import StandardMetronome from "./Metronomes/Standard.tsx";
+import Events from "./Events/index.tsx";
 import Blog from "./Blog";
 import Post from "./Blog/Post.tsx";
-import All from "./Metronomes/All";
 
 const routes = [
   {
     path: "/",
-    element: <StandardMetronome />,
+    element: <Events />,
   },
   {
     path: "/articles",
@@ -16,10 +15,6 @@ const routes = [
     path: "/articles/:slug",
     element: <Post />,
   },
-  ...All.map((metronome) => ({
-    path: metronome.path,
-    element: <metronome.component />,
-  })),
 ];
 
 export default routes;

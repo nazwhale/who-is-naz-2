@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import All from "./Metronomes/All";
+import All from "./All.tsx";
 
 const Navigation: React.FC = () => {
   const location = useLocation();
@@ -8,17 +8,17 @@ const Navigation: React.FC = () => {
   return (
     <nav>
       <ul className="flex justify-center space-x-4">
-        {All.map((metronome) => (
-          <li key={metronome.path} className="list-none">
+        {All.map((links) => (
+          <li key={links.path} className="list-none">
             <Link
-              to={metronome.path}
+              to={links.path}
               className={`link link-hover ${
-                location.pathname === metronome.path
+                location.pathname === links.path
                   ? "link-success"
                   : "link-primary"
               }`}
             >
-              {metronome.name}
+              {links.name}
             </Link>
           </li>
         ))}

@@ -27,8 +27,6 @@ export default defineConfig({
       hostname: "https://www.tempotick.com",
       dynamicRoutes: [
         "/",
-        "/online-metronome",
-        "/circle-of-fifths-metronome",
         "/articles",
         ...getArticleSlugs(),
       ],
