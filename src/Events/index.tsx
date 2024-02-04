@@ -100,13 +100,9 @@ function Event({ event }: { event: Event }) {
             {event.date === ""
               ? event.recurs_on
               : format(parseISO(event.date), "eee d MMM ''yy")}
+            {event.start_time !== "" && <span>, {event.start_time} </span>}
+            {event.end_time !== "" && <span>– {event.end_time}</span>}
           </p>
-          {event.start_time !== "" && (
-            <p>
-              , {event.start_time}{" "}
-              {event.end_time !== "" && <span>– {event.end_time}</span>}
-            </p>
-          )}
         </div>
       </div>
     </li>
