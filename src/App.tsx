@@ -6,22 +6,20 @@ import routes from "./routes.tsx";
 function App() {
   return (
     <Router>
-      <div>
-        <div className="mb-8">
-          <h1 className="mb-4 text-4xl font-semibold text-primary-content">
-            edinburgh <span className="text-primary-content/60">events</span>
-          </h1>
-          <div className="divider">
-            <Navigation />
-          </div>
+      <div className="mb-8">
+        <h1 className="mb-4 text-4xl font-semibold text-primary-content">
+          edinburgh <span className="text-primary-content/60">events</span>
+        </h1>
+        <div className="divider">
+          <Navigation />
         </div>
-
-        <Routes>
-          {routes.map((route, index) => (
-            <Route key={index} path={route.path} element={route.element} />
-          ))}
-        </Routes>
       </div>
+
+      <Routes>
+        {routes.map((route, index) => (
+          <Route key={index} path={route.path} element={route.element} />
+        ))}
+      </Routes>
     </Router>
   );
 }

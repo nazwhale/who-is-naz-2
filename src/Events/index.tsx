@@ -84,15 +84,15 @@ function Event({ event }: { event: Event }) {
   return (
     <li className="mb-4">
       <div className="mb-4">
-        <div className="flex items-center space-x-2">
+        <div className="flex flex-wrap items-center space-x-2">
           <div className="badge">{event.description}</div>
           <a
             href={event.url}
             target="_blank"
             rel="noreferrer"
-            className="link-hover"
+            className="link-hover max-w-full"
           >
-            <h3 className="font-semibold">
+            <h3 className="font-semibold truncate">
               {event.venue} // {event.name}
             </h3>
           </a>
