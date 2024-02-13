@@ -28,15 +28,34 @@ function Events() {
     fetch("/events.json")
       .then((response) => response.json())
       .then((data: Event[]) => {
-        setEvents(data);
+        console.log(data);
+
+        const sortedEvents = data.sort((a, b) => {
+          // Check if either event doesn't have a date
+          if (!a.date && !b.date) {
+            return 0; // Both events have no date, keep original order
+          } else if (!a.date) {
+            return -1; // Only a has no date, sort a before b
+          } else if (!b.date) {
+            return 1; // Only b has no date, sort b before a
+          }
+
+          // Both have dates, compare normally
+          return compareAsc(parseISO(a.date), parseISO(b.date));
+        });
+
+        console.log("sorted", sortedEvents);
+
+        setEvents(sortedEvents);
       })
       .catch((error) => console.error("Failed to load events:", error));
   }, []); // Empty dependency array means this effect runs once on mount
 
-  // order events by date using datefns library
-  events = events.sort((a, b) => {
-    return compareAsc(new Date(a.date), new Date(b.date));
-  });
+  // // order events by date using datefns library
+  // events.sort((a, b) => {
+  //   return compareAsc(parseISO(a.date), parseISO(b.date));
+  // });
+  // console.log(events);
 
   const todayEvents = events.filter((event) => {
     return isToday(new Date(event.date));
