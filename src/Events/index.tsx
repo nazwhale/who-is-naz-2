@@ -1,11 +1,4 @@
-import {
-  compareAsc,
-  compareDesc,
-  format,
-  isPast,
-  isToday,
-  parseISO,
-} from "date-fns";
+import { compareAsc, format, isPast, isToday, parseISO } from "date-fns";
 import { useEffect, useState } from "react";
 
 type Event = {
@@ -21,7 +14,7 @@ type Event = {
 };
 
 function Events() {
-  let [events, setEvents] = useState<Event[]>([]);
+  const [events, setEvents] = useState<Event[]>([]);
 
   useEffect(() => {
     // Fetch the events on component mount
@@ -50,12 +43,6 @@ function Events() {
       })
       .catch((error) => console.error("Failed to load events:", error));
   }, []); // Empty dependency array means this effect runs once on mount
-
-  // // order events by date using datefns library
-  // events.sort((a, b) => {
-  //   return compareAsc(parseISO(a.date), parseISO(b.date));
-  // });
-  // console.log(events);
 
   const todayEvents = events.filter((event) => {
     return isToday(new Date(event.date));
