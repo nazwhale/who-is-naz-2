@@ -1,4 +1,11 @@
-import { compareDesc, format, isPast, isToday, parseISO } from "date-fns";
+import {
+  compareAsc,
+  compareDesc,
+  format,
+  isPast,
+  isToday,
+  parseISO,
+} from "date-fns";
 import { useEffect, useState } from "react";
 
 type Event = {
@@ -28,7 +35,7 @@ function Events() {
 
   // order events by date using datefns library
   events = events.sort((a, b) => {
-    return compareDesc(new Date(a.date), new Date(b.date));
+    return compareAsc(new Date(a.date), new Date(b.date));
   });
 
   const todayEvents = events.filter((event) => {
