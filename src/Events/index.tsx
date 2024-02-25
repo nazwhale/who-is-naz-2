@@ -1,97 +1,61 @@
-import { compareAsc, format, isPast, isToday, parseISO } from "date-fns";
-import { useEffect, useState } from "react";
-
-type Event = {
-  name: string;
-  recurs_on?: string;
-  date: string;
-  start_time?: string;
-  end_time?: string;
-  description: string;
-  price?: number;
-  url: string;
-  venue: string;
-};
+import {
+  differenceInCalendarWeeks,
+  format,
+  isThisWeek,
+  isToday,
+  isTomorrow,
+  parseISO,
+  startOfToday,
+} from "date-fns";
+import { useFetchEvents, Event } from "../hooks/useFetchEvents";
 
 function Events() {
-  const [events, setEvents] = useState<Event[]>([]);
-
-  useEffect(() => {
-    // Fetch the events on component mount
-    fetch("/events.json")
-      .then((response) => response.json())
-      .then((data: Event[]) => {
-        console.log(data);
-
-        const sortedEvents = data.sort((a, b) => {
-          // Check if either event doesn't have a date
-          if (!a.date && !b.date) {
-            return 0; // Both events have no date, keep original order
-          } else if (!a.date) {
-            return -1; // Only a has no date, sort a before b
-          } else if (!b.date) {
-            return 1; // Only b has no date, sort b before a
-          }
-
-          // Both have dates, compare normally
-          return compareAsc(parseISO(a.date), parseISO(b.date));
-        });
-
-        console.log("sorted", sortedEvents);
-
-        setEvents(sortedEvents);
-      })
-      .catch((error) => console.error("Failed to load events:", error));
-  }, []); // Empty dependency array means this effect runs once on mount
-
-  const todayEvents = events.filter((event) => {
-    return isToday(new Date(event.date));
-  });
-
-  const futureEvents = events.filter((event) => {
-    // today, true
-    if (isToday(new Date(event.date))) {
-      return false;
-    }
-
-    return !isPast(new Date(event.date));
-  });
-
-  const pastEvents = events.filter((event) => {
-    if (isToday(new Date(event.date))) {
-      return false;
-    }
-    return isPast(new Date(event.date));
-  });
+  const { eventsByDate } = useFetchEvents();
 
   return (
     <div>
       <ul>
-        <div className="divider text-primary">today</div>
-
-        {todayEvents.map((event, index) => (
-          <Event event={event} key={index} />
-        ))}
-
-        <div className="divider text-primary">future</div>
-
-        {futureEvents.map((event, index) => (
-          <Event event={event} key={index} />
-        ))}
-
-        <div className="divider text-primary">past</div>
-
-        {pastEvents.map((event, index) => (
-          <Event event={event} key={index} />
+        {Object.entries(eventsByDate).map(([date, events]) => (
+          <div key={date}>
+            <div className="divider text-primary">
+              {date === "no-date"
+                ? "Recurring"
+                : formatDateLabel(parseISO(date))}
+            </div>
+            {events.map((event, index) => (
+              <Event event={event} key={index} />
+            ))}
+          </div>
         ))}
       </ul>
     </div>
   );
 }
 
-export default Events;
+function formatDateLabel(eventDate: Date): string {
+  const today = startOfToday();
+  if (isToday(eventDate)) {
+    return "Today";
+  } else if (isTomorrow(eventDate)) {
+    return "Tomorrow";
+  } else if (isThisWeek(eventDate)) {
+    return format(eventDate, "'On' EEEE");
+  } else {
+    const weeksDifference = differenceInCalendarWeeks(eventDate, today, {
+      weekStartsOn: 1,
+    });
+    if (weeksDifference === 1) {
+      // Next week
+      return `Next ${format(eventDate, "EEEE")}`;
+    } else {
+      // More than a week away
+      const formattedDate = format(eventDate, "EEEE");
+      return `${weeksDifference} weeks on ${formattedDate}`;
+    }
+  }
+}
 
-// event component
+export default Events;
 
 function Event({ event }: { event: Event }) {
   return (
