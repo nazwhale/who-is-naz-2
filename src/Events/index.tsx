@@ -40,19 +40,24 @@ function formatDateLabel(eventDate: Date): string {
     return "Today";
   } else if (isTomorrow(eventDate)) {
     return "Tomorrow";
-  } else if (isThisWeek(eventDate)) {
-    return format(eventDate, "'On' EEEE");
   } else {
     const weeksDifference = differenceInCalendarWeeks(eventDate, today, {
       weekStartsOn: 1,
     });
-    if (weeksDifference === 1) {
-      // Next week
-      return `Next ${format(eventDate, "EEEE")}, ${dateOfMonth}`;
-    } else {
-      // More than a week away
-      const formattedDate = format(eventDate, "EEEE");
-      return `${weeksDifference} weeks on ${formattedDate}, ${dateOfMonth}`;
+
+    switch (weeksDifference) {
+      case 0:
+        // This week
+        return `${format(eventDate, "EEEE")}, ${dateOfMonth}`;
+      case 1:
+        // Next week
+        return `Next ${format(eventDate, "EEEE")}, ${dateOfMonth}`;
+      default:
+        // More than a week away
+        return `${weeksDifference} weeks on ${format(
+          eventDate,
+          "EEEE",
+        )}, ${dateOfMonth}`;
     }
   }
 }
@@ -72,6 +77,7 @@ function Event({ event }: { event: Event }) {
           >
             <div className="badge badge-info">{event.venue}</div>
           </a>
+          <div className="badge badge-secondary">{event.description}</div>
           <a
             href={event.url}
             target="_blank"
@@ -85,7 +91,6 @@ function Event({ event }: { event: Event }) {
             {event.start_time !== "" && <span>{event.start_time} </span>}
             {event.end_time !== "" && <span>– {event.end_time}</span>}
           </span>
-          <div className="badge badge-secondary">{event.description}</div>
         </div>
       </div>
     </li>
