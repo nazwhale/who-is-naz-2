@@ -33,6 +33,8 @@ function Events() {
 }
 
 function formatDateLabel(eventDate: Date): string {
+  const dateOfMonth = format(eventDate, "d/M");
+
   const today = startOfToday();
   if (isToday(eventDate)) {
     return "Today";
@@ -46,11 +48,11 @@ function formatDateLabel(eventDate: Date): string {
     });
     if (weeksDifference === 1) {
       // Next week
-      return `Next ${format(eventDate, "EEEE")}`;
+      return `Next ${format(eventDate, "EEEE")}, ${dateOfMonth}`;
     } else {
       // More than a week away
       const formattedDate = format(eventDate, "EEEE");
-      return `${weeksDifference} weeks on ${formattedDate}`;
+      return `${weeksDifference} weeks on ${formattedDate}, ${dateOfMonth}`;
     }
   }
 }
@@ -62,24 +64,28 @@ function Event({ event }: { event: Event }) {
     <li className="mb-4">
       <div className="mb-4">
         <div className="flex flex-wrap items-center space-x-2">
-          <div className="badge">{event.description}</div>
           <a
             href={event.url}
             target="_blank"
             rel="noreferrer"
             className="link-hover max-w-full"
           >
-            <h3 className="font-semibold truncate">
-              {event.venue} // {event.name}
-            </h3>
+            <div className="badge badge-info">{event.venue}</div>
           </a>
-          <p>
-            {event.date === ""
-              ? event.recurs_on
-              : format(parseISO(event.date), "eee d MMM ''yy")}
-            {event.start_time !== "" && <span>, {event.start_time} </span>}
+          <a
+            href={event.url}
+            target="_blank"
+            rel="noreferrer"
+            className="link-hover max-w-full"
+          >
+            <h3 className="font-semibold truncate">{event.name}</h3>
+          </a>
+          <span>{event.date === "" && event.recurs_on + ", "}</span>
+          <span>
+            {event.start_time !== "" && <span>{event.start_time} </span>}
             {event.end_time !== "" && <span>– {event.end_time}</span>}
-          </p>
+          </span>
+          <div className="badge badge-secondary">{event.description}</div>
         </div>
       </div>
     </li>
