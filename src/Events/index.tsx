@@ -1,7 +1,6 @@
 import {
   differenceInCalendarWeeks,
   format,
-  isThisWeek,
   isToday,
   isTomorrow,
   parseISO,
