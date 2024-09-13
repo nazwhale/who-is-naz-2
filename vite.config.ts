@@ -24,12 +24,8 @@ export default defineConfig({
     react(),
     Markdown(),
     sitemap({
-      hostname: "https://www.tempotick.com",
-      dynamicRoutes: [
-        "/",
-        "/articles",
-        ...getArticleSlugs(),
-      ],
+      hostname: "https://www.whoisnaz.com",
+      dynamicRoutes: ["/", "/articles", ...getArticleSlugs()],
       priority: 0.7,
       generateRobotsTxt: true,
       robots: [{ userAgent: "*", allow: "/" }],

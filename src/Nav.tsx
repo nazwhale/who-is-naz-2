@@ -7,7 +7,7 @@ const Navigation: React.FC = () => {
 
   return (
     <nav>
-      <ul className="flex justify-center space-x-4">
+      <ul>
         {All.map((links) => (
           <li key={links.path} className="list-none">
             <Link

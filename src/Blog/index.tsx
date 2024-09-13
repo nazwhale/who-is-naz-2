@@ -48,6 +48,15 @@ const Blog = () => {
       );
 
       const loadedPosts: BlogPost[] = await Promise.all(markdownPromises);
+
+      // order by date
+      loadedPosts.sort((a, b) => {
+        return (
+          new Date(b.metadata.date).getTime() -
+          new Date(a.metadata.date).getTime()
+        );
+      });
+
       setPosts(loadedPosts);
     };
 

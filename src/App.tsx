@@ -8,11 +8,10 @@ function App() {
     <Router>
       <div className="mb-8">
         <h1 className="mb-4 text-4xl font-semibold text-primary-content">
-          edinburgh <span className="text-primary-content/60">events</span>
+          who is <span className="text-primary-content/60">naz</span>
         </h1>
-        <div className="divider">
-          <Navigation />
-        </div>
+        <Navigation />
+        <div className="divider"></div>
       </div>
 
       <Routes>

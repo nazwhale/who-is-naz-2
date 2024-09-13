@@ -1,11 +1,11 @@
-import Events from "./Events/index.tsx";
 import Blog from "./Blog";
 import Post from "./Blog/Post.tsx";
+import Home from "./Home/index.tsx";
 
 const routes = [
   {
     path: "/",
-    element: <Events />,
+    element: <Home />,
   },
   {
     path: "/articles",

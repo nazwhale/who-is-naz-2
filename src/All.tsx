@@ -1,10 +1,11 @@
 import Blog from "./Blog";
+import Home from "./Home";
 
 const All = [
   {
     path: "/",
-    component: Event,
-    name: "events",
+    component: Home,
+    name: "home",
   },
   {
     path: "/articles",
