@@ -47,3 +47,8 @@ pre {
 code {
     @apply bg-neutral text-neutral-content px-0.5 rounded; /* Customize styles as needed */
 }
+
+/* Add this to your existing CSS */
+.nav-link {
+    transition: font-size 0.05s cubic-bezier(0.32, 0, 0.67, 1); /* Smoother transition */
+}

@@ -6,13 +6,13 @@ const Navigation: React.FC = () => {
   const location = useLocation();
 
   return (
-    <nav>
+    <nav className="h-14">
       <ul>
         {All.map((links) => (
           <li key={links.path} className="list-none">
             <Link
               to={links.path}
-              className={`link link-hover link-primary ${
+              className={`nav-link link link-hover link-primary ${
                 location.pathname === links.path ? "text-2xl" : ""
               }`}
             >
