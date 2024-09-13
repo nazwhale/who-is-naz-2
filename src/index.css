@@ -13,7 +13,7 @@ h1 {
 }
 
 h2 {
-    @apply text-xl font-bold mt-6 mb-2; /* Customize styles as needed */
+    @apply text-xl mt-6 mb-2; /* Customize styles as needed */
 }
 
 h3 {
@@ -34,6 +34,10 @@ ol {
 
 ul {
     @apply list-disc; /* Customize styles as needed */
+}
+
+ul li a {
+    @apply no-underline hover:underline
 }
 
 pre {

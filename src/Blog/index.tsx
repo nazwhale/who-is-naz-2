@@ -67,13 +67,10 @@ const Blog = () => {
 
   return (
     <div>
-      <ul>
+      <ul className="list-none">
         {posts.map((post, index) => (
           <li key={index}>
-            <Link
-              className={`link link-neutral`}
-              to={`/articles/${post.metadata.slug}`}
-            >
+            <Link to={`/articles/${post.metadata.slug}`}>
               {post.metadata.title}
             </Link>
             <span className="text-secondary-content/50">
