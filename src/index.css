@@ -35,3 +35,7 @@ ol {
 ul {
     @apply list-disc; /* Customize styles as needed */
 }
+
+pre {
+    @apply bg-neutral text-neutral-content px-6 py-4 rounded; /* Customize styles as needed */
+}
