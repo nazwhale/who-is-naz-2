@@ -11,6 +11,11 @@ export const projects: ProjectT[] = [
     link: "https://onfolk.com",
   },
   {
+    title: "Sentence Spotlight",
+    description: "Chrome extension to focus better when reading on the web",
+    link: "https://chromewebstore.google.com/detail/sentence-spotlight/nbgebiienflgclebolkcddhillhmfbaj",
+  },
+  {
     title: "Tempotick Online Metronomes",
     description: "Collection of online metronomes to help musicians",
     link: "https://www.tempotick.com",
