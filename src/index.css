@@ -25,7 +25,7 @@ p {
 }
 
 a {
-    @apply link; /* Customize styles as needed */
+    @apply link link-hover link-accent; /* Customize styles as needed */
 }
 
 ol {
@@ -44,8 +44,12 @@ pre {
     @apply bg-neutral text-neutral-content px-6 py-4 rounded overflow-x-scroll; /* Customize styles as needed */
 }
 
-code {
+pre code {
     @apply bg-neutral text-neutral-content px-0.5 rounded; /* Customize styles as needed */
+}
+
+code {
+    @apply bg-secondary text-secondary-content px-1.5 py-0.5 rounded text-sm; /* Customize styles as needed */
 }
 
 /* Add this to your existing CSS */
