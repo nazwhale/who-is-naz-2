@@ -12,7 +12,7 @@ export const projects: ProjectT[] = [
   },
   {
     title: "Sentence Spotlight",
-    description: "Chrome extension to focus better when reading on the web",
+    description: "Chrome extension for focus when reading on the web",
     link: "https://chromewebstore.google.com/detail/sentence-spotlight/nbgebiienflgclebolkcddhillhmfbaj",
   },
   {
