@@ -8,6 +8,7 @@ tags:
 ---
 
 - [Recco's from a recovering Japanese salaryman](https://www.kalzumeus.com/japan-recommendations/)
+- [...and his Tweets about Japanese things](https://x.com/search?f=top&q=(japan%20OR%20tokyo%20OR%20japanese)%20(from%3Apatio11)&src=typed_query)
 - [reddit.com/r/JapanTravelTips/](https://www.reddit.com/r/JapanTravelTips/)
 - [https://casnocha.com/2024/01/impressions-from-a-longer-stay-in-tokyo-2023.html](https://casnocha.com/2024/01/impressions-from-a-longer-stay-in-tokyo-2023.html)
 - [History of Japan](https://www.youtube.com/watch?v=Mh5LY4Mz15o)
