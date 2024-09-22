@@ -47,13 +47,13 @@ const BlogPost = () => {
   }
 
   return (
-    <div className="text-start m-auto max-w-lg">
+    <div className="text-start m-auto max-w-xl">
       <article className="markdown">
-        <div>
+        <div className="mb-6">
+          <h1 className="mb-2">{postData?.title}</h1>
           <div className="text-secondary-content/50">
             {formatDateStr(postData?.date)}
           </div>
-          <h1>{postData?.title}</h1>
         </div>
         {/* Render the Markdown content */}
         <ReactMarkdown rehypePlugins={[rehypeRaw, rehypeSanitize]}>
@@ -63,7 +63,7 @@ const BlogPost = () => {
 
       <div className="my-12">
         <Link className={`link link-neutral`} to={`/articles`}>
-          View more articles →
+          More →
         </Link>
       </div>
     </div>

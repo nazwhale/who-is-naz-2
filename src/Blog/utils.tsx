@@ -14,5 +14,5 @@ export async function parseMarkdown(markdown: string): Promise<string> {
 }
 
 export function formatDateStr(date: string): string {
-  return format(parseISO(date), "dd MMMM, ''yy");
+  return format(parseISO(date), "dd MMMM ''yy");
 }
