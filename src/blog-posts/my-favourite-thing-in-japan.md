@@ -7,7 +7,7 @@ tags:
   - travel
 ---
 
-When asked "what was your #1 favourite thing from your Japan trip?", answers from my pals:
+_"What was your #1 favourite thing from your Japan trip?"_. Answers from my pals:
 
 - Naoshima Island
 - Meikyoku Kissa Lion (Classical Music Cafe)
