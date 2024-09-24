@@ -11,3 +11,4 @@ _"What was your #1 favourite thing from your Japan trip?"_. Answers from my pals
 
 - Naoshima Island
 - Meikyoku Kissa Lion (Classical Music Cafe)
+- Mount Kōya temple stay
