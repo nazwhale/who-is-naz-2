@@ -16,3 +16,4 @@ tags:
 - [Complaints Choir](https://youtu.be/gmXfb4q78iI?si=LWk8SKP0S4cmihpV&t=88)
 - [Seat61 on Japan Trains](https://www.seat61.com/Japan.htm)
 - [Baseball team ticket websites](https://www.japanballtickets.com/baseball-calendar.html)
+- [Local restaurant reviews](https://tabelog.com/en/)
