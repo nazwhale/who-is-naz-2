@@ -6,6 +6,11 @@ type ProjectT = {
 
 export const projects: ProjectT[] = [
   {
+    title: "Gift GOATs",
+    description: "Track gift ideas for Christmas and birthdays",
+    link: "https://giftgoats.com",
+  },
+  {
     title: "Onfolk",
     description:
       "Payroll & HR software for small businesses. Exited to Tide.co in 2024",
