@@ -7,7 +7,8 @@ type ProjectT = {
 export const projects: ProjectT[] = [
   {
     title: "Onfolk",
-    description: "HR and Payroll software for small businesses",
+    description:
+      "Payroll & HR software for small businesses. Exited to Tide.co in 2024",
     link: "https://onfolk.com",
   },
   {
