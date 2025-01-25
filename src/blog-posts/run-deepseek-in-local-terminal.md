@@ -65,9 +65,11 @@ touch index.js
 
 Add the following code to `index.js`:
 ```js
+// Import the Ollama library, which provides tools to interact with AI models
 import { Ollama } from 'ollama';
 
 async function runDeepSeekR1() {
+  // Create an instance of the Ollama client
   const ollama = new Ollama();
 
   const messages = [
@@ -78,10 +80,13 @@ async function runDeepSeekR1() {
     const response = await ollama.chat({
       model: 'deepseek-r1:14b',
       messages: messages,
-      stream: true
+      stream: true              // Enable streaming for real-time response
     });
 
+    // Loop through the streamed response parts
+    // The `for await...of` syntax is used to handle asynchronous iteration
     for await (const part of response) {
+      // Write each part of the response to the standard output (console)
       process.stdout.write(part.message.content);
     }
   } catch (error) {
