@@ -6,6 +6,11 @@ type ProjectT = {
 
 export const projects: ProjectT[] = [
   {
+    title: "Salary Counter",
+    description: "Track your salary in real time",
+    link: "https://salary-counter-topaz.vercel.app",
+  },
+  {
     title: "Gift GOATs",
     description: "Track gift ideas for Christmas and birthdays",
     link: "https://giftgoats.com",
