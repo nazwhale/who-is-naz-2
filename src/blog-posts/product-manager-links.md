@@ -1,7 +1,7 @@
 ---
 path: product-manager-links
 date: "2025-01-26"
-title: Great Links for Product Managers
+title: Helpful Links for Product Managers
 description: Links I've found helpful learning to be a product manager
 featured_image_url: ''
 tags:
