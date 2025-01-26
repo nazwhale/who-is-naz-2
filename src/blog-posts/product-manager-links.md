@@ -11,4 +11,4 @@ tags:
 - [Mochary Method Curriculum](https://docs.google.com/document/d/18FiJbYn53fTtPmphfdCKT2TMWH-8Y2L-MLqDk-MFV4s/edit?tab=t.0)
 - [Good Product Manager/Bad Product Manager](https://a16z.com/good-product-manager-bad-product-manager/)
 - [Richard Cadman on High Functioning Teams](https://www.mindtheproduct.com/how-to-grow-and-scale-a-high-functioning-team-by-richard-cadman/)
-Let's run DeepSeek's R1 AI model locally. 
+- [Des Traynor on Product Strategy](https://www.youtube.com/watch?v=9AM6QQlgLSQ)
