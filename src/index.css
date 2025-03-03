@@ -25,7 +25,7 @@ p {
 }
 
 a {
-    @apply link link-hover link-accent; /* Customize styles as needed */
+    @apply link link-hover link-secondary; /* Customize styles as needed */
 }
 
 ol {

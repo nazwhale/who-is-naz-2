@@ -7,8 +7,8 @@ function App() {
   return (
     <Router>
       <div className="mb-8">
-        <h1 className="mb-4 text-4xl font-semibold text-primary-content">
-          who is <span className="text-primary-content/60">naz</span>
+        <h1 className="mb-4 text-4xl font-semibold">
+          who is <span className="">naz</span>
         </h1>
         <Navigation />
         <div className="divider"></div>

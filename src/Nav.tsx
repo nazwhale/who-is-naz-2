@@ -12,7 +12,7 @@ const Navigation: React.FC = () => {
           <li key={links.path} className="list-none">
             <Link
               to={links.path}
-              className={`nav-link link link-hover link-primary ${
+              className={`nav-link link link-hover ${
                 location.pathname === links.path ? "text-2xl" : ""
               }`}
             >

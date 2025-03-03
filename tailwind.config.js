@@ -6,7 +6,7 @@ export default {
   },
   plugins: [require("daisyui")],
   daisyui: {
-    themes: ["light", "cupcake", "retro"], // List only the themes you want to allow
+    themes: ["autumn","silk", "winter", "retro"], // List only the themes you want to allow
   },
   darkMode: false,
 };
