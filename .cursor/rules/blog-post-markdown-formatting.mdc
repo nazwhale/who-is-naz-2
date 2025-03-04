@@ -16,6 +16,7 @@ tags:
   - coding
 ---
 
+- do not leave any whitespace or empty lines above the frontmatter
 - for `date`, default to today's date 
 - for `featured_image_url`, leave as ''
 - for `tags` and `description` and `title`, generate a first suggestion based on the file name
