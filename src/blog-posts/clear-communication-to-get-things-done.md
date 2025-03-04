@@ -14,7 +14,7 @@ In fast-moving teams, vague communication causes pain: misalignment, missed dead
 
 Here's my tips.
 
-## 1. Short, precise answers to questions
+## 1. Short objective answers
 
 Strive to reply to questions with one of:
 1. Yes
@@ -22,7 +22,7 @@ Strive to reply to questions with one of:
 3. A number
 4. I don’t know (and will follow up when I do know)
 
-Example:
+### Example
 
 **Question**: 
 How many customers to we expect to have onboard by next Friday?
