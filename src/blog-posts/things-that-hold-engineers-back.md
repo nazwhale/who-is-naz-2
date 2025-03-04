@@ -15,11 +15,11 @@ Doing great on technical details but missing business context:
 
 - Focusing on tech debt instead of value to the business/customer
     - Spending time on tech debt needs a justification beyond "it's the right thing to do".
-- Never attending a user research session
+- Not attending user research
     - This is actually fun. It also makes your ideas better - "based on what the customer did, <x> could be worth trying" hits harder than "*I* think <x> would be worth trying"
 
 
-## 2.Refusing to estimate timelines
+## 2. Refusing to estimate timelines
 
 Often mid-level engineers are reluctant to estimate timelines for tasks. 
 
@@ -39,7 +39,7 @@ Solution:
 - If you can't commit to a timeline, at least commit to a range.
 - Accept that you may be wrong. That's ok, just communicate when you think estimates may change.
 
-## 3.Owning the technical solution, but not the project
+## 3. Owning the technical solution, but not the project
 
 For example, a mobile engineer may be given a ticket with a description of the problem.
 They fix the problem, writing great docs, tests and documentation etc. Along the way they help to unblock other engineers in their domain.

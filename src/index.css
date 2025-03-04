@@ -29,11 +29,11 @@ a {
 }
 
 ol {
-    @apply list-decimal; /* Customize styles as needed */
+    @apply list-decimal pl-4 list-inside; /* Customize styles as needed */
 }
 
 ul {
-    @apply list-disc; /* Customize styles as needed */
+    @apply list-disc pl-4 list-inside; /* Customize styles as needed */
 }
 
 ul li a {
