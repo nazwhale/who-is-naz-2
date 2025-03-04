@@ -42,10 +42,11 @@ Solution:
 ## 3. Owning the technical solution, but not the project
 
 For example, a mobile engineer may be given a ticket with a description of the problem.
+
 They fix the problem, writing great docs, tests and documentation etc. Along the way they help to unblock other engineers in their domain.
 
-However, when they show the team, it turns out that we're late and the scoped problem isn't quite right.
+However, when they show the team, it turns out that we're late and the scoped problem wasn't quite right to begin with.
 
 The engineer reacts in one of two ways:
-1. They get defensive and say "I did everything you asked for". Blame the product manager / designer for not scoping the work properly and not booking in testing sessions early enough
-2. The take ownership *beyond the code*. They proactively bring in the relevant people to re-scope and re-estimate a timeline, and plan testing at the right time to drive the project forward. 
+1. They get defensive. Say "I did everything you asked for". Blame the designer / product manager for not scoping the work properly and not booking in testing sessions early enough
+2. The take ownership *beyond the code*. They proactively bring in the relevant people to re-scope and re-estimate. Then plan testing at the right time to drive the project forward. 
