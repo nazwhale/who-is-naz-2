@@ -1,8 +1,8 @@
 
 ---
 path: things-that-hold-engineers-back
-date: "2024-01-28"
-title: Things that hold engineers back
+date: "2024-03-04"
+title: Things that hold mid-level engineers back
 description: Common pitfalls I've seen (and experienced) in engineering careers. Specifically from mid-level engineers who are looking to grow.
 featured_image_url: https://images.unsplash.com/photo-1516321497487-e288fb19713f?q=80&w=2940&auto=format&fit=crop
 tags:
