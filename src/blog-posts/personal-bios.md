@@ -1,5 +1,5 @@
 ---
-title: "Personal Bio's"
+title: "Personal Bios"
 date: "2025-04-08"
 description: A selection of concise professional summaries highlighting key roles, accomplishments, and interests
 featured_image_url: ""
