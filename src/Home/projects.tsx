@@ -6,6 +6,11 @@ type ProjectT = {
 
 export const projects: ProjectT[] = [
   {
+    title: "Edinburgh Dog Network",
+    description: "A community-driven network analysis of the dogs in Edinburgh",
+    link: "https://graphcommons.com/graphs/4d5d4d8c-f0b6-40fa-be77-c8544d97076c",
+  },
+  {
     title: "Salary Counter",
     description: "Track your salary in real time",
     link: "https://salary-counter-topaz.vercel.app",
