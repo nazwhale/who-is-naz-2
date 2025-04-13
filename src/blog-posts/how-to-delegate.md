@@ -9,13 +9,11 @@ tags:
   - management
 ---
 
-Delegating is all about super clear expectations. 
+Delegating is all about clear expectations. 
 
-The clearer the expectations, the more freedom you give the person you're delegating to to confidently complete the task within those boundaries.
+The clearer the expectations, the more freedom you give the person completing the task. So that they can move freely within clear boundaries.
 
-Here's my template.
-
-# Template
+## My template
 
 ### Task
 [1-2 sentence description of what needs to be done.]
@@ -38,9 +36,9 @@ Due: [Date + Time]
 [People to talk to]
 [Tools/access needed]
 
-# When things go wrong
+## When things go wrong
 
-## Check-in doesn't come in
+### Check-in doesn't come in
 
 Follow up without nagging.
 
