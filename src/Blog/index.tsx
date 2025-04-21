@@ -7,6 +7,7 @@ export interface BlogPostMetadata {
   title: string;
   date: string;
   slug: string;
+  description?: string;
 }
 
 interface BlogPost {
@@ -36,12 +37,14 @@ const Blog = () => {
           // Extract the slug and title from the front matter
           const title = attributes.title || "No Title";
           const date = attributes.date || "No Date";
+          const description = attributes.description || "";
 
           return {
             metadata: {
               title,
               date,
               slug,
+              description,
             },
           };
         },

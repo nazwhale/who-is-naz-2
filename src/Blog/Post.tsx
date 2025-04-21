@@ -49,12 +49,21 @@ const BlogPost = () => {
   return (
     <div className="text-start m-auto max-w-xl">
       <article className="markdown">
-        <div className="mb-6">
-          <h1 className="mb-2">{postData?.title}</h1>
-          <div className="text-secondary-content/50">
+
+        <div className="mb-6 space-y-1">
+          <h1 className="mb-1">{postData?.title}</h1>
+
+          {postData?.description && (
+            <p className="italic font-light text-slate-500 text-base leading-snug font-['Fraunces']">
+              {postData.description}
+            </p>
+          )}
+
+          <p className="text-[13px] text-slate-400 font-normal tracking-wide">
             {formatDateStr(postData?.date)}
-          </div>
+          </p>
         </div>
+
         {/* Render the Markdown content */}
         <ReactMarkdown rehypePlugins={[rehypeRaw, rehypeSanitize]}>
           {postContent}

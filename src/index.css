@@ -9,15 +9,23 @@ html, body {
 
 /* Example: Apply Tailwind CSS styles to headers */
 h1 {
-    @apply text-4xl font-bold my-4; /* Customize styles as needed */
+    @apply text-4xl font-bold my-4 font-['Fraunces']; /* Added Fraunces font */
 }
 
 h2 {
-    @apply text-xl font-semibold mt-6 mb-2; /* Customize styles as needed */
+    @apply text-2xl font-bold mt-6 mb-2 font-['Fraunces']; /* Added Fraunces font */
 }
 
 h3 {
-    @apply text-lg mt-6 mb-2; /* Customize styles as needed */
+    @apply text-xl font-semibold mt-6 mb-2 font-['Fraunces']; /* Added Fraunces font */
+}
+
+h4 {
+    @apply text-lg font-medium mt-4 mb-1 font-['Fraunces'];
+  } 
+
+h5 {
+    @apply text-base font-normal mt-3 mb-1 font-['Fraunces'];
 }
 
 p {
