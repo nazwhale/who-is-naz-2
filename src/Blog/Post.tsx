@@ -47,7 +47,7 @@ const BlogPost = () => {
   }
 
   return (
-    <div className="text-start m-auto max-w-xl">
+    <div className="text-start m-auto max-w-prose">
       <article className="markdown">
 
         <div className="mb-6 space-y-1">

@@ -76,7 +76,7 @@ const Blog = () => {
             <Link to={`/articles/${post.metadata.slug}`}>
               {post.metadata.title}
             </Link>
-            <span className="text-secondary-content/50">
+            <span className="text-secondary-content/50 tracking-wide text-sm text-slate-400">
               {" "}
               • {formatDateStr(post.metadata.date)}
             </span>
