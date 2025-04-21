@@ -1,7 +1,7 @@
 ---
 title: "My favorite thing in Japan"
 date: "2024-09-24"
-description: Pals #1 favorite thing from their Japan trip
+description: Asking pals their top Japan trip thing #1 favorite thing from their Japan trip
 featured_image_url:
 tags:
   - travel

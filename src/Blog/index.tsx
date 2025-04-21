@@ -70,20 +70,27 @@ const Blog = () => {
 
   return (
     <div>
+      <h2>articles</h2>
       <ul className="list-none">
         {posts.map((post, index) => (
-          <li key={index}>
-            <Link to={`/articles/${post.metadata.slug}`}>
-              {post.metadata.title}
-            </Link>
-            <span className="text-secondary-content/50 tracking-wide text-sm text-slate-400">
-              {" "}
-              • {formatDateStr(post.metadata.date)}
-            </span>
+          <li key={index} className="space-y-1">
+            <h3 className="mb-0">
+              <Link to={`/articles/${post.metadata.slug}`}>
+                {post.metadata.title}
+              </Link>
+            </h3>
+
+            <p className="italic font-light text-slate-500 text-base leading-snug font-['Fraunces']">
+              {post.metadata.description}
+            </p>
+
+            <p className="text-secondary-content/50 tracking-wide text-sm text-slate-400">
+              {formatDateStr(post.metadata.date)}
+            </p>
           </li>
         ))}
       </ul>
-    </div>
+    </div >
   );
 };
 

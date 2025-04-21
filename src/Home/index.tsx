@@ -7,12 +7,14 @@ const Home = () => {
       <h2>projects</h2>
       <ul className="list-none">
         {projects.map((project) => (
-          <li key={project.title}>
+          <li key={project.title} className="space-y-1">
             <h3>
               {/*only show link ui on hover*/}
               <a href={project.link}>{project.title}</a>
             </h3>
-            <p>{project.description}</p>
+            <p className="italic font-light text-slate-500 text-base leading-snug font-['Fraunces']">
+              {project.description}
+            </p>
           </li>
         ))}
       </ul>

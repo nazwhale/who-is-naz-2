@@ -2,7 +2,7 @@
 path: jones-ice-cream-parlour
 date: "2017-07-16"
 title: Jones' ice cream parlour
-description: Here's a weird little thing I wrote a while back
+description: A weird little thing I wrote a while back
 featured_image_url: >-
   https://images.unsplash.com/photo-1586922707640-fa9c74335bbb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2089&q=80
 tags:

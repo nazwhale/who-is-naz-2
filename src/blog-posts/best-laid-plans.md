@@ -1,7 +1,7 @@
 ---
 title: The best laid plans
 date: "2020-05-01"
-description: I had an idea the other day. It's still kinda raw. Here's some musings.
+description: Musings on a raw idea
 featured_image_url: 'https://i.imgur.com/lIlzMxy.png'
 tags:
   - product
