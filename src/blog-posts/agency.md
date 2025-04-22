@@ -61,6 +61,6 @@ The frustration is seen as an opportunity to make something better.
 
 ##### Low Agency Example:
 
-That same PM spends 10 minutes in a meeting airing grievances. No action points, no proposals—just a list of what's broken. 
+That same PM spends 10 minutes in a meeting listing out problems. No action points, no clear proposals—just a list of what's broken. 
 
 Everyone leaves the meeting feeling demotivated, not clearer, and nothing moves forward.
