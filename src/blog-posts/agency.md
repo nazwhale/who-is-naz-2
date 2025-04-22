@@ -1,5 +1,5 @@
 ---
-title: "Agency and progression"
+title: "Agency"
 date: "2025-04-22"
 description: Making the concept of agency clear and actionable
 featured_image_url: ''
