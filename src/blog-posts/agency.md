@@ -10,9 +10,11 @@ tags:
 
 ###  Why this matters
 
-Agency is a fundamental part of progression, especially at higher levels.
+Agency is a fundamental part of progression, especially at higher levels, and a key thing to look our for when hiring.
 
-It can be defined as the ability to take initiative and drive progress in expanding circles of influence. It is seperate to expertise.
+It's the ability to take initiative and drive progress in expanding circles of influence. It is seperate to expertise.
+
+A circle of influence is the set of people and projects you can directly impact. While agency determines your drive to act, expertise shapes the circle of influence in which you can do so.
 
 There are a couple of nuances that we'll explore in this post.
 
