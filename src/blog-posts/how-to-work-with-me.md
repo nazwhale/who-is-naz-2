@@ -12,17 +12,16 @@ tags:
 
 ### Ways of Working I Value
 
-- Unblocking others is one of the most high-leverage things you can do
-    - If you’re blocked, I'll often drop what I'm doing to help you. 
-- Focus on momentum, not perfection  
+- High agency is a sign of greatness
+    - Back yourself — don’t default to authority if you know better.
 - Assume good intent
-- Action creates information. Often the most effective way to learn is to pick one and try—especially when it's unclear which of N approaches is best.  
+- Momentum > perfection. Action creates information — when in doubt, try something and learn
     - Happy to *disagree-and-commit* if we're moving forward  
+- Keep it simple. Complexity creates cost, default to the simplest version that delivers learning
 - Few things are urgent
 - Few things are irreversible
-- Keep it simple. Complexity creates cost, default to the simplest version that delivers learning
-- Don't be overly deferrential to leadership. Realise where you know best and back yourself. 
-- High agency is a sign of greatness
+- Unblocking others is one of the most high-leverage things you can do
+    - If you’re blocked, flag it — I’ll prioritise getting you moving again.
 
 ### Product-thinking style
 
@@ -35,12 +34,12 @@ tags:
 ### Skills
 
 #### Good at & Enjoy
-- Decision making in fast-moving situations
+- Calm decision making in fast-moving situations
 - Dealing with ambiguity
 - Generating ideas
 
 #### Bad at & Don't enjoy
-- Deeply analytical work
+- Deeply analytical/theoretical work
 - Thorough research
 - Anything slow!
 
