@@ -58,6 +58,7 @@ tags:
 - Clarity > diplomacy. I bias toward progress over consensus.  
 - I value being able to jump in with engineers/designers to solve problems
 - Use threads, not DMs, so context lives where future people can find it. 
+- Examples > adjectives. Point to a concrete instance/data point rather than labels. 
 
 #### [Meetings](https://docs.google.com/document/d/1GJ7rk_XKsOQEQqN4pGTIvc4quBCuh6p4LtmCqNFs0e4/edit?tab=t.0)
 
@@ -69,21 +70,20 @@ tags:
 - I value clear, constructive feedback 
 - Prefer written feedback. It's easier to reflect on  
     - Happy to get it face-to-face, but please follow up in writing  
-- I think [gratitude is super important](https://docs.google.com/document/d/18kCULxudhpoSZNN-5m4G611YGNI92aZA-xrMjbF0juA/edit?tab=t.0#heading=h.yrzzrpdlhy17).  
-    - Constructive feedback on what can be improved is great. But too often we forget to point out the good stuff.
-- gratitude not praise  
+- [Gratitude is important](https://docs.google.com/document/d/18kCULxudhpoSZNN-5m4G611YGNI92aZA-xrMjbF0juA/edit?tab=t.0#heading=h.yrzzrpdlhy17).  
+    - Constructive feedback on what can be improved is great. Too often don't point out the good stuff.
+- Gratitude not praise  
     - Not: "That was awesome/you are great"
     - But: "X makes it easier for me to do Y, and the impact is Z"  
     - Gratitude says "we're equals and I appreciate you"
     - Praise says "I'm above you and can pass judgement on you". It's not empowering
 - I'm direct with feedback by default. But happy to adapt if you prefer a different style
-- Examples > adjectives. Point to a concrete instance/data point rather than labels. 
 
 ## My work Patterns
 
 - No Slack before 10am → prioritisation, thinking & todo list time with fresh brain 
-- I often step away from the laptop to write handwritten notes/think 
 - Rarely work past 5:30pm  
+- I often step away from the laptop to write handwritten notes/think 
 - Fully remote in Edinburgh 
 - Sometimes go for mid-day swims/runs. I'll be offline ~45 min but come back sharper.
 
