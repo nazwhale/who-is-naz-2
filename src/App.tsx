@@ -19,6 +19,20 @@ function App() {
           <Route key={index} path={route.path} element={route.element} />
         ))}
       </Routes>
+
+
+      <div className="divider"></div>
+
+      <div className="flex my-12 text-sm">
+        <a
+          href="https://github.com/nazwhale"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Github
+        </a>
+      </div>
+
     </Router>
   );
 }
