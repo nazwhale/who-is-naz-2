@@ -7,7 +7,8 @@ featured_image_url: 'https://i.imgur.com/5IrUKSX.jpg'
 tags:
   - food
 ---
-![oily veg on toast](https://imgur.com/5IrUKSX)
+
+![oily veg on toast](https://i.imgur.com/5IrUKSX.jpg)
 
 A little while back I started keeping jars of oily veg in my fridge, 'cos they’re healthy and last forever. The sorts of jars you see on the shelves of Turkish shops and that.
 
