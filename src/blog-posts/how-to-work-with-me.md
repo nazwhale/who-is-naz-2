@@ -25,11 +25,11 @@ tags:
 
 ### Product-thinking style
 
-- I default to thinking in **systems, leverage, and reuse**  
+- I default to thinking in systems, leverage, and reuse  
     - e.g. turning one-off work into reusable assets or playbooks
-- I care about what actually **improves the product for customers / moves the needle**  
-- No interest in vanity metrics + internal optics
-- **Outcome over output.** Show the customer-visible win, not some Jira-metric
+- I care about what actually improves the product for customers / moves the needle  
+    - No interest in vanity metrics + internal optics
+- Outcome over output. Show the customer-visible win, not some Jira-metric
 
 ### Skills
 
