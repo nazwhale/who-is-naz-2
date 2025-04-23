@@ -22,6 +22,7 @@ tags:
 - Few things are irreversible
 - Unblocking others is one of the most high-leverage things you can do
     - If you’re blocked, flag it — I’ll prioritise getting you moving again.
+    - I see a key part of my skillset as jumping in with engineers/designers to remove bottlenecks
 
 ### Product-thinking style
 
@@ -49,15 +50,13 @@ tags:
 
 #### Written
 
-
 - I prefer making a reusable doc or video vs. repeating things in calls  
 - I value [information-rich answers](https://www.whoisnaz.com/articles/clear-communication-to-get-things-done)
   - e.g. "How many escalations yesterday?" → "8"  
   - Not: a 5-minute waffle  
 - I can't stand complaining — [bring problems *with* potential paths forward](https://www.whoisnaz.com/articles/agency) 
 - Clarity > diplomacy. I bias toward progress over consensus.  
-- I value being able to jump in with engineers/designers to solve problems
-- Use threads, not DMs, so context lives where future people can find it. 
+- Use public forums, not DMs, so context lives where future people can find it. 
 - Examples > adjectives. Point to a concrete instance/data point rather than labels. 
 
 #### [Meetings](https://docs.google.com/document/d/1GJ7rk_XKsOQEQqN4pGTIvc4quBCuh6p4LtmCqNFs0e4/edit?tab=t.0)
