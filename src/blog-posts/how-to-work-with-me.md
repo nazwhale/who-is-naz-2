@@ -17,12 +17,14 @@ tags:
 - **Few things are urgent**
 - **Few things are irreversible**
 - **Keep it simple.** Complexity creates cost, default to the simplest version that delivers learning
+- **Don't be overly deferrential** to leadership. Realise where you know best and back yourself. 
+- **High agency** is a sign of greatness
 
 ## Product-thinking style
 - I default to thinking in **systems, leverage, and reuse**  
     - e.g. turning one-off work into reusable assets or playbooks
 - I care about what actually **improves the product for customers / moves the needle**  
-- Vanity metrics and optics bore me
+- No interest in vanity metrics + internal optics
 - **Outcome over output.** Show the customer-visible win, not some Jira-metric
 
 ## Skills
@@ -39,10 +41,10 @@ tags:
 
 ## Communication
 
-### Written
-- Prefer **async** 
+### Written
+
 - I prefer making a **reusable doc or video** vs. repeating things in calls  
-- I value **high agency** and **information-rich answers**  
+- I value [**information-rich answers**](https://www.whoisnaz.com/articles/clear-communication-to-get-things-done)
   - e.g. “How many escalations yesterday?” → “8”  
   - Not: a 5-minute waffle  
 - I **can’t stand complaining** — [bring problems *with* potential paths forward](https://www.whoisnaz.com/articles/agency) 
@@ -51,6 +53,7 @@ tags:
 - **Use threads, not DMs,** so context lives where future people can find it. 
 
 ### [Meetings](https://docs.google.com/document/d/1GJ7rk_XKsOQEQqN4pGTIvc4quBCuh6p4LtmCqNFs0e4/edit?tab=t.0)
+
 - Rarely agree to **recurring meetings**  
 - If we meet, bring **clear problems to solve** (agenda or decision to make)  
 
