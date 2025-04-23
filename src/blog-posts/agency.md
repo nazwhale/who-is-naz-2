@@ -65,3 +65,6 @@ That same designer notices the gap but just mentions it in passing, buried in a 
 
 When it resurfaces later as a problem, their response is: “Yeah, I raised that weeks ago.” . They may as well have not bothered raising it at all.
 
+##### A template for baton-passing
+
+See [How to delegate](https://www.whoisnaz.com/articles/how-to-delegate)
