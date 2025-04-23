@@ -59,14 +59,20 @@ tags:
 
 ## Feedback
 - I value clear, constructive feedback 
-- I prefer feedback to be **written**; it’s easier to reflect on  
+- Prefer **written** feedback. It’s easier to reflect on  
     - Happy to get it face-to-face, but please follow up in writing  
-- I prefer **gratitude over praise**  
-    - e.g. "That was awesome" < "That makes it easier for me to do X, and the impact is Y"  
-- I’ll be **direct** with feedback by default, but happy to adapt if you prefer a different style
-- **Examples > adjectives.** Point to a concrete instance rather than labels. 
+- I think [gratitude is super important](https://docs.google.com/document/d/18kCULxudhpoSZNN-5m4G611YGNI92aZA-xrMjbF0juA/edit?tab=t.0#heading=h.yrzzrpdlhy17).  
+    - Constructive feedback on what can be improved is great. But too often we forget to point out the good stuff.
+- **gratitude not praise**  
+    - Not: "That was awesome/you are great"
+    - But: "X makes it easier for me to do Y, and the impact is Z"  
+    - Gratitude says "we're equals and I appreciate you"
+    - Praise says "I'm above you and can pass judgement on you". It's not empowering
+- I’m **direct** with feedback by default. But happy to adapt if you prefer a different style
+- **Examples > adjectives.** Point to a concrete instance/data point rather than labels. 
 
 ## Work Patterns
+
 - **No Slack before 10am** → prioritisation, thinking & todo list time with fresh brain 
 - I often **step away** from the laptop to write handwritten notes/think 
 - Rarely work past **5:30pm**  
