@@ -16,8 +16,6 @@ It's the ability to take initiative and drive progress in expanding circles of i
 
 A circle of influence is the set of people and projects you can directly impact. While agency determines your drive to act, expertise shapes the circle of influence in which you can do so.
 
-There are a couple of nuances that we'll explore in this post.
-
 
 ### High vs Low Agency
 
@@ -35,9 +33,25 @@ Faced with the same backend issue, a low-agency mobile engineer flags it and the
 
 They don’t follow up, explore, or try to understand the root cause. They assume someone else will deal with it, staying in their lane without moving the wider project forward.
 
-### Nuance: Passing the Baton
+### Evidence of low agency: Complaining
 
-Ok so it's good to be high agency. But how about when the blocker is outside your circle of influence?
+Complaining is a form of low agency. It's a way of avoiding action and passing the blame.
+
+##### High Agency Example:
+
+A PM feels frustrated by delays due to unclear ownership between teams. They write a concise note outlining the problem, propose a possible new process, and call a short sync with key people to align. 
+
+The frustration is seen as an opportunity to make something better.
+
+##### Low Agency Example:
+
+That same PM spends 10 minutes in a meeting listing out problems. No action points, no clear proposals—just a list of what's broken. 
+
+Everyone leaves the meeting feeling demotivated, not clearer, and nothing moves forward.
+
+### The solution: Passing the Baton
+
+How to shift from complaining to constructive action? Especially when the blocker is outside your circle of influence.
 
 ##### High Agency Example:
 
@@ -51,16 +65,3 @@ That same designer notices the gap but just mentions it in passing, buried in a 
 
 When it resurfaces later as a problem, their response is: “Yeah, I raised that weeks ago.” . They may as well have not bothered raising it at all.
 
-### Anti-Pattern: Complaining
-
-##### High Agency Example:
-
-A PM feels frustrated by delays due to unclear ownership between teams. They write a concise note outlining the problem, propose a possible new process, and call a short sync with key people to align. 
-
-The frustration is seen as an opportunity to make something better.
-
-##### Low Agency Example:
-
-That same PM spends 10 minutes in a meeting listing out problems. No action points, no clear proposals—just a list of what's broken. 
-
-Everyone leaves the meeting feeling demotivated, not clearer, and nothing moves forward.
