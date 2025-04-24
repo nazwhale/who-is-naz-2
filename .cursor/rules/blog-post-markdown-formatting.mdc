@@ -1,6 +1,7 @@
 ---
 description: How to format blog posts
 globs: **/*.md
+alwaysApply: false
 ---
 
 # Your rule content
@@ -13,7 +14,7 @@ date: "2024-01-10"
 description: From 0 to sed
 featured_image_url: https://miro.medium.com/max/2000/1*v4o2AXLIJaHSZmqYZk26qA.jpeg
 tags:
-  - coding
+  - tech
 ---
 
 - do not leave any whitespace or empty lines above the frontmatter
@@ -24,3 +25,10 @@ tags:
 ## Blog post content
 - in markdown
 - written in a terse, pithy style
+
+## Valid tags
+- work
+- food
+- travel
+- tech
+- idea

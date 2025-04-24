@@ -4,7 +4,7 @@ date: "2020-05-01"
 description: Musings on a raw idea
 featured_image_url: 'https://i.imgur.com/lIlzMxy.png'
 tags:
-  - product
+  - idea
 ---
 ![splitty lifeline thing](https://i.imgur.com/lIlzMxy.png)
 

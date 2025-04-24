@@ -4,9 +4,7 @@ date: "2025-04-13"
 description: A simple template for delegating tasks
 featured_image_url: ""
 tags:
-  - leadership
-  - productivity
-  - management
+  - work
 ---
 
 Delegating is all about clear expectations. 

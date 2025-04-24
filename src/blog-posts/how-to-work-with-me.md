@@ -4,8 +4,6 @@ date: "2025-04-23"
 description: A guide to working with me
 featured_image_url: ''
 tags:
-  - collaboration
-  - teamwork
   - work
 --- 
 

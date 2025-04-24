@@ -8,6 +8,7 @@ export interface BlogPostMetadata {
   date: string;
   slug: string;
   description?: string;
+  tags?: string[];
 }
 
 interface BlogPost {

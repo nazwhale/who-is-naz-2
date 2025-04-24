@@ -5,9 +5,7 @@ title: Clear communication to get things done
 description: How to communicate effectively with your team to drive projects forward and get things done.
 featured_image_url: 
 tags:
-  - product
-  - career
-  - communication
+  - work
 ---
 
 In fast-moving teams, vague communication causes pain: misalignment, missed deadlines, dropped actions.

@@ -5,8 +5,7 @@ title: Git just tumbles out of my brain
 description: A collection of git commands I constantly forget
 featured_image_url: https://post.healthline.com/wp-content/uploads/2020/07/nervous2-30.jpg
 tags:
-  - coding
-  - git
+  - tech
 ---
 ## Rename a branch
 

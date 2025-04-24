@@ -4,7 +4,7 @@ date: "2024-01-10"
 description: From 0 to sed
 featured_image_url: https://miro.medium.com/max/2000/1*v4o2AXLIJaHSZmqYZk26qA.jpeg
 tags:
-  - coding
+  - tech
 ---
 # Intro
 

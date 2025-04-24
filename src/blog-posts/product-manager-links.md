@@ -5,7 +5,7 @@ title: Helpful Links for Product Managers
 description: Links I've found helpful learning to be a product manager
 featured_image_url: ''
 tags:
-  - product
+  - work
 --- 
 
 - [Mochary Method Curriculum](https://docs.google.com/document/d/18FiJbYn53fTtPmphfdCKT2TMWH-8Y2L-MLqDk-MFV4s/edit?tab=t.0)

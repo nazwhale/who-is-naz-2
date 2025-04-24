@@ -51,6 +51,15 @@ const BlogPost = () => {
       <article className="markdown">
 
         <div className="mb-6 space-y-1">
+
+          <h5 className="mb-1">
+            {postData?.tags && postData.tags.map((tag: string, index: number) => (
+              <span key={index} className="mr-2 text-slate-500">
+                #{tag}{index < (postData.tags?.length ?? 0) - 1 ? ' ' : ''}
+              </span>
+            ))}
+          </h5>
+
           <h1 className="mb-1">{postData?.title}</h1>
 
           {postData?.description && (

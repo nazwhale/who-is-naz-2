@@ -31,6 +31,12 @@ function App() {
         >
           Github
         </a>
+        <div className="mx-4">•</div>
+        <a
+          href="mailto:naz@whoisnaz.com"
+        >
+          Email: naz@whoisnaz.com
+        </a>
       </div>
 
     </Router>
