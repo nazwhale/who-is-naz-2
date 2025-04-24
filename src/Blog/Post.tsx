@@ -10,10 +10,12 @@ import { BlogPostMetadata } from "./index.tsx";
 const BlogPost = () => {
   const [postContent, setPostContent] = useState("");
   const [postData, setPostData] = useState<BlogPostMetadata>();
+  const [loading, setLoading] = useState(true);
   const { slug } = useParams();
 
   useEffect(() => {
     const loadPost = async () => {
+      setLoading(true);
       // Make sure the path is relative and the markdown files are now in the src directory
 
       const markdownImports = import.meta.glob("../blog-posts/*.md", {
@@ -36,11 +38,17 @@ const BlogPost = () => {
         } catch (error) {
           console.error("Error loading post:", error);
           // Handle the error accordingly
+        } finally {
+          setLoading(false);
         }
       }
     };
     loadPost();
   }, [slug]);
+
+  if (loading) {
+    return <div className="h-screen" />;
+  }
 
   if (postData == null) {
     return null;

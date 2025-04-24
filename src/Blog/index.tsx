@@ -17,10 +17,12 @@ interface BlogPost {
 
 const Blog = () => {
   const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [loading, setLoading] = useState(true);
   const { tag } = useParams();
 
   useEffect(() => {
     const loadPosts = async () => {
+      setLoading(true);
       // Dynamically import all .md files from the blog-posts directory
       const markdownImports = import.meta.glob("..//blog-posts/*.md", {
         as: "raw",
@@ -72,10 +74,12 @@ const Blog = () => {
         : loadedPosts;
 
       setPosts(filteredPosts);
+      setLoading(false);
     };
 
     loadPosts().catch((error) => {
       console.error("Error loading posts:", error);
+      setLoading(false);
     });
   }, [tag]);
 
@@ -89,7 +93,9 @@ const Blog = () => {
           </Link>
         </div>
       )}
-      {posts.length === 0 ? (
+      {loading ? (
+        <div className="h-screen" />
+      ) : posts.length === 0 ? (
         <p>No articles found{tag ? ` with tag #${tag}` : ''}.</p>
       ) : (
         <ul className="list-none">
