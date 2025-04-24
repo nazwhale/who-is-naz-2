@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { formatDateStr } from "./utils.tsx";
 import frontMatter from "front-matter";
 
@@ -17,6 +17,7 @@ interface BlogPost {
 
 const Blog = () => {
   const [posts, setPosts] = useState<BlogPost[]>([]);
+  const { tag } = useParams();
 
   useEffect(() => {
     const loadPosts = async () => {
@@ -39,6 +40,7 @@ const Blog = () => {
           const title = attributes.title || "No Title";
           const date = attributes.date || "No Date";
           const description = attributes.description || "";
+          const tags = attributes.tags || [];
 
           return {
             metadata: {
@@ -46,6 +48,7 @@ const Blog = () => {
               date,
               slug,
               description,
+              tags,
             },
           };
         },
@@ -61,37 +64,69 @@ const Blog = () => {
         );
       });
 
-      setPosts(loadedPosts);
+      // Filter posts by tag if a tag parameter is provided
+      const filteredPosts = tag
+        ? loadedPosts.filter(post =>
+          post.metadata.tags && post.metadata.tags.includes(tag)
+        )
+        : loadedPosts;
+
+      setPosts(filteredPosts);
     };
 
     loadPosts().catch((error) => {
       console.error("Error loading posts:", error);
     });
-  }, []);
+  }, [tag]);
 
   return (
     <div>
-      <h2>articles</h2>
-      <ul className="list-none">
-        {posts.map((post, index) => (
-          <li key={index} className="space-y-1">
-            <h3 className="mb-0">
-              <Link to={`/articles/${post.metadata.slug}`}>
-                {post.metadata.title}
-              </Link>
-            </h3>
+      <h2>{tag ? `articles tagged #${tag}` : 'articles'}</h2>
+      {tag && (
+        <div className="mb-4">
+          <Link to="/articles" className="text-sm text-slate-500 hover:text-slate-700">
+            ← Back to all articles
+          </Link>
+        </div>
+      )}
+      {posts.length === 0 ? (
+        <p>No articles found{tag ? ` with tag #${tag}` : ''}.</p>
+      ) : (
+        <ul className="list-none">
+          {posts.map((post, index) => (
+            <li key={index} className="space-y-1">
+              <h3 className="mb-0">
+                <Link to={`/articles/${post.metadata.slug}`}>
+                  {post.metadata.title}
+                </Link>
+              </h3>
 
-            <p className="italic font-light text-slate-500 text-base leading-snug font-['Fraunces']">
-              {post.metadata.description}
-            </p>
+              <p className="italic font-light text-slate-500 text-base leading-snug font-['Fraunces']">
+                {post.metadata.description}
+              </p>
 
-            <p className="text-secondary-content/50 tracking-wide text-sm text-slate-400">
-              {formatDateStr(post.metadata.date)}
-            </p>
-          </li>
-        ))}
-      </ul>
-    </div >
+              {post.metadata.tags && post.metadata.tags.length > 0 && (
+                <p className="text-sm">
+                  {post.metadata.tags.map((postTag, i) => (
+                    <Link
+                      key={i}
+                      to={`/tags/${postTag}`}
+                      className="mr-2 text-slate-500 hover:text-slate-700"
+                    >
+                      #{postTag}
+                    </Link>
+                  ))}
+                </p>
+              )}
+
+              <p className="text-secondary-content/50 tracking-wide text-sm text-slate-400">
+                {formatDateStr(post.metadata.date)}
+              </p>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
   );
 };
 

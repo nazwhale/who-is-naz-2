@@ -15,6 +15,10 @@ const routes = [
     path: "/articles/:slug",
     element: <Post />,
   },
+  {
+    path: "/tags/:tag",
+    element: <Blog />,
+  },
 ];
 
 export default routes;

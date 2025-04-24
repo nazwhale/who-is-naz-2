@@ -54,9 +54,13 @@ const BlogPost = () => {
 
           <h5 className="mb-1">
             {postData?.tags && postData.tags.map((tag: string, index: number) => (
-              <span key={index} className="mr-2 text-slate-500">
-                #{tag}{index < (postData.tags?.length ?? 0) - 1 ? ' ' : ''}
-              </span>
+              <Link
+                key={index}
+                to={`/tags/${tag}`}
+                className="mr-2 text-slate-500 hover:text-slate-700"
+              >
+                #{tag}
+              </Link>
             ))}
           </h5>
 
