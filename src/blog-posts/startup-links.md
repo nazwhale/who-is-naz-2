@@ -1,6 +1,6 @@
 ---
 title: "Startup Links"
-date: "2025-01-01"
+date: "2025-03-01"
 description: "A curated collection of high-quality startup advice organized by stage"
 featured_image_url: ''
 tags:
