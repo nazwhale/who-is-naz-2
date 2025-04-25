@@ -13,7 +13,7 @@ tags:
 > 
 > *Use this doc to:*  
 > 1. Identify the stage you're in  
-> 2. Focus in on stage-relevant high quality advice
+> 2. Focus on stage-relevant high quality advice
 
 ## Choosing an idea
 
