@@ -13,7 +13,7 @@ export const projects: ProjectT[] = [
   {
     title: "Salary Counter",
     description: "Track your salary in real time",
-    link: "https://salary-counter-topaz.vercel.app",
+    link: "https://salarycounter.whoisnaz.com/",
   },
   {
     title: "Gift GOATs",
