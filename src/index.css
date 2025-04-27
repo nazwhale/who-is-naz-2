@@ -82,3 +82,28 @@ blockquote {
     padding-left: 1em;
     margin: 1em 0;
 }
+
+/* Markdown Table Styles */
+table {
+    @apply w-full border-collapse my-4;
+}
+
+thead {
+    @apply bg-base-200;
+}
+
+th {
+    @apply p-2 text-left border border-base-300 font-medium;
+}
+
+td {
+    @apply p-2 border border-base-300;
+}
+
+tr:nth-child(even) {
+    @apply bg-base-100;
+}
+
+tr:hover {
+    @apply bg-base-200;
+}

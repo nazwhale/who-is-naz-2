@@ -28,6 +28,7 @@
     "rehype-sanitize": "^6.0.0",
     "remark": "^15.0.1",
     "remark-frontmatter": "^5.0.0",
+    "remark-gfm": "^4.0.1",
     "remark-html": "^16.0.1",
     "tailwindcss": "^3.3.5",
     "tone": "^14.7.77",
