@@ -107,3 +107,18 @@ tr:nth-child(even) {
 tr:hover {
     @apply bg-base-200;
 }
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 0;
+        /* Stay invisible during the delay */
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

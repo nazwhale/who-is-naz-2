@@ -94,7 +94,9 @@ const Blog = () => {
         </div>
       )}
       {loading ? (
-        <div className="h-screen" />
+        <div className="h-screen opacity-0 animate-[fadeIn_2.5s_ease-out_forwards] text-slate-500">
+          loading...
+        </div>
       ) : posts.length === 0 ? (
         <p>No articles found{tag ? ` with tag #${tag}` : ''}.</p>
       ) : (
