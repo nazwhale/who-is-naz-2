@@ -1,5 +1,5 @@
 ---
-title: "The kids decision"
+title: "Data on scary kids things"
 date: "2025-04-27"
 description: "Links and thoughts and questions"
 featured_image_url: ''
@@ -9,23 +9,20 @@ tags:
 
 I'm 33. I'm finding that my points in conversations about kids are primative. But it's a core life task - it's worth thinking about.
 
-Here's a dump of all the stuff in my head around the decision. 
+Here's a dump of all the stuff in my head that seems scary. Then some data to bring it into reality.
 
 
 
-## Thoughts/worries
-
-> Simply what came out of my head. by no means rational / considered beliefs
+## What came out of my head
 
 - What will I lose?
-- Is life over?
-- Will life begin?
+- Will life be over?
 - What if I regret it instantly? 
-- What if they're problematic / have disabilities? 
 - How likely are miscarriages?
 - No support network, family are far away
 - Will I be able to stand the crying
 - Non-stop-ness
+- How likely are disabilities? 
 - Losing independence / sexuality 
 - Risk of divorce / seperation. And impact to kids and self
 - How much of life becomes chores and what are they?
@@ -109,6 +106,7 @@ Office for National Statistics time-use diary, post-pandemic. [Office for Nation
 
 - UK survey (2023) found **≈ 20 %** of couples separate within the first year after a baby. [GoodtoKnow](https://www.goodto.com/wellbeing/relationships/relationship-news/break-up-after-baby-513710)
 - Wider Marriage-Foundation analysis: by age 3, **10 %** of first-borns have seen parental breakup; by age 14 that’s **31 %**. [Marriage Foundation](https://marriagefoundation.org.uk/wp-content/uploads/2023/07/MF-research-note-Source-of-family-breakdown.pdf)
+- When parent relationships break down, **27 %** of UK teens show high mental-health difficulties versus **12 %** in intact families. [Institute for Family Studies](https://ifstudies.org/blog/the-link-between-family-breakdown-and-teen-mental-health-problems-in-the-uk)
 
 
 
@@ -128,7 +126,6 @@ Office for National Statistics time-use diary, post-pandemic. [Office for Nation
 ### "Are teenagers a decade of horrible flat-mates?”
 
 - Developmental reviews show **conflict frequency and intensity rise in early adolescence but taper after ~16**, as relationships rebalance. [Social Policy and Administration](https://srcd.onlinelibrary.wiley.com/doi/10.1111/cdep.12278)
-- When parent relationships break down, **27 %** of UK teens show high mental-health difficulties versus **12 %** in intact families. [Institute for Family Studies](https://ifstudies.org/blog/the-link-between-family-breakdown-and-teen-mental-health-problems-in-the-uk)
 
 
 
