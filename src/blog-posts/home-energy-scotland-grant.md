@@ -65,7 +65,7 @@ Attach (upload): both quotes + EPC/report + photo ID (passport/driving licence) 
 
 ------
 
-### 4. Typical timeline (set readers’ expectations)
+### Typical timeline (set readers’ expectations)
 
 | Day                  | What happens                         | Waiting time     |
 | -------------------- | ------------------------------------ | ---------------- |
@@ -79,7 +79,7 @@ Attach (upload): both quotes + EPC/report + photo ID (passport/driving licence) 
 
 ------
 
-### 5. Handy links
+### Handy links
 
 - [HES Grant & Loan overview (official)](https://www.homeenergyscotland.org/home-energy-scotland-grant-loan)
 - [HES Phone hours & contact form](https://www.homeenergyscotland.org/contact-us)
