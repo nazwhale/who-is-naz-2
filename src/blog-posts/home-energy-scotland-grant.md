@@ -15,10 +15,10 @@ tags:
 
 #### 30-second cheat sheet
 
-| What you can get                   | Grant                      | Interest-free loan (optional) | Rural uplift* |
-| ---------------------------------- | -------------------------- | ----------------------------- | ------------- |
-| Heat-pump or other “clean heating” | £7,500                     | + £7,500                      | + £1,500      |
-| Insulation / energy-efficiency     | 75 % of cost (cap £7  500) | remainder up to £7  500       | + £1,500      |
+| What you can get                   | Grant                     | Interest-free loan (optional) | Rural uplift* |
+| ---------------------------------- | ------------------------- | ----------------------------- | ------------- |
+| Heat-pump or other “clean heating” | £7,500                    | + £7,500                      | + £1,500      |
+| Insulation / energy-efficiency     | 75 % of cost (cap £7,500) | remainder up to £7,500        | + £1,500      |
 
 *Applies if your address sits in the Scottish Government’s “Remote Rural/Island” band. ([Vaillant UK](https://www.vaillant.co.uk/advice/understanding-heating-technology/heat-pumps/unlock-the-benefits-of-the-home-energy-scotland-grant-and-loan-scheme/?utm_source=chatgpt.com), [homeenergyscotland.org](https://www.homeenergyscotland.org/home-energy-scotland-grant-loan-terms-conditions?utm_source=chatgpt.com))
 
