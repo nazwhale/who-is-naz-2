@@ -7,8 +7,8 @@ tags:
   - tech
 ---
 
-
-
-- [AI 2027](https://ai-2027.com/)
 - [Import AI by Jack Clark](https://jack-clark.net/)
+
 - [One Useful Thing by Ethan Mollick](https://www.oneusefulthing.org/)
+- [Jack Clark interview with Tyler Cowen, 7 May '25'](https://conversationswithtyler.com/episodes/jack-clark/) 
+- [AI 2027](https://ai-2027.com/)
