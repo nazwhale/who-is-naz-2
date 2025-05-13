@@ -7,7 +7,7 @@ tags:
   - work
 ---
 
-Naz founded [Onfolk](https://www.onfolk.com/) in 2020 and went through [Y Combinator](https://www.ycombinator.com/). Onfolk was acquired by [Tide](https://www.tide.co/) (the UK business bank) in 2024. He currently leads Tide's payroll team and advises startups. Previously, he worked on scaling Monzo as an early employee in product and engineering. Loves building side-projects and simple, user-first design. Outside of work, he's usually swimming or trail running.
+Naz was an early employee [Monzo](https://www.monzo.com), founded [Onfolk](https://www.onfolk.com/) in 2020 and went through [Y Combinator](https://www.ycombinator.com/). Onfolk was acquired by [Tide](https://www.tide.co/) (the UK business bank) in 2024. He's currently a Product Lead and "AI champion" at Tide and advises startups. He's worked in product, engineering, and design. Loves simple, user-first design. Outside of work, he enjoys running up big hills.
 
 ### Headshot 
 
