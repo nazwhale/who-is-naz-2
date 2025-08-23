@@ -6,6 +6,16 @@ type ProjectT = {
 
 export const projects: ProjectT[] = [
   {
+    title: "Family Therapy",
+    description: "Psychoanalyse your family tree",
+    link: "https://familytherapy.whoisnaz.com/",
+  },
+  {
+    title: "Skills Sorter",
+    description: "A card-sorting task to group professional skills",
+    link: "https://skills.whoisnaz.com",
+  },
+  {
     title: "Edinburgh Dog Network",
     description: "A community-driven network analysis of the dogs in Edinburgh",
     link: "https://graphcommons.com/graphs/4d5d4d8c-f0b6-40fa-be77-c8544d97076c",
