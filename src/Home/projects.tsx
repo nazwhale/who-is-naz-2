@@ -11,6 +11,12 @@ export const projects: ProjectT[] = [
     link: "https://familytherapy.whoisnaz.com/",
   },
   {
+
+    title: "Learn UK Payroll",
+    description: "Learn UK payroll with interactive examples and real-world scenarios",
+    link: "https://learnukpayroll.whoisnaz.com/",
+  },
+  {
     title: "Skills Sorter",
     description: "A card-sorting task to group professional skills",
     link: "https://skills.whoisnaz.com",
