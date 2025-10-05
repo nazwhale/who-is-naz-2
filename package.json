@@ -31,7 +31,7 @@
     "remark-gfm": "^4.0.1",
     "remark-html": "^16.0.1",
     "tailwindcss": "^3.3.5",
-    "tone": "^14.7.77",
+    "tone": "^14.9.17",
     "vite-plugin-md": "^0.21.5",
     "vite-plugin-sitemap": "^0.5.3"
   },

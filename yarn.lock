@@ -12,12 +12,10 @@
   resolved "https://registry.npmjs.org/@alloc/quick-lru/-/quick-lru-5.2.0.tgz"
   integrity sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==
 
-"@babel/runtime@^7.21.0", "@babel/runtime@^7.23.4":
-  version "7.23.5"
-  resolved "https://registry.npmjs.org/@babel/runtime/-/runtime-7.23.5.tgz"
-  integrity sha512-NdUTHcPe4C99WxPub+K9l9tK5/lV4UXIoaHSYgzco9BCyjKAAwzdBI+wWtYqHt7LJdbo74ZjRPJgzVweq1sz0w==
-  dependencies:
-    regenerator-runtime "^0.14.0"
+"@babel/runtime@^7.21.0", "@babel/runtime@^7.25.6", "@babel/runtime@^7.28.4":
+  version "7.28.4"
+  resolved "https://registry.npmjs.org/@babel/runtime/-/runtime-7.28.4.tgz"
+  integrity sha512-Q/N6JNWvIvPnLDvjlE1OUBLPQHH6l3CltCEsHIujp45zQUSSh8K+gHnaEX45yAT1nyngnINhvWtzN+Nb9D8RAQ==
 
 "@esbuild/darwin-arm64@0.18.20":
   version "0.18.20"
@@ -525,13 +523,13 @@ assertion-error@^1.1.0:
   resolved "https://registry.npmjs.org/assertion-error/-/assertion-error-1.1.0.tgz"
   integrity sha512-jgsaNduz+ndvGyFt3uSuWqvy4lCnIJiovtouQN5JZHOKCS2QuhEdbcQHFhVksz2N2U9hXJo8odG7ETyWlEeuDw==
 
-automation-events@^6.0.12:
-  version "6.0.12"
-  resolved "https://registry.npmjs.org/automation-events/-/automation-events-6.0.12.tgz"
-  integrity sha512-XSuK8udXMrHn24PvCuBNGWP6vXgSkCscCl9RokPmKhN/VQUdzuG2inZ03+UU86R1r6p6OCO30yWSPioBPxCXiQ==
+automation-events@^7.0.9:
+  version "7.1.13"
+  resolved "https://registry.npmjs.org/automation-events/-/automation-events-7.1.13.tgz"
+  integrity sha512-1Hay5TQPzxsskSqPTH3YXyzE9Iirz82zZDse2vr3+kOR7Sc7om17qIEPsESchlNX0EgKxANwR40i2g/O3GM1Tw==
   dependencies:
-    "@babel/runtime" "^7.23.4"
-    tslib "^2.6.2"
+    "@babel/runtime" "^7.28.4"
+    tslib "^2.8.1"
 
 autoprefixer@^10.4.16:
   version "10.4.16"
@@ -2513,11 +2511,6 @@ readdirp@~3.6.0:
   dependencies:
     picomatch "^2.2.1"
 
-regenerator-runtime@^0.14.0:
-  version "0.14.0"
-  resolved "https://registry.npmjs.org/regenerator-runtime/-/regenerator-runtime-0.14.0.tgz"
-  integrity sha512-srw17NI0TUWHuGa5CFGGmhfNIeja30WMBfbslPNhf6JrqQlLN5gcrvig1oqPxiVaXb0oW0XRKtH6Nngs5lKCIA==
-
 rehype-raw@^7.0.0:
   version "7.0.0"
   resolved "https://registry.npmjs.org/rehype-raw/-/rehype-raw-7.0.0.tgz"
@@ -2741,14 +2734,14 @@ sprintf-js@~1.0.2:
   resolved "https://registry.npmjs.org/sprintf-js/-/sprintf-js-1.0.3.tgz"
   integrity sha512-D9cPgkvLlV3t3IzL0D0YLvGA9Ahk4PcvVwUbN0dSGr1aP0Nrt4AEnTUbuGvquEC0mA64Gqt1fzirlRs5ibXx8g==
 
-standardized-audio-context@^25.1.8:
-  version "25.3.59"
-  resolved "https://registry.npmjs.org/standardized-audio-context/-/standardized-audio-context-25.3.59.tgz"
-  integrity sha512-iyzP4sgW2oBSHE7QSMG+I5txft0s9Icw9ClNo2LkNzWbtUYgsEPNJsQ2XZffm3tP3chUpHXJ2br1gY8u7rPkeg==
+standardized-audio-context@^25.3.70:
+  version "25.3.77"
+  resolved "https://registry.npmjs.org/standardized-audio-context/-/standardized-audio-context-25.3.77.tgz"
+  integrity sha512-Ki9zNz6pKcC5Pi+QPjPyVsD9GwJIJWgryji0XL9cAJXMGyn+dPOf6Qik1AHei0+UNVcc4BOCa0hWLBzlwqsW/A==
   dependencies:
-    "@babel/runtime" "^7.23.4"
-    automation-events "^6.0.12"
-    tslib "^2.6.2"
+    "@babel/runtime" "^7.25.6"
+    automation-events "^7.0.9"
+    tslib "^2.7.0"
 
 string-argv@^0.3.1:
   version "0.3.2"
@@ -2888,13 +2881,13 @@ to-regex-range@^5.0.1:
   dependencies:
     is-number "^7.0.0"
 
-tone@^14.7.77:
-  version "14.7.77"
-  resolved "https://registry.npmjs.org/tone/-/tone-14.7.77.tgz"
-  integrity sha512-tCfK73IkLHyzoKUvGq47gyDyxiKLFvKiVCOobynGgBB9Dl0NkxTM2p+eRJXyCYrjJwy9Y0XCMqD3uOYsYt2Fdg==
+tone@^14.9.17:
+  version "14.9.17"
+  resolved "https://registry.npmjs.org/tone/-/tone-14.9.17.tgz"
+  integrity sha512-+Qb7M4NMua+tb5Z52+MEVmjye0fjJuIFBePx423pqr9E6/lHDqZAG+fUAvo+Ujm48q0s9bVLRAyT1ETJJglNtg==
   dependencies:
-    standardized-audio-context "^25.1.8"
-    tslib "^2.0.1"
+    standardized-audio-context "^25.3.70"
+    tslib "^2.3.1"
 
 tr46@~0.0.3:
   version "0.0.3"
@@ -2921,10 +2914,10 @@ ts-interface-checker@^0.1.9:
   resolved "https://registry.npmjs.org/ts-interface-checker/-/ts-interface-checker-0.1.13.tgz"
   integrity sha512-Y/arvbn+rrz3JCKl9C4kVNfTfSm2/mEp5FSz5EsZSANGPSlQrpRI5M4PKF+mJnE52jOO90PnPSc3Ur3bTQw0gA==
 
-tslib@^2.0.1, tslib@^2.6.2:
-  version "2.6.2"
-  resolved "https://registry.npmjs.org/tslib/-/tslib-2.6.2.tgz"
-  integrity sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==
+tslib@^2.3.1, tslib@^2.7.0, tslib@^2.8.1:
+  version "2.8.1"
+  resolved "https://registry.npmjs.org/tslib/-/tslib-2.8.1.tgz"
+  integrity sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==
 
 type-check@^0.4.0, type-check@~0.4.0:
   version "0.4.0"

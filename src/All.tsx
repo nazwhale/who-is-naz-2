@@ -1,5 +1,6 @@
 import Blog from "./Blog";
 import Home from "./Home";
+import WeatherMusic from "./WeatherMusic";
 
 const All = [
   {
@@ -11,6 +12,11 @@ const All = [
     path: "/articles",
     component: Blog,
     name: "articles",
+  },
+  {
+    path: "/weathermusic",
+    component: WeatherMusic,
+    name: "weathermusic",
   },
 ];
 
