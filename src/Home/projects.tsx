@@ -6,6 +6,11 @@ type ProjectT = {
 
 export const projects: ProjectT[] = [
   {
+    title: "Weather Music",
+    description: "Listen to Edinburgh's weather forecast as music",
+    link: "/weathermusic",
+  },
+  {
     title: "Family Therapy",
     description: "Psychoanalyse your family tree",
     link: "https://familytherapy.whoisnaz.com/",

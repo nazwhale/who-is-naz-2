@@ -107,50 +107,86 @@ const WeatherMusic: React.FC = () => {
         return weatherDescriptions[code] || `Unknown (code ${code})`;
     };
 
+    /**
+     * Determines if a weather code represents "good" weather
+     * Good weather = clear, mainly clear, partly cloudy
+     * @param code - WMO weather code
+     * @returns true if weather is good (use major third), false if bad (use minor third)
+     */
+    const isGoodWeather = (code: number): boolean => {
+        // Good weather codes: 0, 1, 2
+        // Bad weather codes: everything else (3+)
+        return code >= 0 && code <= 2;
+    };
+
     // ============================================================================
     // MUSIC GENERATION FUNCTIONS
     // ============================================================================
 
     /**
-     * Normalizes temperature values to a 0-1 range based on the day's min and max
-     * @param temperatures - Array of temperature values for the day
-     * @returns Array of normalized values between 0 and 1
-     */
-    const normalizeTemperatures = (temperatures: number[]): number[] => {
-        const minTemp = Math.min(...temperatures);
-        const maxTemp = Math.max(...temperatures);
-        const range = maxTemp - minTemp;
-
-        // Handle edge case where all temperatures are the same
-        if (range === 0) {
-            return temperatures.map(() => 0.5);
-        }
-
-        return temperatures.map(temp => (temp - minTemp) / range);
-    };
-
-    /**
-     * Maps a normalized value (0-1) to a note in C major pentatonic scale across 3 octaves
+     * Maps an absolute temperature value to a note in C major pentatonic scale
+     * Uses absolute temperature so you can hear if it's a hot or cold day
      * C major pentatonic: C, D, E, G, A
-     * @param normalizedValue - Value between 0 and 1
+     * @param temperature - Temperature in Celsius
      * @returns Musical note in scientific pitch notation (e.g., "C4")
      */
-    const mapToScale = (normalizedValue: number): string => {
-        // C major pentatonic scale across 3 octaves (C3 to C6)
+    const mapTemperatureToNote = (temperature: number): string => {
+        // C major pentatonic scale across 3 octaves (C3 to A5)
         const scale = [
-            "C3", "D3", "E3", "G3", "A3",  // Octave 3
-            "C4", "D4", "E4", "G4", "A4",  // Octave 4
-            "C5", "D5", "E5", "G5", "A5",  // Octave 5
+            "C3", "D3", "E3", "G3", "A3",  // Octave 3 - cold temps
+            "C4", "D4", "E4", "G4", "A4",  // Octave 4 - mild temps
+            "C5", "D5", "E5", "G5", "A5",  // Octave 5 - warm temps
         ];
 
-        // Map 0-1 to scale index
-        const scaleIndex = Math.floor(normalizedValue * (scale.length - 1));
+        // Map temperature to scale index
+        // Typical Edinburgh range: -5°C (freezing cold) to 25°C (hot summer day)
+        const MIN_TEMP = -5;  // Below this = lowest note
+        const MAX_TEMP = 25;  // Above this = highest note
+
+        // Clamp temperature to range
+        const clampedTemp = Math.max(MIN_TEMP, Math.min(MAX_TEMP, temperature));
+
+        // Map to 0-1 range based on absolute temperature
+        const normalized = (clampedTemp - MIN_TEMP) / (MAX_TEMP - MIN_TEMP);
+
+        // Map to scale index
+        const scaleIndex = Math.floor(normalized * (scale.length - 1));
         return scale[scaleIndex];
     };
 
     /**
-     * Creates a synth with reverb for smoother, less "bleep-bloopy" sound
-     * @returns Configured Tone.js synth connected to reverb
+     * Calculates the third (harmony note) for a given root note
+     * @param rootNote - The base note (e.g., "C4")
+     * @param isMajor - true for major third, false for minor third
+     * @returns The third note in scientific pitch notation
+     */
+    const getThird = (rootNote: string, isMajor: boolean): string => {
+        // Parse the note and octave
+        const noteName = rootNote.slice(0, -1);
+        const octave = parseInt(rootNote.slice(-1));
+
+        // Chromatic scale for reference
+        const chromaticScale = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
+
+        // Find the root note index
+        const rootIndex = chromaticScale.indexOf(noteName);
+
+        // Major third = 4 semitones up, Minor third = 3 semitones up
+        const semitones = isMajor ? 4 : 3;
+        let thirdIndex = (rootIndex + semitones) % 12;
+        let thirdOctave = octave;
+
+        // If we wrapped around, increment octave
+        if (rootIndex + semitones >= 12) {
+            thirdOctave++;
+        }
+
+        return chromaticScale[thirdIndex] + thirdOctave;
+    };
+
+    /**
+     * Creates a polyphonic synth with reverb for playing chords
+     * @returns Configured Tone.js polyphonic synth connected to reverb
      */
     const createSynthWithReverb = () => {
         // Create a reverb effect for atmosphere
@@ -159,8 +195,8 @@ const WeatherMusic: React.FC = () => {
             wet: 0.3,  // 30% reverb, 70% dry signal
         }).toDestination();
 
-        // Create a synth with a smoother sound
-        const synth = new Tone.Synth({
+        // Create a polyphonic synth (can play multiple notes at once)
+        const synth = new Tone.PolySynth(Tone.Synth, {
             oscillator: {
                 type: "sine",  // Smooth sine wave
             },
@@ -177,7 +213,8 @@ const WeatherMusic: React.FC = () => {
 
     /**
      * Plays the 24-hour temperature sequence as music
-     * Each hour is represented by one note, with temperature mapped to pitch
+     * Each hour is represented by a chord (root + third), with temperature mapped to pitch
+     * Good weather = major third (happy), bad weather = minor third (sad)
      */
     const playTemperatureSequence = async () => {
         try {
@@ -190,9 +227,7 @@ const WeatherMusic: React.FC = () => {
 
             // Get the first 24 hours of temperature data
             const temperatures = hourlyTemperatures.slice(0, HOURS_TO_DISPLAY);
-
-            // Normalize temperatures to 0-1 range
-            const normalizedTemps = normalizeTemperatures(temperatures);
+            const weatherCodes = hourlyWeatherCodes.slice(0, HOURS_TO_DISPLAY);
 
             // Create synth with reverb
             const synth = createSynthWithReverb();
@@ -202,24 +237,30 @@ const WeatherMusic: React.FC = () => {
             const timeBetweenNotes = 0.5;  // Half second between notes
 
             // Use Tone.Part instead of Sequence for better control
-            const events = temperatures.map((_, index) => {
-                const normalizedTemp = normalizedTemps[index];
-                const note = mapToScale(normalizedTemp);
+            // Map each temperature directly to a note (no normalization!)
+            const events = temperatures.map((temp, index) => {
+                const rootNote = mapTemperatureToNote(temp);
+                const weatherCode = weatherCodes[index];
+                const isMajor = isGoodWeather(weatherCode);
+                const thirdNote = getThird(rootNote, isMajor);
+
                 return {
                     time: index * timeBetweenNotes,
-                    note: note,
+                    notes: [rootNote, thirdNote],  // Play both notes as a chord
                     index: index,
+                    isMajor: isMajor,
                 };
             });
 
             const part = new Tone.Part((time, event) => {
-                // Play the note
-                synth.triggerAttackRelease(event.note, noteDuration, time);
+                // Play the chord (root + third)
+                synth.triggerAttackRelease(event.notes, noteDuration, time);
 
                 // Update UI to highlight current hour
                 Tone.Draw.schedule(() => {
                     setCurrentHourIndex(event.index);
-                    console.log(`Playing hour ${event.index}: ${event.note}`);
+                    const chordType = event.isMajor ? "major" : "minor";
+                    console.log(`Playing hour ${event.index}: ${event.notes.join("+")} (${chordType}) - ${temperatures[event.index]}°C`);
                 }, time);
             }, events);
 
@@ -332,4 +373,3 @@ const WeatherMusic: React.FC = () => {
 };
 
 export default WeatherMusic;
-
