@@ -5,6 +5,9 @@
 html,
 body {
     @apply m-0 p-0 min-h-screen;
+    background: linear-gradient(#5C748A 0%, #566E82 100%);
+    background-attachment: fixed;
+    /* Keeps gradient fixed when scrolling */
 }
 
 
@@ -12,16 +15,34 @@ body {
 h1 {
     @apply text-4xl font-bold my-4 font-['Fraunces'];
     /* Added Fraunces font */
+    letter-spacing: 0.03em;
+    /* Extruded shadow effect like Miramax logo - "film title carved from light" */
+    text-shadow:
+        1px 1px 0 #1C2B3A,
+        2px 2px 0 #1C2B3A,
+        3px 3px 0 #1C2B3A,
+        4px 4px 0 #1C2B3A,
+        5px 5px 0 #1C2B3A,
+        6px 6px 0 #1C2B3A,
+        7px 7px 0 #1C2B3A,
+        8px 8px 0 #1C2B3A,
+        9px 9px 0 #1C2B3A;
 }
 
 h2 {
-    @apply text-2xl font-bold mt-6 mb-2 font-['Fraunces'];
+    @apply text-2xl font-bold mb-2 font-['Fraunces'];
     /* Added Fraunces font */
+    margin-top: 0.5rem;
+    /* Softer space above headings */
+    color: #EBC977;
+    /* Lighter ochre for easier reading and hierarchy separation */
 }
 
 h3 {
     @apply text-xl font-semibold mt-6 mb-2 font-['Fraunces'];
     /* Added Fraunces font */
+    color: #EBC977;
+    /* Lighter ochre for easier reading and hierarchy separation */
 }
 
 h4 {
@@ -71,10 +92,36 @@ code {
     /* Customize styles as needed */
 }
 
-/* Add this to your existing CSS */
+/* Navigation styles */
 .nav-link {
-    transition: font-size 0.05s cubic-bezier(0.32, 0, 0.67, 1);
-    /* Smoother transition */
+    transition: color 0.2s ease, border-bottom 0.15s ease;
+    padding-bottom: 2px;
+}
+
+.nav-link:hover {
+    color: #FFD785;
+    /* Lighter shimmer on hover */
+}
+
+.nav-link.active-nav {
+    border-bottom: 2px solid #E6B55A;
+}
+
+/* Horizontal rule styling - translucent for matte cinematic feel */
+hr {
+    margin-top: 1.2rem;
+    margin-bottom: 1.2rem;
+    border: none;
+    border-top: 1px solid rgba(230, 181, 90, 0.2);
+    /* Ochre with 20% opacity */
+    opacity: 0.4;
+}
+
+/* Divider styling - translucent for matte cinematic feel */
+.divider {
+    border-color: rgba(230, 181, 90, 0.2);
+    /* Ochre with 20% opacity */
+    opacity: 0.4;
 }
 
 blockquote {

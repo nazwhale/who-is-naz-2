@@ -12,7 +12,7 @@ const Home = () => {
               {/*only show link ui on hover*/}
               <a href={project.link}>{project.title}</a>
             </h3>
-            <p className="italic font-light text-slate-500 text-base leading-snug font-['Fraunces']">
+            <p className="italic font-light text-secondary/80 text-base leading-snug font-['Fraunces']">
               {project.description}
             </p>
           </li>

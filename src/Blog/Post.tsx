@@ -66,7 +66,7 @@ const BlogPost = () => {
               <Link
                 key={index}
                 to={`/tags/${tag}`}
-                className="mr-2 text-slate-500 hover:text-slate-700"
+                className="mr-2 text-secondary/70 hover:text-secondary"
               >
                 #{tag}
               </Link>
@@ -76,12 +76,12 @@ const BlogPost = () => {
           <h1 className="mb-1">{postData?.title}</h1>
 
           {postData?.description && (
-            <p className="italic font-light text-slate-500 text-base leading-snug font-['Fraunces']">
+            <p className="italic font-light text-secondary/80 text-base leading-snug font-['Fraunces']">
               {postData.description}
             </p>
           )}
 
-          <p className="text-[13px] text-slate-400 font-normal tracking-wide">
+          <p className="text-[13px] text-secondary/60 font-normal tracking-wide">
             {formatDateStr(postData?.date)}
           </p>
         </div>
@@ -93,7 +93,7 @@ const BlogPost = () => {
       </article>
 
       <div className="my-12">
-        <Link className={`link link-neutral`} to={`/articles`}>
+        <Link className={`link link-secondary`} to={`/articles`}>
           More →
         </Link>
       </div>

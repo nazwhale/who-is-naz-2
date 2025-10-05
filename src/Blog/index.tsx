@@ -88,7 +88,7 @@ const Blog = () => {
       <h2>{tag ? `articles tagged #${tag}` : 'articles'}</h2>
       {tag && (
         <div className="mb-4">
-          <Link to="/articles" className="text-sm text-slate-500 hover:text-slate-700">
+          <Link to="/articles" className="text-sm text-secondary/70 hover:text-secondary">
             ← Back to all articles
           </Link>
         </div>
@@ -109,7 +109,7 @@ const Blog = () => {
                 </Link>
               </h3>
 
-              <p className="italic font-light text-slate-500 text-base leading-snug font-['Fraunces']">
+              <p className="italic font-light text-secondary/80 text-base leading-snug font-['Fraunces']">
                 {post.metadata.description}
               </p>
 
@@ -119,7 +119,7 @@ const Blog = () => {
                     <Link
                       key={i}
                       to={`/tags/${postTag}`}
-                      className="mr-2 text-slate-500 hover:text-slate-700"
+                      className="mr-2 text-secondary/70 hover:text-secondary"
                     >
                       #{postTag}
                     </Link>
@@ -127,7 +127,7 @@ const Blog = () => {
                 </p>
               )}
 
-              <p className="text-secondary-content/50 tracking-wide text-sm text-slate-400">
+              <p className="text-secondary/60 tracking-wide text-sm">
                 {formatDateStr(post.metadata.date)}
               </p>
             </li>

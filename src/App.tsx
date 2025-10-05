@@ -6,12 +6,12 @@ import routes from "./routes.tsx";
 function App() {
   return (
     <Router>
-      <div className="mb-8">
-        <h1 className="mb-4 text-4xl font-semibold">
+      <div className="mb-4">
+        <Navigation />
+        <h1 className="text-4xl font-semibold">
           who is <span className="">naz</span>
         </h1>
-        <Navigation />
-        <div className="divider"></div>
+        <hr />
       </div>
 
       <Routes>
@@ -21,7 +21,7 @@ function App() {
       </Routes>
 
 
-      <div className="divider"></div>
+      <hr />
 
       <div className="flex my-12 text-sm">
         <a
