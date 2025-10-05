@@ -6,7 +6,7 @@ const All = [
   {
     path: "/",
     component: Home,
-    name: "home",
+    name: "projects",
   },
   {
     path: "/articles",
