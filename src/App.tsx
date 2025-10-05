@@ -6,12 +6,11 @@ import routes from "./routes.tsx";
 function App() {
   return (
     <Router>
-      <div className="mb-4">
+      <div className="mb-8">
         <Navigation />
         <h1 className="text-4xl font-semibold">
           who is <span className="">naz</span>
         </h1>
-        <hr />
       </div>
 
       <Routes>
@@ -24,6 +23,14 @@ function App() {
       <hr />
 
       <div className="flex my-12 text-sm">
+        <a
+          href="https://soundcloud.com/nazmalik-1"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          SoundCloud
+        </a>
+        <div className="mx-4">•</div>
         <a
           href="https://github.com/nazwhale"
           target="_blank"
