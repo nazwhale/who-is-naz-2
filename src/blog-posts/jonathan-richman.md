@@ -1,5 +1,5 @@
 ---
-title: "Jonathan Richman"
+title: "Outliers: Jonathan Richman"
 date: "2017-06-16"
 description: Jonathan Richman summons the inner child
 featured_image_url: ''
