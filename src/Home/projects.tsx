@@ -11,6 +11,16 @@ export const projects: ProjectT[] = [
     link: "/weathermusic",
   },
   {
+    title: "Tempotick Online Metronomes",
+    description: "Collection of online metronomes to help musicians",
+    link: "https://www.tempotick.com",
+  },
+  {
+    title: "Pass the Beat",
+    description: "Bing bong bing bong",
+    link: "https://pass-the-beat.vercel.app/",
+  },
+  {
     title: "Family Therapy",
     description: "Psychoanalyse your family tree",
     link: "https://familytherapy.whoisnaz.com/",
@@ -51,16 +61,6 @@ export const projects: ProjectT[] = [
     title: "Sentence Spotlight",
     description: "Chrome extension for focus when reading on the web",
     link: "https://chromewebstore.google.com/detail/sentence-spotlight/nbgebiienflgclebolkcddhillhmfbaj",
-  },
-  {
-    title: "Tempotick Online Metronomes",
-    description: "Collection of online metronomes to help musicians",
-    link: "https://www.tempotick.com",
-  },
-  {
-    title: "Pass the Beat",
-    description: "Bing bong bing bong",
-    link: "https://pass-the-beat.vercel.app/",
   },
   {
     title: "Star Wars Facts",
