@@ -10,22 +10,34 @@ interface WeatherData {
     };
 }
 
+interface City {
+    name: string;
+    latitude: number;
+    longitude: number;
+    timezone: string;
+}
+
+const CITIES: City[] = [
+    { name: "Edinburgh", latitude: 55.9533, longitude: -3.1883, timezone: "Europe/London" },
+    { name: "London", latitude: 51.5074, longitude: -0.1278, timezone: "Europe/London" },
+    { name: "Los Angeles", latitude: 34.0522, longitude: -118.2437, timezone: "America/Los_Angeles" },
+    { name: "Tokyo", latitude: 35.6762, longitude: 139.6503, timezone: "Asia/Tokyo" },
+];
+
 const WeatherMusic: React.FC = () => {
     const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [isPlaying, setIsPlaying] = useState(false);
     const [currentHourIndex, setCurrentHourIndex] = useState<number | null>(null);
-
-    // Edinburgh coordinates
-    const EDINBURGH_LATITUDE = 55.9533;
-    const EDINBURGH_LONGITUDE = -3.1883;
-    const TIMEZONE = "Europe/London";
+    const [selectedCity, setSelectedCity] = useState<City>(CITIES[0]);
 
     useEffect(() => {
         const fetchWeather = async () => {
+            setLoading(true);
+            setError(null);
             try {
-                const apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${EDINBURGH_LATITUDE}&longitude=${EDINBURGH_LONGITUDE}&hourly=temperature_2m,precipitation,weathercode&timezone=${TIMEZONE}`;
+                const apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${selectedCity.latitude}&longitude=${selectedCity.longitude}&hourly=temperature_2m,precipitation,weathercode&timezone=${selectedCity.timezone}`;
 
                 const response = await fetch(apiUrl);
 
@@ -43,7 +55,7 @@ const WeatherMusic: React.FC = () => {
         };
 
         fetchWeather();
-    }, []);
+    }, [selectedCity]);
 
     if (loading) {
         return <div className="p-4">Loading weather data...</div>;
@@ -297,12 +309,40 @@ const WeatherMusic: React.FC = () => {
 
     return (
         <div className="p-4">
-            <h2 className="text-2xl font-semibold mb-4">Edinburgh Weather Music</h2>
+            <h2 className="text-2xl font-semibold mb-4 text-primary">{selectedCity.name} Weather Music</h2>
+            <p className="text-sm text-primary">
+                Listen to the temperature changes throughout the day as music
+            </p>
 
             <div className="space-y-4">
-                <div className="text-sm text-gray-600 mb-6">
-                    <p>Weather forecast for Edinburgh, Scotland</p>
-                    <p className="font-semibold mt-2">
+                <div className="mb-6">
+                    <p className="text-sm text-primary mb-3">Select a city:</p>
+                    <div className="inline-flex rounded-md shadow-sm" role="group">
+                        {CITIES.map((city) => (
+                            <button
+                                key={city.name}
+                                onClick={() => {
+                                    setSelectedCity(city);
+                                    stopPlayback();
+                                }}
+                                className={`px-4 py-2 text-sm font-medium border transition-colors
+                                    ${city.name === selectedCity.name
+                                        ? "bg-neutral text-primary border-neutral z-10"
+                                        : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50"
+                                    }
+                                    ${city === CITIES[0] ? "rounded-l-lg" : ""}
+                                    ${city === CITIES[CITIES.length - 1] ? "rounded-r-lg" : ""}
+                                    ${city !== CITIES[0] ? "-ml-px" : ""}
+                                `}
+                            >
+                                {city.name}
+                            </button>
+                        ))}
+                    </div>
+                </div>
+
+                <div className="text-sm text-primary mb-6">
+                    <p className="mt-2">
                         Showing: {firstHourTime.toLocaleDateString()} {firstHourTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                         {' → '}
                         {lastHourTime.toLocaleDateString()} {lastHourTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
@@ -312,23 +352,20 @@ const WeatherMusic: React.FC = () => {
                 <div className="mb-6">
                     <button
                         onClick={isPlaying ? stopPlayback : playTemperatureSequence}
-                        className="bg-black text-yellow-500 px-6 py-3 rounded font-semibold hover:bg-gray-900 transition-colors"
+                        className="bg-neutral text-primary px-6 py-3 rounded font-semibold hover:bg-neutral/80 transition-colors"
                     >
                         {isPlaying ? "⏹ Stop" : "▶ Play the Day"}
                     </button>
-                    <p className="text-sm text-gray-600 mt-2">
-                        Listen to the temperature changes throughout the day as music
-                    </p>
                 </div>
 
                 <div className="overflow-x-auto">
                     <table className="min-w-full border-collapse">
                         <thead>
-                            <tr className="border-b">
-                                <th className="text-left p-2">Time</th>
-                                <th className="text-left p-2">Temperature (°C)</th>
-                                <th className="text-left p-2">Precipitation (mm)</th>
-                                <th className="text-left p-2">Weather Condition</th>
+                            <tr className="border-b border-primary">
+                                <th className="text-left p-2 text-primary">Time</th>
+                                <th className="text-left p-2 text-primary">Temperature (°C)</th>
+                                <th className="text-left p-2 text-primary">Precipitation (mm)</th>
+                                <th className="text-left p-2 text-primary">Weather Condition</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -340,21 +377,29 @@ const WeatherMusic: React.FC = () => {
                                 const weatherDescription = getWeatherDescription(weatherCode);
                                 const isCurrentlyPlaying = currentHourIndex === index;
 
+                                // Check if this is the current hour by comparing date and hour
+                                const now = new Date();
+                                const isCurrentHour = hour.getFullYear() === now.getFullYear() &&
+                                    hour.getMonth() === now.getMonth() &&
+                                    hour.getDate() === now.getDate() &&
+                                    hour.getHours() === now.getHours();
+
                                 return (
                                     <tr
                                         key={index}
-                                        className={`border-b transition-colors ${isCurrentlyPlaying
-                                            ? "bg-blue-200 font-semibold"
-                                            : "hover:bg-gray-50"
+                                        className={`border-b border-primary/30 transition-colors ${isCurrentlyPlaying
+                                            ? "bg-primary/20 font-semibold"
+                                            : "hover:bg-primary/5"
                                             }`}
                                     >
-                                        <td className="p-2">
+                                        <td className="p-2 text-primary">
                                             {isCurrentlyPlaying && "♪ "}
-                                            {hour.toLocaleString()}
+                                            {isCurrentHour && "🕐 "}
+                                            {hour.toLocaleTimeString('en-US', { hour: 'numeric', hour12: true }).toLowerCase()}
                                         </td>
-                                        <td className="p-2">{temperature}°C</td>
-                                        <td className="p-2">{precipitation} mm</td>
-                                        <td className="p-2">{weatherDescription}</td>
+                                        <td className="p-2 text-primary">{temperature.toFixed(1)}°C</td>
+                                        <td className="p-2 text-primary">{precipitation} mm</td>
+                                        <td className="p-2 text-primary">{weatherDescription}</td>
                                     </tr>
                                 );
                             })}
@@ -362,8 +407,8 @@ const WeatherMusic: React.FC = () => {
                     </table>
                 </div>
 
-                <div className="mt-6 p-4 bg-gray-100 rounded">
-                    <p className="text-sm">
+                <div className="mt-6 p-4 bg-primary/10 rounded">
+                    <p className="text-sm text-primary">
                         Data includes forecast starting from the current hour and extending 24 hours forward.
                     </p>
                 </div>

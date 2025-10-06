@@ -1,0 +1,51 @@
+# Who Is Naz - Cursor Rules
+
+## Styling & Theme
+
+### Always Use DaisyUI Theme Variables
+- **NEVER** hardcode color values (e.g., `text-yellow-500`, `bg-blue-200`, `#E6B55A`)
+- **ALWAYS** use DaisyUI theme variables from the `miramax` theme defined in `tailwind.config.js`
+- Check `tailwind.config.js` for the complete list of available theme colors and their values
+- Use semantic theme variables: `text-primary`, `bg-secondary`, `border-accent`, etc.
+
+### Common Theme Variable Patterns:
+
+**Text Colors:**
+- `text-primary`, `text-secondary`, `text-accent`, `text-base-content`, `text-neutral-content`
+
+**Backgrounds:**
+- `bg-primary`, `bg-secondary`, `bg-accent`, `bg-neutral`, `bg-base-100`, `bg-base-200`, `bg-base-300`
+
+**Borders:**
+- `border-primary`, `border-secondary`, `border-accent`, `border-neutral`
+
+**Opacity Modifiers:**
+- Use `/10`, `/20`, `/30`, etc. for transparency: `text-primary/70`, `bg-primary/10`
+
+### Examples:
+
+✅ **Good:**
+```tsx
+<div className="text-primary bg-base-100 border-primary">
+<button className="bg-neutral text-primary hover:bg-neutral/80">
+<p className="text-secondary/70">
+```
+
+❌ **Bad:**
+```tsx
+<div className="text-yellow-500 bg-slate-600 border-amber-500">
+<button className="bg-black text-[#E6B55A]">
+<p className="text-gray-400">
+```
+
+### When Writing New Components:
+1. Check `tailwind.config.js` for available theme colors
+2. Use semantic theme variables that match the design intent
+3. Maintain consistency with existing components (check `Blog/`, `Home/`, etc.)
+4. Use opacity modifiers for subtle variations rather than different colors
+
+### Font Guidelines:
+- Headings use `font-['Fraunces']` (already applied globally via `index.css`)
+- Body text inherits from global styles
+- Do not override font families unless explicitly required
+
