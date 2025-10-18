@@ -7,6 +7,7 @@ import remarkGfm from 'remark-gfm';
 import { FOLDER_PATH_TO_BLOG_POSTS, formatDateStr } from "./utils.tsx";
 import frontMatter from "front-matter";
 import { BlogPostMetadata } from "./index.tsx";
+import Tag from "./Tag";
 
 const BlogPost = () => {
   const [postContent, setPostContent] = useState("");
@@ -59,27 +60,31 @@ const BlogPost = () => {
     <div className="text-start m-auto max-w-prose">
       <article className="markdown">
 
-        <div className="mb-6 space-y-1">
+        <div className="mb-6 space-y-4">
 
-          <h5 className="mb-1">
-            {postData?.tags && postData.tags.map((tag: string, index: number) => (
-              <Link
-                key={index}
-                to={`/tags/${tag}`}
-                className="mr-2 text-secondary/70 hover:text-secondary"
-              >
-                #{tag}
-              </Link>
-            ))}
-          </h5>
+          <div className="mb-1">
+            {postData?.tags && (
+              <div className="flex flex-wrap gap-2">
+                {postData.tags.map((tag: string, index: number) => (
+                  <Tag
+                    key={index}
+                    tagName={tag}
+                    to={`/tags/${tag}`}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
 
-          <h1 className="mb-1">{postData?.title}</h1>
+          <div>
+            <h1>{postData?.title}</h1>
 
-          {postData?.description && (
-            <p className="italic font-light text-secondary/80 text-base leading-snug font-['Fraunces']">
-              {postData.description}
-            </p>
-          )}
+            {postData?.description && (
+              <p className="italic font-light text-secondary/80 text-base leading-snug font-['Fraunces']">
+                {postData.description}
+              </p>
+            )}
+          </div>
 
           <p className="text-[13px] text-secondary/60 font-normal tracking-wide">
             {formatDateStr(postData?.date)}

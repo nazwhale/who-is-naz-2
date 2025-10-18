@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { formatDateStr } from "./utils.tsx";
 import frontMatter from "front-matter";
+import Tag from "./Tag";
 
 export interface BlogPostMetadata {
   title: string;
@@ -17,6 +18,7 @@ interface BlogPost {
 
 const Blog = () => {
   const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [allTags, setAllTags] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
   const { tag } = useParams();
 
@@ -66,6 +68,16 @@ const Blog = () => {
         );
       });
 
+      // Collect all unique tags
+      const tagsSet = new Set<string>();
+      loadedPosts.forEach(post => {
+        if (post.metadata.tags) {
+          post.metadata.tags.forEach(tag => tagsSet.add(tag));
+        }
+      });
+      const uniqueTags = Array.from(tagsSet).sort();
+      setAllTags(uniqueTags);
+
       // Filter posts by tag if a tag parameter is provided
       const filteredPosts = tag
         ? loadedPosts.filter(post =>
@@ -86,6 +98,22 @@ const Blog = () => {
   return (
     <div>
       <h2>{tag ? `articles tagged #${tag}` : 'articles'}</h2>
+
+      {/* Tag list section - only show when not filtering by a specific tag */}
+      {!tag && allTags.length > 0 && (
+        <div className="my-4 pb-6 border-b border-secondary/20">
+          <div className="flex flex-wrap gap-2">
+            {allTags.map((tagName) => (
+              <Tag
+                key={tagName}
+                tagName={tagName}
+                to={`/tags/${tagName}`}
+              />
+            ))}
+          </div>
+        </div>
+      )}
+
       {tag && (
         <div className="mb-4">
           <Link to="/articles" className="text-sm text-secondary/70 hover:text-secondary">
@@ -114,17 +142,15 @@ const Blog = () => {
               </p>
 
               {post.metadata.tags && post.metadata.tags.length > 0 && (
-                <p className="text-sm">
+                <div className="flex flex-wrap gap-2">
                   {post.metadata.tags.map((postTag, i) => (
-                    <Link
+                    <Tag
                       key={i}
+                      tagName={postTag}
                       to={`/tags/${postTag}`}
-                      className="mr-2 text-secondary/70 hover:text-secondary"
-                    >
-                      #{postTag}
-                    </Link>
+                    />
                   ))}
-                </p>
+                </div>
               )}
 
               <p className="text-secondary/60 tracking-wide text-sm">
