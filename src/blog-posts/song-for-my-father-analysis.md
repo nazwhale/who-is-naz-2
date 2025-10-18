@@ -1,7 +1,7 @@
 ---
 title: "Song for my Father - Harmonic Analysis"
 date: "2025-10-17"
-description: Exploring all the chords and notes and stuff
+description: Backdoor domintants, harmonic dominants, tritone subs
 featured_image_url: ''
 tags:
   - music
