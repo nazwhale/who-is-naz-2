@@ -29,12 +29,12 @@ tags:
 
 ### Chords
 
-|          | Function                     | 1    | 3    | 5    | 7    |
-| -------- | ---------------------------- | ---- | ---- | ---- | ---- |
-| **F-7 ** | i                            | F    | Ab   | C    | Eb   |
-| **Eb7**  | bVII7                        | Eb   | G    | Bb   | Db   |
-| **Db7**  | chromatic dominant / subV7/V | Db   | F    | Ab   | B 🌶️  |
-| **C7**   | V7                           | C    | E 🌶️  | G    | Bb   |
+|         | Function                     | 1    | 3    | 5    | 7    |
+| ------- | ---------------------------- | ---- | ---- | ---- | ---- |
+| **F-7** | i                            | F    | Ab   | C    | Eb   |
+| **Eb7** | bVII7                        | Eb   | G    | Bb   | Db   |
+| **Db7** | chromatic dominant / subV7/V | Db   | F    | Ab   | B 🌶️  |
+| **C7**  | V7                           | C    | E 🌶️  | G    | Bb   |
 
 🌶️ = non-diatonic
 
@@ -78,7 +78,7 @@ So the V7 in a minor context is both this confident chord to resolve from, and l
 
 ### Db7 (subV7/V aka chromatic dominant)
 
-##### Simple explanation: a spot of chromaticism
+#### Simple explanation: a spot of chromaticism
 
 It's kind of like the 6th degree of the F minor scale. We're using a B🌶️ instead of a C, to pull us down ot C7 which has a Bb. 
 
@@ -86,7 +86,7 @@ So that makes our C7 satisfying.
 
 The Db7 can be thought of as a dominant chord outside our key of F minor, allowing us to move a half-step to resolve to our harmonic dominant of C7.
 
-##### Fancy theory explanation: Tritone substitution 
+#### Fancy theory explanation: Tritone substitution 
 
 The secondary dominant of F- is G7 (the V of C7): G–B–D–F 
 
@@ -103,7 +103,7 @@ They can substitute because two chords sharing the same tritone means they both 
 
 So here we have a tritone substitution of the secondary dominant (G7). Which is written as **subV7/V**
 
-##### So can you use any other notes around the tritone!?
+#### So can you use any other notes around the tritone!?
 
 Pretty much. The 3 and 7 define the chord's function (dominant). Everything else is flavour.
 
@@ -119,13 +119,13 @@ Common “colour” tones that can sit around the tension pair:
 | **♭13 (Ab)**     | ♭6                    | Altered, darker                  | C7♭13                      |
 | **13 (A)**       | 6                     | Soulful, rich                    | C13                        |
 
-##### Improv implication
+#### Improv implication
 
 You can orbit around the tritone.
 
 e.g. target the 3 and the 7, approach them chromatically, add altered or guide tones between them.
 
-##### Tritone examples in this tune
+#### Tritone examples in this tune
 
 | Dominant | 3rd   | 7th    | Interval | Pulls towards...                                             |
 | -------- | ----- | ------ | -------- | ------------------------------------------------------------ |
