@@ -8,8 +8,6 @@ tags:
   - jazz
 ---
 
-# Song for my Father - Harmonic Analysis
-
 ### Links
 
 - [OG version](https://www.youtube.com/watch?v=mKf1x3CALAE&list=RDmKf1x3CALAE)
@@ -31,14 +29,14 @@ tags:
 
 ### Chords
 
-|          | Function                     | 1    | 3              | 5    | 7              |
-| -------- | ---------------------------- | ---- | -------------- | ---- | -------------- |
-| **F-7 ** | i                            | F    | Ab             | C    | Eb             |
-| **Eb7**  | bVII7                        | Eb   | G              | Bb   | Db             |
-| **Db7**  | chromatic dominant / subV7/V | Db   | F              | Ab   | B :hot_pepper: |
-| **C7**   | V7                           | C    | E :hot_pepper: | G    | Bb             |
+|          | Function                     | 1    | 3    | 5    | 7    |
+| -------- | ---------------------------- | ---- | ---- | ---- | ---- |
+| **F-7 ** | i                            | F    | Ab   | C    | Eb   |
+| **Eb7**  | bVII7                        | Eb   | G    | Bb   | Db   |
+| **Db7**  | chromatic dominant / subV7/V | Db   | F    | Ab   | B 🌶️  |
+| **C7**   | V7                           | C    | E 🌶️  | G    | Bb   |
 
-*:hot_pepper: = non-diatonic*
+🌶️ = non-diatonic
 
 ### Key
 
@@ -64,15 +62,15 @@ Functions to resolve to the tonic. Bit warmer and more laid-back than a typical 
 
 Diatonic would be Cm7
 
-But the E :hot_pepper: pulls us back to our F-7. We've raised the 7th of the minor scale to do that. Gives us *bright* tension back to the i. Sounds confident.
+But the E🌶️ pulls us back to our F-7. We've raised the 7th of the minor scale to do that. Gives us *bright* tension back to the i. Sounds confident.
 
 This is a super classic move in a minor key.
 
 ...and gives us F **harmonic minor**:
 
-| 1    | 2    | b3   | 4    | 5    | b6   | 7              |
-| ---- | ---- | ---- | ---- | ---- | ---- | -------------- |
-| F    | G    | Ab   | Bb   | C    | Db   | E :hot_pepper: |
+| 1    | 2    | b3   | 4    | 5    | b6   | 7    |
+| ---- | ---- | ---- | ---- | ---- | ---- | ---- |
+| F    | G    | Ab   | Bb   | C    | Db   | E 🌶️  |
 
 Improv-ing in harmonic minor is nice for the V7. + has a fun gypsy vibe. 
 
@@ -82,7 +80,7 @@ So the V7 in a minor context is both this confident chord to resolve from, and l
 
 ##### Simple explanation: a spot of chromaticism
 
-It's kind of like the 6th degree of the F minor scale. We're using a B :hot_pepper: instead of a C, to pull us down ot C7 which has a Bb. 
+It's kind of like the 6th degree of the F minor scale. We're using a B🌶️ instead of a C, to pull us down ot C7 which has a Bb. 
 
 So that makes our C7 satisfying. 
 
