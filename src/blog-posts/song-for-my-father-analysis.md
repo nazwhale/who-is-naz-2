@@ -13,6 +13,11 @@ tags:
 - [OG version](https://www.youtube.com/watch?v=mKf1x3CALAE&list=RDmKf1x3CALAE)
 - [Joao Donato Version](https://youtu.be/TEr-S5MA_pY?si=laNj1wJF2jV-jA9S&t=166), link at fun piano solo
 - [Wikipedia](https://en.wikipedia.org/wiki/Song_for_My_Father_(composition))
+- Arpeggios
+  - [F-minor7](https://www.guitar-chords.org.uk/arpeggios/f-minor7-arpeggios.html)
+  - [E-flat-7](https://www.guitar-chords.org.uk/arpeggios/e-flat-7-arpeggios.html)
+  - [D-flat-7](https://www.guitar-chords.org.uk/arpeggios/c-sharp-7-arpeggios.html)
+  - [C-7](https://www.guitar-chords.org.uk/arpeggios/c-7-arpeggios.html)
 
 ### Form: AAB
 
