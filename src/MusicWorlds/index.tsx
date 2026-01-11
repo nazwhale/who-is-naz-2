@@ -136,7 +136,7 @@ export default function MusicWorlds() {
 
 
     return (
-        <div className="p-6 font-sans min-h-screen bg-base-100">
+        <div className="p-6 font-sans min-h-screen">
             <h1 className="text-2xl font-bold text-primary m-0">A Second of Your Time</h1>
             <p className="text-secondary/80 mt-2 mb-4 max-w-2xl">
                 A collaborative 3-minute piece of music. Anyone can upload a 1-second audio clip to any slot below. Click a block to add or replace its audio. Check back to hear how things have evolved.
@@ -174,7 +174,7 @@ export default function MusicWorlds() {
             <audio ref={audioRef} onEnded={handleAudioEnded} className="hidden" />
 
 
-            <div className="grid grid-cols-12 gap-1.5 mt-6">
+            <div className="grid grid-cols-5 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 xl:grid-cols-12 gap-2 sm:gap-1.5 mt-6">
                 {indices.map((i) => {
                     const row = blocks.get(i);
                     const hasAudio = !!row;
@@ -189,10 +189,10 @@ export default function MusicWorlds() {
                             onContextMenu={(e) => handleBlockRightClick(e, i)}
                             title={row ? `Audio: ${Math.round(row.size / 1024)}KB - Click to replace` : "Click to add audio"}
                             className={`
-                                py-2.5 px-1.5 rounded-lg text-xs font-medium transition-all duration-200
-                                disabled:cursor-not-allowed
+                                py-2 px-1 sm:py-2.5 sm:px-1.5 rounded-md sm:rounded-lg text-[10px] sm:text-xs font-medium transition-all duration-200
+                                disabled:cursor-not-allowed aspect-[1.5/1] flex items-center justify-center
                                 ${isCurrent
-                                    ? "bg-accent text-accent-content border-2 border-accent shadow-lg scale-110 ring-2 ring-accent ring-offset-2 ring-offset-base-100"
+                                    ? "bg-accent text-accent-content border-2 border-accent shadow-lg scale-110 ring-2 ring-accent ring-offset-2 ring-offset-neutral"
                                     : hasAudio
                                         ? "bg-primary text-primary-content border-2 border-primary shadow-md hover:bg-accent hover:scale-105"
                                         : "bg-base-300/50 text-primary/40 border border-base-200 hover:bg-base-200 hover:text-primary/70 hover:border-primary/30"
