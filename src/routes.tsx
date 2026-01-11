@@ -26,7 +26,7 @@ const routes = [
     element: <WeatherMusic />,
   },
   {
-    path: "/musicworlds",
+    path: "/a-second-of-your-time",
     element: <MusicWorlds />,
   },
 ];

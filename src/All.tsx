@@ -20,9 +20,9 @@ const All = [
     name: "weathermusic",
   },
   {
-    path: "/musicworlds",
+    path: "/a-second-of-your-time",
     component: MusicWorlds,
-    name: "musicworlds",
+    name: "a second of your time",
   },
 ];
 
