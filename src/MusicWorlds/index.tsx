@@ -44,7 +44,11 @@ export default function MusicWorlds() {
     }, []);
 
     function handleBlockClick(index: number) {
-        // Click always opens the upload modal (for adding or replacing audio)
+        // Start playback from this block so user can hear what the song sounds like from here
+        isPlayingRef.current = true;
+        setIsPlaying(true);
+        playFromIndex(index);
+        // Also open the upload modal
         setEditingBlock(index);
     }
 
@@ -55,6 +59,9 @@ export default function MusicWorlds() {
     }
 
     async function handleAudioUploaded() {
+        // Stop the background playback
+        stopPlayback();
+
         // Refresh block list
         await loadBlocks();
 
@@ -207,7 +214,10 @@ export default function MusicWorlds() {
                             worldId={WORLD_ID}
                             blockIndex={editingBlock}
                             onUploaded={handleAudioUploaded}
-                            onClose={() => setEditingBlock(null)}
+                            onClose={() => {
+                                setEditingBlock(null);
+                                stopPlayback();
+                            }}
                         />
                     </div>
                 </div>
