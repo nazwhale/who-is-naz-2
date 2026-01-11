@@ -2,6 +2,7 @@ import Blog from "./Blog";
 import Post from "./Blog/Post.tsx";
 import Home from "./Home/index.tsx";
 import WeatherMusic from "./WeatherMusic/index.tsx";
+import MusicWorlds from "./MusicWorlds/index.tsx";
 
 const routes = [
   {
@@ -23,6 +24,10 @@ const routes = [
   {
     path: "/weathermusic",
     element: <WeatherMusic />,
+  },
+  {
+    path: "/musicworlds",
+    element: <MusicWorlds />,
   },
 ];
 

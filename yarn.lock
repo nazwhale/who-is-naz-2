@@ -3124,6 +3124,11 @@ vitest@^0.25.6:
     tinyspy "^1.0.2"
     vite "^3.0.0 || ^4.0.0"
 
+wavesurfer.js@^7.12.1:
+  version "7.12.1"
+  resolved "https://registry.npmjs.org/wavesurfer.js/-/wavesurfer.js-7.12.1.tgz"
+  integrity sha512-NswPjVHxk0Q1F/VMRemCPUzSojjuHHisQrBqQiRXg7MVbe3f5vQ6r0rTTXA/a/neC/4hnOEC4YpXca4LpH0SUg==
+
 web-namespaces@^2.0.0:
   version "2.0.1"
   resolved "https://registry.npmjs.org/web-namespaces/-/web-namespaces-2.0.1.tgz"
