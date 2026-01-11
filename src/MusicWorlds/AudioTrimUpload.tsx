@@ -97,6 +97,9 @@ export default function AudioTrimUpload({
 
       regionRef.current = region;
       setRegionStart(initialStart);
+
+      // Auto-play the full clip on load so user can hear it all
+      ws.play();
     });
 
     ws.on("error", (err) => {
@@ -141,8 +144,21 @@ export default function AudioTrimUpload({
   const handlePreview = () => {
     if (!wavesurferRef.current || !regionRef.current) return;
 
+    const ws = wavesurferRef.current;
     const region = regionRef.current;
-    region.play();
+
+    // Play only the selected region (start to end)
+    ws.setTime(region.start);
+    ws.play();
+
+    // Stop at region end
+    const checkEnd = () => {
+      if (ws.getCurrentTime() >= region.end) {
+        ws.pause();
+        ws.un("timeupdate", checkEnd);
+      }
+    };
+    ws.on("timeupdate", checkEnd);
   };
 
   const handleUpload = async () => {
