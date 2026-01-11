@@ -139,7 +139,7 @@ export default function MusicWorlds() {
         <div className="p-6 font-sans min-h-screen bg-base-100">
             <h1 className="text-2xl font-bold text-primary m-0">A Second of Your Time</h1>
             <p className="text-secondary/80 mt-2 mb-4 max-w-2xl">
-                A collaborative 3-minute piece of music. Anyone in the world can upload a 1-second audio clip to any slot below. Click a block to add or replace its audio. Check back to hear how things have evolved.
+                A collaborative 3-minute piece of music. Anyone can upload a 1-second audio clip to any slot below. Click a block to add or replace its audio. Check back to hear how things have evolved.
             </p>
 
             <div className="my-4 flex items-center gap-3">
