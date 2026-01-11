@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import AudioTrimUpload from "./AudioTrimUpload";
 
-const API_BASE = import.meta.env.VITE_API_BASE as string;
-const WORLD_ID = import.meta.env.VITE_WORLD_ID as string;
+const API_BASE = import.meta.env.VITE_MUSIC_WORLDS_API_BASE as string;
+const WORLD_ID = import.meta.env.VITE_MUSIC_WORLDS_WORLD_ID as string;
 
 type AudioBlock = {
     block_index: number;
