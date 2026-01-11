@@ -90,7 +90,7 @@ export default function AudioTrimUpload({
       const region = regions.addRegion({
         start: initialStart,
         end: initialStart + REGION_DURATION,
-        color: "rgba(59, 130, 246, 0.3)",
+        color: "rgba(230, 181, 90, 0.5)",
         drag: true,
         resize: false, // Prevent resizing to keep fixed 1s length
       });
@@ -245,7 +245,7 @@ export default function AudioTrimUpload({
           )}
           {!isLoading && duration > 0 && (
             <p className="text-primary/60 text-sm mt-2">
-              Drag the blue highlighted section to choose which 1 second of audio you want to use.
+              Drag the gold highlighted section to choose which 1 second of audio you want to use.
             </p>
           )}
         </div>
