@@ -22,6 +22,7 @@ export default function MusicWorlds() {
     const [editingBlock, setEditingBlock] = useState<number | null>(null);
     const [isPlaying, setIsPlaying] = useState(false);
     const [currentBlockIndex, setCurrentBlockIndex] = useState<number | null>(null);
+    const [isLoading, setIsLoading] = useState(true);
     const audioRef = useRef<HTMLAudioElement>(null);
     const silenceTimeoutRef = useRef<number | null>(null);
     const isPlayingRef = useRef(false);
@@ -40,7 +41,9 @@ export default function MusicWorlds() {
     }
 
     useEffect(() => {
-        loadBlocks().catch(console.error);
+        loadBlocks()
+            .catch(console.error)
+            .finally(() => setIsLoading(false));
     }, []);
 
     function handleBlockClick(index: number) {
@@ -146,9 +149,10 @@ export default function MusicWorlds() {
                 {!isPlaying ? (
                     <button
                         onClick={startPlayback}
+                        disabled={isLoading}
                         className="px-5 py-2.5 bg-primary text-primary-content rounded-lg hover:bg-accent disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium"
                     >
-                        ▶ Play
+                        {isLoading ? "Loading..." : "▶ Play"}
                     </button>
                 ) : (
                     <button
@@ -173,37 +177,48 @@ export default function MusicWorlds() {
             </div>
             <audio ref={audioRef} onEnded={handleAudioEnded} className="hidden" />
 
-
-            <div className="grid grid-cols-5 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 xl:grid-cols-12 gap-2 sm:gap-1.5 mt-6">
-                {indices.map((i) => {
-                    const row = blocks.get(i);
-                    const hasAudio = !!row;
-                    const isCurrent = currentBlockIndex === i;
-                    const label = fmt(i);
-
-                    return (
-                        <button
+            {isLoading ? (
+                <div className="grid grid-cols-5 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 xl:grid-cols-12 gap-2 sm:gap-1.5 mt-6">
+                    {indices.slice(0, 60).map((i) => (
+                        <div
                             key={i}
-                            disabled={isPlaying || editingBlock !== null}
-                            onClick={() => handleBlockClick(i)}
-                            onContextMenu={(e) => handleBlockRightClick(e, i)}
-                            title={row ? `Audio: ${Math.round(row.size / 1024)}KB - Click to replace` : "Click to add audio"}
-                            className={`
+                            className="py-2 px-1 sm:py-2.5 sm:px-1.5 rounded-md sm:rounded-lg aspect-[1.5/1] bg-base-300/30 animate-pulse"
+                            style={{ animationDelay: `${(i % 12) * 50}ms` }}
+                        />
+                    ))}
+                </div>
+            ) : (
+                <div className="grid grid-cols-5 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 xl:grid-cols-12 gap-2 sm:gap-1.5 mt-6">
+                    {indices.map((i) => {
+                        const row = blocks.get(i);
+                        const hasAudio = !!row;
+                        const isCurrent = currentBlockIndex === i;
+                        const label = fmt(i);
+
+                        return (
+                            <button
+                                key={i}
+                                disabled={isPlaying || editingBlock !== null}
+                                onClick={() => handleBlockClick(i)}
+                                onContextMenu={(e) => handleBlockRightClick(e, i)}
+                                title={row ? `Audio: ${Math.round(row.size / 1024)}KB - Click to replace` : "Click to add audio"}
+                                className={`
                                 py-2 px-1 sm:py-2.5 sm:px-1.5 rounded-md sm:rounded-lg text-[10px] sm:text-xs font-medium transition-all duration-200
                                 disabled:cursor-not-allowed aspect-[1.5/1] flex items-center justify-center
                                 ${isCurrent
-                                    ? "bg-accent text-accent-content border-2 border-accent shadow-lg scale-110 ring-2 ring-accent ring-offset-2 ring-offset-neutral"
-                                    : hasAudio
-                                        ? "bg-primary text-primary-content border-2 border-primary shadow-md hover:bg-accent hover:scale-105"
-                                        : "bg-base-300/50 text-primary/40 border border-base-200 hover:bg-base-200 hover:text-primary/70 hover:border-primary/30"
-                                }
+                                        ? "bg-accent text-accent-content border-2 border-accent shadow-lg scale-110 ring-2 ring-accent ring-offset-2 ring-offset-neutral"
+                                        : hasAudio
+                                            ? "bg-primary text-primary-content border-2 border-primary shadow-md hover:bg-accent hover:scale-105"
+                                            : "bg-base-300/50 text-primary/40 border border-base-200 hover:bg-base-200 hover:text-primary/70 hover:border-primary/30"
+                                    }
                             `}
-                        >
-                            {label}
-                        </button>
-                    );
-                })}
-            </div>
+                            >
+                                {label}
+                            </button>
+                        );
+                    })}
+                </div>
+            )}
 
             {/* Audio Trim/Upload Modal */}
             {editingBlock !== null && (
