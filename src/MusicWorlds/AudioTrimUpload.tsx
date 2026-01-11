@@ -210,7 +210,7 @@ export default function AudioTrimUpload({
     <div className="p-4 bg-base-200 rounded-lg border border-base-300">
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-lg font-medium text-primary">
-          Upload Audio to Block {blockIndex}
+          Upload Audio to Block {blockIndex + 1}
         </h3>
         {onClose && (
           <button
@@ -242,6 +242,11 @@ export default function AudioTrimUpload({
           />
           {isLoading && (
             <p className="text-primary/60 text-sm mt-2">Loading waveform...</p>
+          )}
+          {!isLoading && duration > 0 && (
+            <p className="text-primary/60 text-sm mt-2">
+              Drag the blue highlighted section to choose which 1 second of audio you want to use.
+            </p>
           )}
         </div>
       )}
