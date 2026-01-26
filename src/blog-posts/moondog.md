@@ -1,11 +1,13 @@
 ---
 title: "Outliers: Moondog"
-date: "2016-05-30"
+date: "2022-05-30"
 description: The Viking of 6th Avenue
 featured_image_url: ''
 tags:
   - music
 --- 
+
+> Originally published in in Canvas Online Magazine, 2022
 
 >>> “I’m not gonna die in 4/4 time”
 

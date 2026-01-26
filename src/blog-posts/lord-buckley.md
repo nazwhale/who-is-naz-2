@@ -1,11 +1,13 @@
 ---
 title: "Outliers: Lord Buckley"
-date: "2015-03-25"
+date: "2022-03-25"
 description: Hipsters, flipsters and finger-poppin' daddies, lend me your lobes!
 featured_image_url: ''
 tags:
   - music
 --- 
+
+> Originally published in in Canvas Online Magazine, 2022
 
 >>> There was an old, crazy dude who used to live a long time ago. His name was Lord Buckley. And he said, a long time ago, he said, 'People... they're kinda like flowers...'” – Robin Williams
 

@@ -1,11 +1,13 @@
 ---
 title: "Outliers: Ted Lucas stole Jimi Hendrix's album cover"
-date: "2015-03-25"
+date: "2022-03-25"
 description: 
 featured_image_url: ''
 tags:
   - music
 --- 
+
+> Originally published in in Canvas Online Magazine, 2022
 
 It is said that simplicity is the nature of great souls. Think the prose of George Orwell and the wisdom of Alan Watts, Lou Reed’s ‘Perfect Day’ and Dylan’s ‘Blowin’ in the Wind’. Indeed, at first glance, some things seem so brilliant and simple that we wonder how it is we didn’t write, think or sing them first.
 

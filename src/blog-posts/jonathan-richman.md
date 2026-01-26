@@ -1,13 +1,13 @@
 ---
 title: "Outliers: Jonathan Richman"
-date: "2017-06-16"
+date: "2022-06-16"
 description: Jonathan Richman summons the inner child
 featured_image_url: ''
 tags:
   - music
 --- 
 
-I read a quote by Mark Twain recently. I know everyone quotes Mark Twain, but this is a good’un:
+> Originally published in in Canvas Online Magazine, 2022
 
 “The more people I meet, the better I like my dog”
 

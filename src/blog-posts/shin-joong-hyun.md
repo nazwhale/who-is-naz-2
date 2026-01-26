@@ -1,11 +1,13 @@
 ---
 title: "Outliers: Shin Joong Hyun"
-date: "2015-12-21"
+date: "2022-12-21"
 description: Korea's psychadelic pop svengali
 featured_image_url: ''
 tags:
   - music
 --- 
+
+> Originally published in in Canvas Online Magazine, 2022
 
 >>> “Hey shorty! Play guitar solo!”
 
