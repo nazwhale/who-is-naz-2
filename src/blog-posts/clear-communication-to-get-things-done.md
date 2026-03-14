@@ -6,6 +6,7 @@ description: How to communicate effectively with your team to drive projects for
 featured_image_url: 
 tags:
   - work
+  - archived
 ---
 
 In fast-moving teams, vague communication causes pain: misalignment, missed deadlines, dropped actions.

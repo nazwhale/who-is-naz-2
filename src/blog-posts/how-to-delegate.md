@@ -5,6 +5,7 @@ description: A simple template for delegating tasks
 featured_image_url: ""
 tags:
   - work
+  - archived
 ---
 
 Delegating is all about clear expectations. 

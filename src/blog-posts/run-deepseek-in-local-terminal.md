@@ -6,6 +6,7 @@ description: A guide on how to run DeepSeek's open-source AI model locally in yo
 featured_image_url: ''
 tags:
   - tech
+  - archived
 --- 
 
 Let's run DeepSeek's R1 AI model locally. 

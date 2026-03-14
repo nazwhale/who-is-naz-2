@@ -4,6 +4,7 @@ date: "2025-05-11"
 description: "Notes from a conversation between Jony Ive & Patrick Collison"
 featured_image_url: ''
 tags:
+  - design
   - tech
 ---
 

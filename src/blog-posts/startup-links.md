@@ -6,6 +6,7 @@ featured_image_url: ''
 tags:
   - tech
   - work
+  - archived
 ---
 
 > 99% of startup advice is poor quality   

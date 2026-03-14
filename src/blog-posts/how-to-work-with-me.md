@@ -5,6 +5,7 @@ description: A guide to working with me
 featured_image_url: ''
 tags:
   - work
+  - archived
 --- 
 
 ## Work Patterns
