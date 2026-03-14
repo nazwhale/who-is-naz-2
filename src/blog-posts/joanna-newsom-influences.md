@@ -17,6 +17,7 @@ tags:
 - Aaron Copeland
 
 ## not classical
+- Texas Gladden
 - Lark Camp - world folk music camp
 - Kora music (+ polymeter)
 - Contrary rhyme schemes
