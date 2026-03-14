@@ -13,7 +13,7 @@ const All = [
     name: "articles",
   },
   {
-    path: "https://nazmalik.bandcamp.com",
+    path: "https://whoisnaz.bandcamp.com/",
     name: "bandcamp",
     external: true,
   },
