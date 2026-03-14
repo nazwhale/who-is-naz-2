@@ -68,11 +68,16 @@ const Blog = () => {
         );
       });
 
-      // Collect all unique tags
+      // Exclude archived posts from list and from tag counts
+      const visiblePosts = loadedPosts.filter(
+        post => !post.metadata.tags?.includes("archived")
+      );
+
+      // Collect all unique tags from visible posts only
       const tagsSet = new Set<string>();
-      loadedPosts.forEach(post => {
+      visiblePosts.forEach(post => {
         if (post.metadata.tags) {
-          post.metadata.tags.forEach(tag => tagsSet.add(tag));
+          post.metadata.tags.forEach(tagName => tagsSet.add(tagName));
         }
       });
       const uniqueTags = Array.from(tagsSet).sort();
@@ -80,10 +85,10 @@ const Blog = () => {
 
       // Filter posts by tag if a tag parameter is provided
       const filteredPosts = tag
-        ? loadedPosts.filter(post =>
-          post.metadata.tags && post.metadata.tags.includes(tag)
-        )
-        : loadedPosts;
+        ? visiblePosts.filter(post =>
+            post.metadata.tags && post.metadata.tags.includes(tag)
+          )
+        : visiblePosts;
 
       setPosts(filteredPosts);
       setLoading(false);

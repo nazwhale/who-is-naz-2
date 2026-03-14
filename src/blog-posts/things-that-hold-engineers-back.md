@@ -6,6 +6,7 @@ description: Common pitfalls I've seen (and experienced) in engineering careers.
 featured_image_url: https://images.unsplash.com/photo-1516321497487-e288fb19713f?q=80&w=2940&auto=format&fit=crop
 tags:
   - work
+  - archived
 ---
 
 ## 1. Not making the customer the centre of your work
