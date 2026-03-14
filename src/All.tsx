@@ -1,7 +1,5 @@
 import Blog from "./Blog";
 import Home from "./Home";
-import MusicWorlds from "./MusicWorlds";
-import WeatherMusic from "./WeatherMusic";
 
 const All = [
   {
@@ -15,14 +13,9 @@ const All = [
     name: "articles",
   },
   {
-    path: "/weathermusic",
-    component: WeatherMusic,
-    name: "weathermusic",
-  },
-  {
-    path: "/a-second-of-your-time",
-    component: MusicWorlds,
-    name: "a second of your time",
+    path: "https://nazmalik.bandcamp.com",
+    name: "bandcamp",
+    external: true,
   },
 ];
 

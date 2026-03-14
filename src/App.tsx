@@ -24,6 +24,14 @@ function App() {
 
       <div className="flex my-12 text-sm">
         <a
+          href="https://nazmalik.bandcamp.com"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Bandcamp
+        </a>
+        <div className="mx-4">•</div>
+        <a
           href="https://soundcloud.com/nazmalik-1"
           target="_blank"
           rel="noopener noreferrer"
