@@ -1,28 +1,19 @@
-import { projects } from "./projects";
-import SpotifyEmbed from "./spotify.tsx";
-
 const Home = () => {
   return (
     <div>
-      <h2>projects</h2>
-      <ul className="list-none">
-        {projects.map((project) => (
-          <li key={project.title} className="space-y-1">
-            <h3>
-              {/*only show link ui on hover*/}
-              <a href={project.link}>{project.title}</a>
-            </h3>
-            <p className="italic font-light text-secondary/80 text-base leading-snug font-['Fraunces']">
-              {project.description}
-            </p>
-          </li>
-        ))}
-      </ul>
-
-      <div className="divider"></div>
-
-      <h2>songs</h2>
-      <SpotifyEmbed />
+      <p className="text-primary font-['Fraunces'] text-lg leading-relaxed">
+        musician based in Edinburgh.
+      </p>
+      <div className="mt-6">
+        <iframe
+          style={{ border: 0, width: "100%", height: 120 }}
+          src="https://bandcamp.com/EmbeddedPlayer/track=2932018670/size=large/bgcol=333333/linkcol=0f91ff/tracklist=false/artwork=small/transparent=true/"
+          seamless
+          title="transport by naz"
+        >
+          <a href="https://whoisnaz.bandcamp.com/track/transport">transport by naz</a>
+        </iframe>
+      </div>
     </div>
   );
 };

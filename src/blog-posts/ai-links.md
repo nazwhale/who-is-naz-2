@@ -5,6 +5,7 @@ description: "Collection of high quality links on AI"
 featured_image_url: ''
 tags:
   - tech
+  - archived
 ---
 
 - [Import AI by Jack Clark](https://jack-clark.net/)

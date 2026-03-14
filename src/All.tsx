@@ -1,10 +1,16 @@
 import Blog from "./Blog";
 import Home from "./Home";
+import Projects from "./Projects";
 
 const All = [
   {
     path: "/",
     component: Home,
+    name: "home",
+  },
+  {
+    path: "/projects",
+    component: Projects,
     name: "projects",
   },
   {
@@ -14,7 +20,7 @@ const All = [
   },
   {
     path: "https://whoisnaz.bandcamp.com/",
-    name: "bandcamp",
+    name: "listen",
     external: true,
   },
 ];

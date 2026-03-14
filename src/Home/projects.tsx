@@ -2,6 +2,7 @@ type ProjectT = {
   title: string;
   description: string;
   link: string;
+  archived?: boolean;
 };
 
 export const projects: ProjectT[] = [
@@ -31,15 +32,16 @@ export const projects: ProjectT[] = [
     link: "https://familytherapy.whoisnaz.com/",
   },
   {
-
     title: "Learn UK Payroll",
     description: "Learn UK payroll with interactive examples and real-world scenarios",
     link: "https://learnukpayroll.whoisnaz.com/",
+    archived: true,
   },
   {
     title: "Skills Sorter",
     description: "A card-sorting task to group professional skills",
     link: "https://skills.whoisnaz.com",
+    archived: true,
   },
   {
     title: "Edinburgh Dog Network",
@@ -50,32 +52,38 @@ export const projects: ProjectT[] = [
     title: "Salary Counter",
     description: "Track your salary in real time",
     link: "https://salarycounter.whoisnaz.com/",
+    archived: true,
   },
   {
     title: "Gift GOATs",
     description: "Track gift ideas for Christmas and birthdays",
     link: "https://giftgoats.com",
+    archived: true,
   },
   {
     title: "Onfolk",
     description:
       "Payroll & HR software for small businesses. Exited to Tide.co in 2024",
     link: "https://onfolk.com",
+    archived: true,
   },
   {
     title: "Sentence Spotlight",
     description: "Chrome extension for focus when reading on the web",
     link: "https://chromewebstore.google.com/detail/sentence-spotlight/nbgebiienflgclebolkcddhillhmfbaj",
+    archived: true,
   },
   {
     title: "Star Wars Facts",
     description: "Alexa skill that gets traffic spikes on May 4th",
     link: "https://www.amazon.co.uk/nazwhale-Star-Wars-Facts/dp/B0725WTNWZ/ref=sr_1_5?dchild=1&keywords=star+wars+facts&qid=1589405211&s=digital-skills&sr=1-5",
+    archived: true,
   },
   {
     title: "Coding Blog",
     description:
       "Blog about learning to code, more or less from my first lines. It won the Makers Academy blog prize.",
     link: "https://medium.com/codewhale",
+    archived: true,
   },
 ];

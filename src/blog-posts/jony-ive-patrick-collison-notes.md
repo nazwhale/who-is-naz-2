@@ -5,7 +5,6 @@ description: "Notes from a conversation between Jony Ive & Patrick Collison"
 featured_image_url: ''
 tags:
   - design
-  - tech
 ---
 
 - Sincerely elevate the species

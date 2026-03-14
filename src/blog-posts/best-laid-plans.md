@@ -5,6 +5,7 @@ description: Musings on a raw idea
 featured_image_url: 'https://i.imgur.com/lIlzMxy.png'
 tags:
   - idea
+  - archived
 ---
 ![splitty lifeline thing](https://i.imgur.com/lIlzMxy.png)
 

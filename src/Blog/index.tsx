@@ -73,14 +73,18 @@ const Blog = () => {
         post => !post.metadata.tags?.includes("archived")
       );
 
-      // Collect all unique tags from visible posts only
-      const tagsSet = new Set<string>();
+      // Count articles per tag (visible posts only), then order tags by count descending
+      const tagCounts = new Map<string, number>();
       visiblePosts.forEach(post => {
         if (post.metadata.tags) {
-          post.metadata.tags.forEach(tagName => tagsSet.add(tagName));
+          post.metadata.tags.forEach(tagName => {
+            tagCounts.set(tagName, (tagCounts.get(tagName) ?? 0) + 1);
+          });
         }
       });
-      const uniqueTags = Array.from(tagsSet).sort();
+      const uniqueTags = Array.from(tagCounts.keys()).sort(
+        (a, b) => (tagCounts.get(b) ?? 0) - (tagCounts.get(a) ?? 0)
+      );
       setAllTags(uniqueTags);
 
       // Filter posts by tag if a tag parameter is provided
