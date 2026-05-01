@@ -80,13 +80,13 @@ const BlogPost = () => {
             <h1>{postData?.title}</h1>
 
             {postData?.description && (
-              <p className="italic font-light text-secondary/80 text-base leading-snug font-['Fraunces']">
+              <p className="italic font-light text-neutral/85 text-base leading-snug">
                 {postData.description}
               </p>
             )}
           </div>
 
-          <p className="text-[13px] text-secondary/60 font-normal tracking-wide">
+          <p className="text-[13px] text-neutral/65 font-normal tracking-wide">
             {formatDateStr(postData?.date)}
           </p>
         </div>

@@ -16,7 +16,7 @@ const All = [
   {
     path: "/articles",
     component: Blog,
-    name: "articles",
+    name: "words",
   },
   {
     path: "https://whoisnaz.bandcamp.com/",

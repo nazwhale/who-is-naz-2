@@ -1,27 +1,25 @@
 import { projects } from "../Home/projects";
-import SpotifyEmbed from "../Home/spotify.tsx";
 
 const Projects = () => {
   return (
     <div>
-      <h2>projects</h2>
-      <ul className="list-none">
+      <ul className="project-grid list-none">
         {projects.filter((project) => !project.archived).map((project) => (
-          <li key={project.title} className="space-y-1">
-            <h3>
-              <a href={project.link}>{project.title}</a>
-            </h3>
-            <p className="italic font-light text-secondary/80 text-base leading-snug font-['Fraunces']">
-              {project.description}
-            </p>
+          <li key={project.title} className="project-card">
+            <a
+              className="project-card-link no-underline hover:no-underline"
+              href={project.link}
+            >
+              <h3 className="project-card-title mb-0 mt-0">
+                {project.title}
+              </h3>
+              <p className="project-card-description italic font-light text-neutral/85 text-base leading-snug">
+                {project.description}
+              </p>
+            </a>
           </li>
         ))}
       </ul>
-
-      <div className="divider"></div>
-
-      <h2>songs</h2>
-      <SpotifyEmbed />
     </div>
   );
 };

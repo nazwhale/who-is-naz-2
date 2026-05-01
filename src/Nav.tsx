@@ -6,8 +6,8 @@ const Navigation: React.FC = () => {
   const location = useLocation();
 
   return (
-    <nav className="mb-4">
-      <ul className="flex gap-6 list-none p-0 justify-end">
+    <nav className="mb-3">
+      <ul className="flex flex-wrap gap-x-5 gap-y-2 list-none p-0 justify-start">
         {All.map((links) => (
           <li key={links.path}>
             {"external" in links && links.external ? (
@@ -15,14 +15,14 @@ const Navigation: React.FC = () => {
                 href={links.path}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="nav-link link link-hover"
+                className="nav-link"
               >
                 {links.name}
               </a>
             ) : (
               <Link
                 to={links.path}
-                className={`nav-link link link-hover ${location.pathname === links.path ? "active-nav" : ""
+                className={`nav-link ${location.pathname === links.path ? "active-nav" : ""
                   }`}
               >
                 {links.name}

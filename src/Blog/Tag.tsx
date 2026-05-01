@@ -7,7 +7,7 @@ interface TagProps {
 }
 
 const Tag = ({ tagName, to, className = "" }: TagProps) => {
-    const baseClasses = "px-3 py-1 text-sm bg-secondary/10 text-secondary hover:bg-secondary/20 hover:text-primary rounded-full transition-colors";
+    const baseClasses = "px-3 py-1 text-sm text-secondary border border-secondary/35 hover:border-secondary/70 hover:text-primary rounded-full transition-colors";
     const combinedClasses = `${baseClasses} ${className}`;
 
     if (to) {

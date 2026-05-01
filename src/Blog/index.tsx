@@ -106,7 +106,7 @@ const Blog = () => {
 
   return (
     <div>
-      <h2>{tag ? `articles tagged #${tag}` : 'articles'}</h2>
+      {tag && <h2 className="page-heading">{`articles tagged #${tag}`}</h2>}
 
       {/* Tag list section - only show when not filtering by a specific tag */}
       {!tag && allTags.length > 0 && (
@@ -125,7 +125,7 @@ const Blog = () => {
 
       {tag && (
         <div className="mb-4">
-          <Link to="/articles" className="text-sm text-secondary/70 hover:text-secondary">
+          <Link to="/articles" className="text-sm text-neutral/70 hover:text-neutral">
             ← Back to all articles
           </Link>
         </div>
@@ -137,34 +137,37 @@ const Blog = () => {
       ) : posts.length === 0 ? (
         <p>No articles found{tag ? ` with tag #${tag}` : ''}.</p>
       ) : (
-        <ul className="list-none">
+        <ul className="article-grid list-none">
           {posts.map((post, index) => (
-            <li key={index} className="space-y-1">
-              <h3 className="mb-0">
-                <Link to={`/articles/${post.metadata.slug}`}>
+            <li key={index} className="article-card">
+              <Link
+                className="article-card-link no-underline hover:no-underline"
+                to={`/articles/${post.metadata.slug}`}
+              >
+                <h3 className="article-card-title mb-0 mt-0">
                   {post.metadata.title}
-                </Link>
-              </h3>
+                </h3>
 
-              <p className="italic font-light text-secondary/80 text-base leading-snug font-['Fraunces']">
-                {post.metadata.description}
-              </p>
+                <p className="article-card-description italic font-light text-neutral/85 text-base leading-snug">
+                  {post.metadata.description}
+                </p>
 
-              {post.metadata.tags && post.metadata.tags.length > 0 && (
-                <div className="flex flex-wrap gap-2">
-                  {post.metadata.tags.map((postTag, i) => (
-                    <Tag
-                      key={i}
-                      tagName={postTag}
-                      to={`/tags/${postTag}`}
-                    />
-                  ))}
+                <div className="article-card-meta">
+                  {post.metadata.tags && post.metadata.tags.length > 0 && (
+                    <div className="article-card-tags">
+                      {post.metadata.tags.map((postTag, i) => (
+                        <span key={i} className="article-card-tag">
+                          #{postTag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+
+                  <p className="article-card-date text-neutral/65 tracking-wide text-sm">
+                    {formatDateStr(post.metadata.date)}
+                  </p>
                 </div>
-              )}
-
-              <p className="text-secondary/60 tracking-wide text-sm">
-                {formatDateStr(post.metadata.date)}
-              </p>
+              </Link>
             </li>
           ))}
         </ul>
