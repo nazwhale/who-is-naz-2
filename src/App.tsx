@@ -68,12 +68,18 @@ function App() {
   return (
     <Router>
       <div className="mb-5">
-        <Navigation />
+        <img
+          className="header-mark"
+          src="/waveyguy.jpg"
+          alt=""
+          aria-hidden="true"
+        />
         <Link className="site-title-link" to="/">
-          <h1 className="site-title text-3xl font-semibold sm:text-4xl">
+          <h1 className="site-title text-[1.65rem] font-semibold sm:text-[2.05rem]">
             who is <span className="site-title-accent">naz</span>
           </h1>
         </Link>
+        <Navigation />
       </div>
 
       <Routes>
@@ -81,9 +87,6 @@ function App() {
           <Route key={index} path={route.path} element={route.element} />
         ))}
       </Routes>
-
-
-      <hr />
 
       <div className="footer-area">
         <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mt-6 mb-12 text-sm text-neutral">

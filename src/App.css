@@ -49,6 +49,13 @@
   color: #888;
 }
 
+.header-mark {
+  display: block;
+  width: clamp(72px, 11.9vw, 126px);
+  height: auto;
+  margin-bottom: 0;
+}
+
 .footer-area {
   position: relative;
   overflow: hidden;
@@ -98,6 +105,11 @@
 }
 
 @media (max-width: 640px) {
+  .header-mark {
+    width: 82px;
+    margin-bottom: 0;
+  }
+
   .footer-area {
     padding-bottom: 18rem;
   }

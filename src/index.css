@@ -22,7 +22,7 @@ h1 {
 .site-title {
     color: #1C2B3A;
     margin-top: 0.25rem;
-    margin-bottom: 0.25rem;
+    margin-bottom: 1.35rem;
     letter-spacing: -0.04em;
     line-height: 0.92;
     text-shadow:
@@ -123,7 +123,8 @@ code {
 /* Navigation styles */
 .nav-link {
     transition: color 0.2s ease, border-bottom 0.15s ease;
-    padding-bottom: 2px;
+    padding-top: 4px;
+    padding-bottom: 4px;
 }
 
 .nav-link:hover {

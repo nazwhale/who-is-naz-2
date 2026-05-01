@@ -110,7 +110,7 @@ const Blog = () => {
 
       {/* Tag list section - only show when not filtering by a specific tag */}
       {!tag && allTags.length > 0 && (
-        <div className="my-4 pb-6 border-b border-secondary/20">
+        <div className="my-4 pb-6">
           <div className="flex flex-wrap gap-2">
             {allTags.map((tagName) => (
               <Tag
