@@ -71,11 +71,27 @@ const HomeSpotlightOverlay = ({
       updateCirclePosition(event.clientX, event.clientY);
     };
 
+    const updateTouchPosition = (event: TouchEvent) => {
+      const touch = event.touches[0] ?? event.changedTouches[0];
+
+      if (!touch) {
+        return;
+      }
+
+      updateCirclePosition(touch.clientX, touch.clientY);
+    };
+
     updateCirclePosition(window.innerWidth / 2, window.innerHeight / 2);
+    window.addEventListener("pointerdown", updateCursorPosition);
     window.addEventListener("pointermove", updateCursorPosition);
+    window.addEventListener("touchstart", updateTouchPosition, { passive: true });
+    window.addEventListener("touchmove", updateTouchPosition, { passive: true });
 
     return () => {
+      window.removeEventListener("pointerdown", updateCursorPosition);
       window.removeEventListener("pointermove", updateCursorPosition);
+      window.removeEventListener("touchstart", updateTouchPosition);
+      window.removeEventListener("touchmove", updateTouchPosition);
     };
   }, []);
 
