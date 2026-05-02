@@ -217,6 +217,7 @@ const Home = () => {
         ref={spotifyRevealRef}
         className="mt-6"
         onPointerEnter={showSpotifyReveal}
+        onPointerDown={showSpotifyReveal}
         onPointerLeave={hideSpotifyReveal}
       >
         <SpotifyEmbed />
