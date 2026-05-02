@@ -20,15 +20,10 @@ h1 {
 }
 
 .site-title {
-    color: #1C2B3A;
     margin-top: 0.25rem;
     margin-bottom: 1.35rem;
     letter-spacing: -0.04em;
     line-height: 0.92;
-    text-shadow:
-        2px 2px 0 #FF7464,
-        3px 3px 0 #FF7464,
-        4px 4px 0 #33D1FA;
 }
 
 .site-title-link {
@@ -42,12 +37,16 @@ h1 {
     text-decoration: none;
 }
 
-.site-title-accent {
-    color: #102A43;
-    text-shadow:
-        2px 2px 0 #FF7464,
-        3px 3px 0 #FF7464,
-        4px 4px 0 #33D1FA;
+.site-title-who {
+    color: #FF7464;
+}
+
+.site-title-is {
+    color: #33D1FA;
+}
+
+.site-title-naz {
+    color: #A5AEB2;
 }
 
 h2 {

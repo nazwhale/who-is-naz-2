@@ -85,7 +85,9 @@ const AppShell = () => {
           />
           <Link className="site-title-link" to="/">
             <h1 className="site-title text-[1.65rem] font-semibold sm:text-[2.05rem]">
-              who is <span className="site-title-accent">naz</span>
+              <span className="site-title-who">who</span>{" "}
+              <span className="site-title-is">is</span>{" "}
+              <span className="site-title-naz">naz</span>
             </h1>
           </Link>
           <Navigation />
