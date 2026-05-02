@@ -2,6 +2,7 @@ import Blog from "./Blog";
 import Post from "./Blog/Post.tsx";
 import Home from "./Home/index.tsx";
 import Admin from "./Admin/index.tsx";
+import NotFound from "./NotFound.tsx";
 import AllPoems from "./Poems/AllPoems.tsx";
 import PoemPage from "./Poems/PoemPage.tsx";
 import Projects from "./Projects/index.tsx";
@@ -52,6 +53,10 @@ const routes = [
   {
     path: "/a-second-of-your-time",
     element: <MusicWorlds />,
+  },
+  {
+    path: "*",
+    element: <NotFound />,
   },
 ];
 
