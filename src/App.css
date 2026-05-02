@@ -58,6 +58,11 @@
 
 .footer-area {
   position: relative;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding-left: 1rem;
+  padding-right: 1rem;
   overflow: hidden;
   padding-bottom: 28rem;
 }
@@ -132,5 +137,12 @@
     right: -1rem;
     bottom: -7rem;
     height: 22rem;
+  }
+}
+
+@media (min-width: 640px) {
+  .footer-area {
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
 }
