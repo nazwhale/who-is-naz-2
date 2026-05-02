@@ -1,5 +1,10 @@
 import { useState, type CSSProperties } from "react";
-import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Link,
+  Route,
+  Routes,
+} from "react-router-dom";
 import "./App.css";
 import Navigation from "./Nav";
 import routes from "./routes.tsx";
@@ -62,11 +67,11 @@ const buildBlobConfigs = (): BlobConfig[] =>
     };
   });
 
-function App() {
+const AppShell = () => {
   const [blobs] = useState(buildBlobConfigs);
 
   return (
-    <Router>
+    <>
       <div className="mb-5">
         <img
           className="header-mark"
@@ -142,7 +147,14 @@ function App() {
           ))}
         </div>
       </div>
+    </>
+  );
+};
 
+function App() {
+  return (
+    <Router>
+      <AppShell />
     </Router>
   );
 }
