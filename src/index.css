@@ -259,6 +259,240 @@ tr:hover {
     }
 }
 
+.poem-shell {
+    max-width: 42rem;
+}
+
+.poem-date {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+}
+
+.poem-actions,
+.poem-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+.poem-actions {
+    margin-top: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.poem-nav {
+    margin-top: 2.5rem;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    overflow-x: auto;
+}
+
+.poem-link {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(16, 42, 67, 0.25);
+    padding-bottom: 0.1rem;
+}
+
+.poem-link:hover {
+    text-decoration: none;
+    border-bottom-color: rgba(11, 34, 57, 0.55);
+}
+
+.poem-list {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 1.5rem;
+}
+
+.poem-list li + li {
+    margin-top: 1.25rem;
+}
+
+.poem-list-title {
+    margin: 0;
+    font-size: 1.15rem;
+    line-height: 1.2;
+}
+
+.poem-markdown p {
+    white-space: pre-line;
+}
+
+.admin-shell {
+    max-width: 76rem;
+    margin: 0 auto;
+}
+
+.admin-header {
+    margin-bottom: 1.5rem;
+}
+
+.admin-subtitle {
+    margin-top: 0;
+    color: rgba(16, 42, 67, 0.72);
+}
+
+.admin-toggle-group {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.admin-toggle,
+.admin-button,
+.admin-list-item {
+    font: inherit;
+}
+
+.admin-toggle,
+.admin-button {
+    border: 1px solid rgba(16, 42, 67, 0.2);
+    background: #fff;
+    color: #102A43;
+    padding: 0.55rem 0.85rem;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.admin-toggle:hover,
+.admin-button:hover,
+.admin-list-item:hover {
+    border-color: rgba(16, 42, 67, 0.45);
+}
+
+.admin-toggle.is-active {
+    background: #102A43;
+    color: #fff;
+    border-color: #102A43;
+}
+
+.admin-layout {
+    display: grid;
+    grid-template-columns: minmax(16rem, 20rem) minmax(0, 1fr);
+    gap: 1.5rem;
+}
+
+.admin-sidebar,
+.admin-editor {
+    border: 1px solid rgba(16, 42, 67, 0.12);
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.92);
+}
+
+.admin-sidebar-header,
+.admin-editor-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.admin-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.admin-list li + li {
+    margin-top: 0.6rem;
+}
+
+.admin-list-item {
+    width: 100%;
+    text-align: left;
+    border: 1px solid rgba(16, 42, 67, 0.12);
+    background: #fff;
+    padding: 0.8rem;
+    cursor: pointer;
+}
+
+.admin-list-item.is-selected {
+    border-color: rgba(16, 42, 67, 0.52);
+    background: rgba(51, 209, 250, 0.08);
+}
+
+.admin-list-item-title,
+.admin-list-item-date {
+    display: block;
+}
+
+.admin-list-item-title {
+    font-family: "Fraunces";
+    font-size: 1.05rem;
+    line-height: 1.15;
+    margin-bottom: 0.35rem;
+}
+
+.admin-list-item-date,
+.admin-status {
+    color: rgba(16, 42, 67, 0.68);
+    font-size: 0.9rem;
+}
+
+.admin-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.admin-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.admin-field span {
+    font-size: 0.92rem;
+}
+
+.admin-field input,
+.admin-textarea {
+    width: 100%;
+    border: 1px solid rgba(16, 42, 67, 0.18);
+    padding: 0.65rem 0.75rem;
+    font: inherit;
+    color: #102A43;
+    background: #fff;
+}
+
+.admin-textarea {
+    min-height: 24rem;
+    resize: vertical;
+}
+
+.admin-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.admin-button-secondary {
+    background: transparent;
+}
+
+@media (max-width: 820px) {
+    .admin-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-sidebar-header,
+    .admin-editor-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+
 @media (min-width: 1100px) {
     .article-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));

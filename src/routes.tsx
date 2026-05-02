@@ -1,6 +1,9 @@
 import Blog from "./Blog";
 import Post from "./Blog/Post.tsx";
 import Home from "./Home/index.tsx";
+import Admin from "./Admin/index.tsx";
+import AllPoems from "./Poems/AllPoems.tsx";
+import PoemPage from "./Poems/PoemPage.tsx";
 import Projects from "./Projects/index.tsx";
 import WeatherMusic from "./WeatherMusic/index.tsx";
 import MusicWorlds from "./MusicWorlds/index.tsx";
@@ -21,6 +24,22 @@ const routes = [
   {
     path: "/articles/:slug",
     element: <Post />,
+  },
+  {
+    path: "/admin",
+    element: <Admin />,
+  },
+  {
+    path: "/poems",
+    element: <PoemPage />,
+  },
+  {
+    path: "/poems/all",
+    element: <AllPoems />,
+  },
+  {
+    path: "/poems/:slug",
+    element: <PoemPage />,
   },
   {
     path: "/tags/:tag",

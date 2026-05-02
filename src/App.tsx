@@ -4,6 +4,7 @@ import {
   Link,
   Route,
   Routes,
+  useLocation,
 } from "react-router-dom";
 import "./App.css";
 import Navigation from "./Nav";
@@ -69,23 +70,27 @@ const buildBlobConfigs = (): BlobConfig[] =>
 
 const AppShell = () => {
   const [blobs] = useState(buildBlobConfigs);
+  const location = useLocation();
+  const isAdminRoute = location.pathname === "/admin";
 
   return (
     <>
-      <div className="mb-5">
-        <img
-          className="header-mark"
-          src="/waveyguy.jpg"
-          alt=""
-          aria-hidden="true"
-        />
-        <Link className="site-title-link" to="/">
-          <h1 className="site-title text-[1.65rem] font-semibold sm:text-[2.05rem]">
-            who is <span className="site-title-accent">naz</span>
-          </h1>
-        </Link>
-        <Navigation />
-      </div>
+      {!isAdminRoute && (
+        <div className="mb-5">
+          <img
+            className="header-mark"
+            src="/waveyguy.jpg"
+            alt=""
+            aria-hidden="true"
+          />
+          <Link className="site-title-link" to="/">
+            <h1 className="site-title text-[1.65rem] font-semibold sm:text-[2.05rem]">
+              who is <span className="site-title-accent">naz</span>
+            </h1>
+          </Link>
+          <Navigation />
+        </div>
+      )}
 
       <Routes>
         {routes.map((route, index) => (
@@ -93,60 +98,62 @@ const AppShell = () => {
         ))}
       </Routes>
 
-      <div className="footer-area">
-        <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mt-6 mb-12 text-sm text-neutral">
-          <a
-            href="https://whoisnaz.bandcamp.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Bandcamp
-          </a>
-          <div className="hidden sm:block">•</div>
-          <a
-            href="https://soundcloud.com/nazmalik-1"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            SoundCloud
-          </a>
-          <div className="hidden sm:block">•</div>
-          <a
-            href="https://www.instagram.com/whoisnaz.music/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Insta
-          </a>
-          <div className="hidden sm:block">•</div>
-          <a
-            href="mailto:naz@whoisnaz.com"
-          >
-            Email: naz at whoisnaz.com
-          </a>
-        </div>
+      {!isAdminRoute && (
+        <div className="footer-area">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mt-6 mb-12 text-sm text-neutral">
+            <a
+              href="https://whoisnaz.bandcamp.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Bandcamp
+            </a>
+            <div className="hidden sm:block">•</div>
+            <a
+              href="https://soundcloud.com/nazmalik-1"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              SoundCloud
+            </a>
+            <div className="hidden sm:block">•</div>
+            <a
+              href="https://www.instagram.com/whoisnaz.music/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Insta
+            </a>
+            <div className="hidden sm:block">•</div>
+            <a
+              href="mailto:naz@whoisnaz.com"
+            >
+              Email: naz at whoisnaz.com
+            </a>
+          </div>
 
-        <div className="blob-field" aria-hidden="true">
-          {blobs.map((blob) => (
-            <div
-              key={blob.id}
-              className={`blob blob-${blob.tone}`}
-              style={{
-                width: blob.width,
-                height: blob.height,
-                left: blob.left,
-                top: blob.top,
-                opacity: blob.opacity,
-                animationDuration: blob.duration,
-                animationDelay: blob.delay,
-                "--blob-rotate": blob.rotation,
-                "--blob-radius-start": blob.radiusStart,
-                "--blob-radius-end": blob.radiusEnd,
-              } as CSSProperties}
-            />
-          ))}
+          <div className="blob-field" aria-hidden="true">
+            {blobs.map((blob) => (
+              <div
+                key={blob.id}
+                className={`blob blob-${blob.tone}`}
+                style={{
+                  width: blob.width,
+                  height: blob.height,
+                  left: blob.left,
+                  top: blob.top,
+                  opacity: blob.opacity,
+                  animationDuration: blob.duration,
+                  animationDelay: blob.delay,
+                  "--blob-rotate": blob.rotation,
+                  "--blob-radius-start": blob.radiusStart,
+                  "--blob-radius-end": blob.radiusEnd,
+                } as CSSProperties}
+              />
+            ))}
+          </div>
         </div>
-      </div>
+      )}
     </>
   );
 };

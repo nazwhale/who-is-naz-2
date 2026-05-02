@@ -4,6 +4,10 @@ import All from "./All.tsx";
 
 const Navigation: React.FC = () => {
   const location = useLocation();
+  const isActivePath = (path: string) =>
+    path === "/"
+      ? location.pathname === path
+      : location.pathname === path || location.pathname.startsWith(`${path}/`);
 
   return (
     <nav className="mb-3">
@@ -22,8 +26,7 @@ const Navigation: React.FC = () => {
             ) : (
               <Link
                 to={links.path}
-                className={`nav-link ${location.pathname === links.path ? "active-nav" : ""
-                  }`}
+                className={`nav-link ${isActivePath(links.path) ? "active-nav" : ""}`}
               >
                 {links.name}
               </Link>

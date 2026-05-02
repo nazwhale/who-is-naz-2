@@ -1,5 +1,6 @@
 import Blog from "./Blog";
 import Home from "./Home";
+import PoemPage from "./Poems/PoemPage";
 import Projects from "./Projects";
 
 const All = [
@@ -17,6 +18,11 @@ const All = [
     path: "/articles",
     component: Blog,
     name: "words",
+  },
+  {
+    path: "/poems",
+    component: PoemPage,
+    name: "poems",
   },
   {
     path: "https://whoisnaz.bandcamp.com/",
