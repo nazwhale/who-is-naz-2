@@ -4,12 +4,12 @@
 
 #root {
   width: 100%;
-  padding: 1rem 1rem 0;
+  padding: 0.5rem 1rem 0;
 }
 
 @media (min-width: 640px) { /* Tailwind's 'sm' breakpoint */
   #root {
-    padding: 2rem 2rem 0;
+    padding: 1rem 2rem 0;
   }
 }
 
@@ -54,6 +54,15 @@
   width: clamp(72px, 11.9vw, 126px);
   height: auto;
   margin-bottom: 0;
+}
+
+.header-mark-button {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
 }
 
 .footer-area {

@@ -69,7 +69,7 @@ const buildBlobConfigs = (): BlobConfig[] =>
   });
 
 const AppShell = () => {
-  const [blobs] = useState(buildBlobConfigs);
+  const [blobs, setBlobs] = useState(buildBlobConfigs);
   const location = useLocation();
   const isAdminRoute = location.pathname === "/admin";
 
@@ -77,12 +77,19 @@ const AppShell = () => {
     <>
       {!isAdminRoute && (
         <div className="mb-5">
-          <img
-            className="header-mark"
-            src="/waveyguy.jpg"
-            alt=""
-            aria-hidden="true"
-          />
+          <button
+            className="header-mark-button"
+            type="button"
+            onClick={() => setBlobs(buildBlobConfigs())}
+            aria-label="Shuffle blobs"
+          >
+            <img
+              className="header-mark"
+              src="/waveyguy.jpg"
+              alt=""
+              aria-hidden="true"
+            />
+          </button>
           <Link className="site-title-link" to="/">
             <h1 className="site-title text-[1.65rem] font-semibold sm:text-[2.05rem]">
               <span className="site-title-who">who</span>{" "}
