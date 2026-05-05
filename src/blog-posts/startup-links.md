@@ -2,11 +2,11 @@
 title: "Startup Links"
 date: "2025-03-01"
 description: "A curated collection of high-quality startup advice organized by stage"
-featured_image_url: ''
-tags:
+tags: 
   - tech
   - work
   - archived
+featured_image_url: ""
 ---
 
 > 99% of startup advice is poor quality   
@@ -75,6 +75,8 @@ Iterate fast on feedback and [do things that don't scale](https://www.youtube.co
 ---
 
 ## Fundraising
+
+[The best video on pre-product-market-fit fundraising](https://www.youtube.com/watch?v=lw2X3PxKlAY)
 
 [https://www.ycombinator.com/library/4A-a-guide-to-seed-fundraising](https://www.ycombinator.com/library/4A-a-guide-to-seed-fundraising)
 
