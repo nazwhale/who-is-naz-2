@@ -1,6 +1,7 @@
 import Blog from "./Blog";
 import Post from "./Blog/Post.tsx";
 import Home from "./Home/index.tsx";
+import Music from "./Music/index.tsx";
 import Admin from "./Admin/index.tsx";
 import NotFound from "./NotFound.tsx";
 import AllPoems from "./Poems/AllPoems.tsx";
@@ -17,6 +18,10 @@ const routes = [
   {
     path: "/projects",
     element: <Projects />,
+  },
+  {
+    path: "/music",
+    element: <Music />,
   },
   {
     path: "/articles",

@@ -1,11 +1,6 @@
 const SpotifyEmbed = () => {
   return (
-    <div
-      style={{
-        borderRadius: "12px",
-        overflow: "hidden", // To ensure rounded corners work properly
-      }}
-    >
+    <div className="music-embed-card">
       <iframe
         src="https://open.spotify.com/embed/track/7p3O4oXZuGedOijc8b2lsF?utm_source=generator"
         width="100%"
@@ -14,8 +9,9 @@ const SpotifyEmbed = () => {
         allowFullScreen
         allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
         loading="lazy"
-        style={{ borderRadius: "12px" }}
-      ></iframe>
+        title="Naz on Spotify"
+        className="music-embed-frame"
+      />
     </div>
   );
 };

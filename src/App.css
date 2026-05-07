@@ -76,6 +76,24 @@
   padding-bottom: 28rem;
 }
 
+.music-embed-card {
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+}
+
+.music-embed-frame {
+  display: block;
+  width: 100%;
+  border: 0;
+  border-radius: 16px;
+}
+
+.music-embed-frame-tall {
+  height: 360px;
+}
+
 .home-spotlight-overlay {
   position: fixed;
   inset: 0;
@@ -135,6 +153,10 @@
   .header-mark {
     width: 82px;
     margin-bottom: 0;
+  }
+
+  .music-embed-frame-tall {
+    height: 300px;
   }
 
   .footer-area {
