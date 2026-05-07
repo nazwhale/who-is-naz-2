@@ -30,7 +30,7 @@ const Music = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Bandcamp
+            Bandcamp - released music and a way to support me
           </a>
         </div>
         <div>
@@ -39,7 +39,7 @@ const Music = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            SoundCloud
+            Soundcloud - old demos from way back
           </a>
         </div>
       </section>

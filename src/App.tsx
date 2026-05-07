@@ -111,22 +111,6 @@ const AppShell = () => {
         <div className="footer-area">
           <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mt-6 mb-12 text-sm text-neutral">
             <a
-              href="https://whoisnaz.bandcamp.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Bandcamp
-            </a>
-            <div className="hidden sm:block">•</div>
-            <a
-              href="https://soundcloud.com/nazmalik-1"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              SoundCloud
-            </a>
-            <div className="hidden sm:block">•</div>
-            <a
               href="https://www.instagram.com/whoisnaz.music/"
               target="_blank"
               rel="noopener noreferrer"
