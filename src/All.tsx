@@ -17,16 +17,6 @@ const All = [
     name: "music",
   },
   {
-    path: "/projects",
-    component: Projects,
-    name: "projects",
-  },
-  {
-    path: "/articles",
-    component: Blog,
-    name: "words",
-  },
-  {
     path: "/poems",
     component: PoemPage,
     name: "poems",
@@ -35,6 +25,16 @@ const All = [
     path: "/scotland-music-links",
     component: LocalMusicLinks,
     name: "local music links",
+  },
+  {
+    path: "/projects",
+    component: Projects,
+    name: "projects",
+  },
+  {
+    path: "/articles",
+    component: Blog,
+    name: "words",
   },
 ];
 
