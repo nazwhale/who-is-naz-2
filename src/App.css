@@ -65,6 +65,13 @@
   cursor: pointer;
 }
 
+.header-brand {
+  display: flex;
+  align-items: flex-end;
+  gap: 0;
+  margin-bottom: 1.35rem;
+}
+
 .footer-area {
   position: relative;
   width: 100vw;

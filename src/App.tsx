@@ -77,26 +77,28 @@ const AppShell = () => {
     <>
       {!isAdminRoute && (
         <div className="mb-5">
-          <button
-            className="header-mark-button"
-            type="button"
-            onClick={() => setBlobs(buildBlobConfigs())}
-            aria-label="Shuffle blobs"
-          >
-            <img
-              className="header-mark"
-              src="/waveyguy.jpg"
-              alt=""
-              aria-hidden="true"
-            />
-          </button>
-          <Link className="site-title-link" to="/">
-            <h1 className="site-title text-[1.65rem] font-semibold sm:text-[2.05rem]">
-              <span className="site-title-who">who</span>{" "}
-              <span className="site-title-is">is</span>{" "}
-              <span className="site-title-naz">naz</span>
-            </h1>
-          </Link>
+          <div className="header-brand">
+            <button
+              className="header-mark-button"
+              type="button"
+              onClick={() => setBlobs(buildBlobConfigs())}
+              aria-label="Shuffle blobs"
+            >
+              <img
+                className="header-mark"
+                src="/waveyguy.jpg"
+                alt=""
+                aria-hidden="true"
+              />
+            </button>
+            <Link className="site-title-link" to="/">
+              <h1 className="site-title text-[1.65rem] font-semibold sm:text-[2.05rem]">
+                <span className="site-title-who">who</span>{" "}
+                <span className="site-title-is">is</span>{" "}
+                <span className="site-title-naz">naz</span>
+              </h1>
+            </Link>
+          </div>
           <Navigation />
         </div>
       )}
