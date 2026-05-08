@@ -1,5 +1,6 @@
 import Blog from "./Blog";
 import Home from "./Home";
+import LocalMusicLinks from "./LocalMusicLinks";
 import Music from "./Music";
 import PoemPage from "./Poems/PoemPage";
 import Projects from "./Projects";
@@ -29,6 +30,11 @@ const All = [
     path: "/poems",
     component: PoemPage,
     name: "poems",
+  },
+  {
+    path: "/scotland-music-links",
+    component: LocalMusicLinks,
+    name: "local music links",
   },
 ];
 

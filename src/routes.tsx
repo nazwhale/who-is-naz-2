@@ -1,6 +1,7 @@
 import Blog from "./Blog";
 import Post from "./Blog/Post.tsx";
 import Home from "./Home/index.tsx";
+import LocalMusicLinks from "./LocalMusicLinks/index.tsx";
 import Music from "./Music/index.tsx";
 import Admin from "./Admin/index.tsx";
 import NotFound from "./NotFound.tsx";
@@ -38,6 +39,10 @@ const routes = [
   {
     path: "/poems",
     element: <PoemPage />,
+  },
+  {
+    path: "/scotland-music-links",
+    element: <LocalMusicLinks />,
   },
   {
     path: "/poems/all",
