@@ -638,49 +638,51 @@ const InvoiceRoute = () => {
                   />
                 </label>
 
-                <label className="invoice-field invoice-service-units">
-                  <span>Units</span>
-                  <input
-                    type="text"
-                    inputMode="decimal"
-                    placeholder="6"
-                    value={service.units}
-                    onChange={(event) =>
-                      updateService(service.id, "units", event.target.value)
-                    }
-                  />
-                </label>
+                <div className="invoice-service-math-row">
+                  <label className="invoice-field invoice-service-units">
+                    <span>Units</span>
+                    <input
+                      type="text"
+                      inputMode="decimal"
+                      placeholder="6"
+                      value={service.units}
+                      onChange={(event) =>
+                        updateService(service.id, "units", event.target.value)
+                      }
+                    />
+                  </label>
 
-                <label className="invoice-field invoice-service-amount">
-                  <span>Unit price</span>
-                  <input
-                    type="text"
-                    inputMode="decimal"
-                    placeholder="80.00"
-                    value={service.unitPrice}
-                    onChange={(event) =>
-                      updateService(service.id, "unitPrice", event.target.value)
-                    }
-                  />
-                </label>
+                  <label className="invoice-field invoice-service-amount">
+                    <span>Unit price</span>
+                    <input
+                      type="text"
+                      inputMode="decimal"
+                      placeholder="80.00"
+                      value={service.unitPrice}
+                      onChange={(event) =>
+                        updateService(service.id, "unitPrice", event.target.value)
+                      }
+                    />
+                  </label>
 
-                <div className="invoice-field invoice-service-total">
-                  <span>Amount</span>
-                  <div className="invoice-calculated-amount">
-                    {computeLineTotal(service) === null
-                      ? "-"
-                      : formatCurrencyFromNumber(computeLineTotal(service) ?? 0)}
+                  <div className="invoice-field invoice-service-total">
+                    <span>Amount</span>
+                    <div className="invoice-calculated-amount">
+                      {computeLineTotal(service) === null
+                        ? "-"
+                        : formatCurrencyFromNumber(computeLineTotal(service) ?? 0)}
+                    </div>
                   </div>
-                </div>
 
-                <button
-                  type="button"
-                  className="invoice-remove-button"
-                  onClick={() => removeService(service.id)}
-                  aria-label={`Remove service ${index + 1}`}
-                >
-                  Remove
-                </button>
+                  <button
+                    type="button"
+                    className="invoice-remove-button"
+                    onClick={() => removeService(service.id)}
+                    aria-label={`Remove service ${index + 1}`}
+                  >
+                    Remove
+                  </button>
+                </div>
               </div>
             ))}
           </div>
