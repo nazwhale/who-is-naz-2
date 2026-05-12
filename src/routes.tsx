@@ -10,6 +10,7 @@ import PoemPage from "./Poems/PoemPage.tsx";
 import Projects from "./Projects/index.tsx";
 import WeatherMusic from "./WeatherMusic/index.tsx";
 import MusicWorlds from "./MusicWorlds/index.tsx";
+import Invoices from "./Invoices/index.tsx";
 
 const routes = [
   {
@@ -63,6 +64,10 @@ const routes = [
   {
     path: "/a-second-of-your-time",
     element: <MusicWorlds />,
+  },
+  {
+    path: "/invoice",
+    element: <Invoices />,
   },
   {
     path: "*",

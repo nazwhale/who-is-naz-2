@@ -72,10 +72,12 @@ const AppShell = () => {
   const [blobs, setBlobs] = useState(buildBlobConfigs);
   const location = useLocation();
   const isAdminRoute = location.pathname === "/admin";
+  const isInvoiceRoute = location.pathname === "/invoice";
+  const hideSiteChrome = isAdminRoute || isInvoiceRoute;
 
   return (
     <>
-      {!isAdminRoute && (
+      {!hideSiteChrome && (
         <div className="mb-5">
           <div className="header-brand">
             <button
@@ -109,7 +111,7 @@ const AppShell = () => {
         ))}
       </Routes>
 
-      {!isAdminRoute && (
+      {!hideSiteChrome && (
         <div className="footer-area">
           <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mt-6 mb-12 text-sm text-neutral">
             <a
