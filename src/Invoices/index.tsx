@@ -17,6 +17,7 @@ type InvoiceFormState = {
   serviceDate: string;
   serviceDescription: string;
   services: InvoiceLineItem[];
+  bankAccountHolderName: string;
   bankName: string;
   bankSortCode: string;
   bankAccountNumber: string;
@@ -41,6 +42,7 @@ const defaultState: InvoiceFormState = {
   serviceDate: "",
   serviceDescription: "",
   services: [emptyService()],
+  bankAccountHolderName: "",
   bankName: "",
   bankSortCode: "",
   bankAccountNumber: "",
@@ -230,6 +232,7 @@ const createPdf = (state: InvoiceFormState) => {
     state.fromEmail.trim(),
   ].filter(Boolean);
   const bankLines = [
+    state.bankAccountHolderName.trim(),
     state.bankName.trim(),
     state.bankSortCode.trim() ? `Sort code: ${state.bankSortCode.trim()}` : "",
     state.bankAccountNumber.trim()
@@ -707,6 +710,18 @@ const InvoiceRoute = () => {
 
           <div className="invoice-field-group">
             <label className="invoice-field">
+              <span>Account holder name</span>
+              <input
+                type="text"
+                placeholder="Alex Example"
+                value={formState.bankAccountHolderName}
+                onChange={(event) =>
+                  updateField("bankAccountHolderName", event.target.value)
+                }
+              />
+            </label>
+
+            <label className="invoice-field">
               <span>Bank name</span>
               <input
                 type="text"
@@ -843,8 +858,14 @@ const InvoiceRoute = () => {
 
             <div className="invoice-preview-block">
               <h3>Bank details</h3>
-              {formState.bankName || formState.bankSortCode || formState.bankAccountNumber ? (
+              {formState.bankAccountHolderName ||
+              formState.bankName ||
+              formState.bankSortCode ||
+              formState.bankAccountNumber ? (
                 <>
+                  {formState.bankAccountHolderName ? (
+                    <p>{formState.bankAccountHolderName}</p>
+                  ) : null}
                   {formState.bankName ? <p>{formState.bankName}</p> : null}
                   {formState.bankSortCode ? <p>Sort code: {formState.bankSortCode}</p> : null}
                   {formState.bankAccountNumber ? (
