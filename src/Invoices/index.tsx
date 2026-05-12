@@ -14,6 +14,7 @@ type InvoiceFormState = {
   fromAddress: string;
   fromPhone: string;
   fromEmail: string;
+  serviceDate: string;
   serviceDescription: string;
   services: InvoiceLineItem[];
   bankName: string;
@@ -37,6 +38,7 @@ const defaultState: InvoiceFormState = {
   fromAddress: "",
   fromPhone: "",
   fromEmail: "",
+  serviceDate: "",
   serviceDescription: "",
   services: [emptyService()],
   bankName: "",
@@ -269,6 +271,11 @@ const createPdf = (state: InvoiceFormState) => {
   drawRule(0);
 
   if (state.serviceDescription.trim()) {
+    if (state.serviceDate.trim()) {
+      drawText(`Date of services: ${state.serviceDate.trim()}`, margin, cursorY, 12, "F2");
+      cursorY -= 20;
+    }
+
     drawText("Description of services", margin, cursorY, 13, "F2");
     cursorY -= 18;
     drawWrappedText(state.serviceDescription.trim(), margin, 12, 78, 12);
@@ -509,12 +516,13 @@ const InvoiceRoute = () => {
       formState.serviceDescription.trim().slice(0, 10) || "services",
     );
     const recipientSlug = sanitiseFileName(recipientLines[0] || "invoice");
+    const fromNameSlug = sanitiseFileName(formState.fromName.trim() || "sender");
     const dateSlug = formState.invoiceDate || new Date().toISOString().slice(0, 10);
     const downloadUrl = URL.createObjectURL(blob);
     const link = document.createElement("a");
 
     link.href = downloadUrl;
-    link.download = `${dateSlug}-${descriptionSlug}-${recipientSlug}-invoice.pdf`;
+    link.download = `${dateSlug}-${descriptionSlug}-${recipientSlug}-${fromNameSlug}-invoice.pdf`;
     link.click();
 
     window.setTimeout(() => {
@@ -603,6 +611,16 @@ const InvoiceRoute = () => {
               />
             </label>
           </div>
+
+          <label className="invoice-field">
+            <span>Date of services</span>
+            <input
+              type="text"
+              placeholder="1 Apr 2026 - 30 Apr 2026"
+              value={formState.serviceDate}
+              onChange={(event) => updateField("serviceDate", event.target.value)}
+            />
+          </label>
 
           <label className="invoice-field">
             <span>Description of services</span>
@@ -756,6 +774,11 @@ const InvoiceRoute = () => {
             </div>
 
             <div className="invoice-preview-block">
+              {formState.serviceDate.trim() ? (
+                <p>
+                  <strong>Date of services:</strong> {formState.serviceDate.trim()}
+                </p>
+              ) : null}
               <h3>Description of services</h3>
               <p>
                 {formState.serviceDescription.trim() || "Add an overall description of the work."}
