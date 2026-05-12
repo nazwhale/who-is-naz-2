@@ -3,13 +3,15 @@ import { useEffect, useMemo, useState } from "react";
 type InvoiceLineItem = {
   id: string;
   description: string;
-  amount: string;
+  units: string;
+  unitPrice: string;
 };
 
 type InvoiceFormState = {
   invoiceDate: string;
   recipient: string;
   fromName: string;
+  fromAddress: string;
   fromPhone: string;
   fromEmail: string;
   serviceDescription: string;
@@ -24,13 +26,15 @@ const STORAGE_KEY = "whoisnaz.invoice-form";
 const emptyService = (): InvoiceLineItem => ({
   id: crypto.randomUUID(),
   description: "",
-  amount: "",
+  units: "",
+  unitPrice: "",
 });
 
 const defaultState: InvoiceFormState = {
   invoiceDate: new Date().toISOString().slice(0, 10),
   recipient: "",
   fromName: "",
+  fromAddress: "",
   fromPhone: "",
   fromEmail: "",
   serviceDescription: "",
@@ -65,6 +69,11 @@ const parseCurrency = (value: string) => {
   return Number.isFinite(numeric) ? numeric : null;
 };
 
+const parseUnits = (value: string) => {
+  const numeric = Number(value.replace(/,/g, "").replace(/[^\d.-]/g, ""));
+  return Number.isFinite(numeric) ? numeric : null;
+};
+
 const formatCurrency = (value: string) => {
   const numeric = parseCurrency(value);
 
@@ -77,6 +86,29 @@ const formatCurrency = (value: string) => {
     currency: "GBP",
   }).format(numeric);
 };
+
+const formatCurrencyFromNumber = (value: number) =>
+  new Intl.NumberFormat("en-GB", {
+    style: "currency",
+    currency: "GBP",
+  }).format(value);
+
+const computeLineTotal = (service: Pick<InvoiceLineItem, "units" | "unitPrice">) => {
+  const units = parseUnits(service.units);
+  const unitPrice = parseCurrency(service.unitPrice);
+
+  if (units === null || unitPrice === null) {
+    return null;
+  }
+
+  return units * unitPrice;
+};
+
+const splitAddressLines = (value: string) =>
+  value
+    .split(/\n|,/)
+    .map((part) => part.trim())
+    .filter(Boolean);
 
 const wrapText = (value: string, maxChars: number) => {
   if (!value.trim()) {
@@ -191,6 +223,7 @@ const createPdf = (state: InvoiceFormState) => {
   const recipientLines = splitCommaLines(state.recipient);
   const fromLines = [
     state.fromName.trim(),
+    ...splitAddressLines(state.fromAddress),
     state.fromPhone.trim(),
     state.fromEmail.trim(),
   ].filter(Boolean);
@@ -202,7 +235,7 @@ const createPdf = (state: InvoiceFormState) => {
       : "",
   ].filter(Boolean);
   const totalAmount = state.services.reduce((sum, item) => {
-    const amount = parseCurrency(item.amount);
+    const amount = computeLineTotal(item);
     return amount === null ? sum : sum + amount;
   }, 0);
 
@@ -245,15 +278,22 @@ const createPdf = (state: InvoiceFormState) => {
   cursorY -= 20;
 
   drawText("Description", margin, cursorY, 11, "F2");
-  drawText("Amount", pageWidth - margin - 60, cursorY, 11, "F2");
+  drawText("Units", 355, cursorY, 11, "F2");
+  drawText("Unit price", 415, cursorY, 11, "F2");
+  drawText("Amount", 495, cursorY, 11, "F2");
   cursorY -= 14;
   drawRule(0);
 
   state.services
-    .filter((item) => item.description.trim() || item.amount.trim())
+    .filter((item) => item.description.trim() || item.units.trim() || item.unitPrice.trim())
     .forEach((item) => {
-      const descriptionLines = wrapText(item.description.trim() || "-", 64);
-      const amountText = item.amount.trim() ? formatCurrency(item.amount) : "-";
+      const descriptionLines = wrapText(item.description.trim() || "-", 42);
+      const unitsText = item.units.trim() || "-";
+      const unitPriceText = item.unitPrice.trim()
+        ? formatCurrency(item.unitPrice)
+        : "-";
+      const amount = computeLineTotal(item);
+      const amountText = amount === null ? "-" : formatCurrencyFromNumber(amount);
       const rowHeight = descriptionLines.length * lineHeight + 8;
 
       ensureSpace(rowHeight + 12);
@@ -262,22 +302,15 @@ const createPdf = (state: InvoiceFormState) => {
         drawText(line, margin, cursorY - index * lineHeight);
       });
 
-      drawText(amountText, pageWidth - margin - 60, cursorY, 12);
+      drawText(unitsText, 355, cursorY, 12);
+      drawText(unitPriceText, 415, cursorY, 12);
+      drawText(amountText, 495, cursorY, 12);
       cursorY -= rowHeight;
       drawRule(0);
     });
 
   drawText("Total", pageWidth - margin - 110, cursorY, 12, "F2");
-  drawText(
-    new Intl.NumberFormat("en-GB", {
-      style: "currency",
-      currency: "GBP",
-    }).format(totalAmount),
-    pageWidth - margin - 60,
-    cursorY,
-    12,
-    "F2",
-  );
+  drawText(formatCurrencyFromNumber(totalAmount), pageWidth - margin - 60, cursorY, 12, "F2");
   cursorY -= 28;
 
   if (bankLines.length > 0) {
@@ -367,10 +400,18 @@ const InvoiceRoute = () => {
           ...parsedState,
           services:
             parsedState.services && parsedState.services.length > 0
-              ? parsedState.services.map((item) => ({
-                  ...item,
-                  id: item.id || crypto.randomUUID(),
-                }))
+              ? parsedState.services.map((item) => {
+                  const legacyItem = item as Partial<InvoiceLineItem> & {
+                    amount?: string;
+                  };
+
+                  return {
+                    id: item.id || crypto.randomUUID(),
+                    description: legacyItem.description ?? "",
+                    units: legacyItem.units ?? (legacyItem.amount ? "1" : ""),
+                    unitPrice: legacyItem.unitPrice ?? legacyItem.amount ?? "",
+                  };
+                })
               : [emptyService()],
         });
       }
@@ -448,7 +489,7 @@ const InvoiceRoute = () => {
   const total = useMemo(
     () =>
       formState.services.reduce((sum, service) => {
-        const amount = parseCurrency(service.amount);
+        const amount = computeLineTotal(service);
         return amount === null ? sum : sum + amount;
       }, 0),
     [formState.services],
@@ -457,19 +498,23 @@ const InvoiceRoute = () => {
   const recipientLines = splitCommaLines(formState.recipient);
   const fromLines = [
     formState.fromName.trim(),
+    ...splitAddressLines(formState.fromAddress),
     formState.fromPhone.trim(),
     formState.fromEmail.trim(),
   ].filter(Boolean);
 
   const downloadPdf = () => {
     const blob = createPdf(formState);
+    const descriptionSlug = sanitiseFileName(
+      formState.serviceDescription.trim().slice(0, 10) || "services",
+    );
     const recipientSlug = sanitiseFileName(recipientLines[0] || "invoice");
     const dateSlug = formState.invoiceDate || new Date().toISOString().slice(0, 10);
     const downloadUrl = URL.createObjectURL(blob);
     const link = document.createElement("a");
 
     link.href = downloadUrl;
-    link.download = `${dateSlug}-${recipientSlug}-invoice.pdf`;
+    link.download = `${dateSlug}-${descriptionSlug}-${recipientSlug}-invoice.pdf`;
     link.click();
 
     window.setTimeout(() => {
@@ -525,7 +570,19 @@ const InvoiceRoute = () => {
                 onChange={(event) => updateField("fromName", event.target.value)}
               />
             </label>
+          </div>
 
+          <label className="invoice-field">
+            <span>From address</span>
+            <textarea
+              rows={3}
+              placeholder="101 Example Street, Sampleton, AB1 2CD"
+              value={formState.fromAddress}
+              onChange={(event) => updateField("fromAddress", event.target.value)}
+            />
+          </label>
+
+          <div className="invoice-field-group">
             <label className="invoice-field">
               <span>From phone</span>
               <input
@@ -581,18 +638,40 @@ const InvoiceRoute = () => {
                   />
                 </label>
 
-                <label className="invoice-field invoice-service-amount">
-                  <span>Amount</span>
+                <label className="invoice-field invoice-service-units">
+                  <span>Units</span>
                   <input
                     type="text"
                     inputMode="decimal"
-                    placeholder="500.00"
-                    value={service.amount}
+                    placeholder="6"
+                    value={service.units}
                     onChange={(event) =>
-                      updateService(service.id, "amount", event.target.value)
+                      updateService(service.id, "units", event.target.value)
                     }
                   />
                 </label>
+
+                <label className="invoice-field invoice-service-amount">
+                  <span>Unit price</span>
+                  <input
+                    type="text"
+                    inputMode="decimal"
+                    placeholder="80.00"
+                    value={service.unitPrice}
+                    onChange={(event) =>
+                      updateService(service.id, "unitPrice", event.target.value)
+                    }
+                  />
+                </label>
+
+                <div className="invoice-field invoice-service-total">
+                  <span>Amount</span>
+                  <div className="invoice-calculated-amount">
+                    {computeLineTotal(service) === null
+                      ? "-"
+                      : formatCurrencyFromNumber(computeLineTotal(service) ?? 0)}
+                  </div>
+                </div>
 
                 <button
                   type="button"
@@ -696,23 +775,41 @@ const InvoiceRoute = () => {
               </div>
 
               <div className="invoice-preview-table">
-                <div className="invoice-preview-table-row invoice-preview-table-labels">
+                <div className="invoice-preview-table-row invoice-preview-table-labels invoice-preview-services-row">
                   <span>Description</span>
+                  <span>Units</span>
+                  <span>Unit price</span>
                   <span>Amount</span>
                 </div>
 
                 {formState.services.some(
-                  (service) => service.description.trim() || service.amount.trim(),
+                  (service) =>
+                    service.description.trim() ||
+                    service.units.trim() ||
+                    service.unitPrice.trim(),
                 ) ? (
                   formState.services.map((service) => (
-                    <div key={service.id} className="invoice-preview-table-row">
+                    <div
+                      key={service.id}
+                      className="invoice-preview-table-row invoice-preview-services-row"
+                    >
                       <span>{service.description.trim() || "Untitled service"}</span>
-                      <strong>{service.amount.trim() ? formatCurrency(service.amount) : "-"}</strong>
+                      <span>{service.units.trim() || "-"}</span>
+                      <span>
+                        {service.unitPrice.trim() ? formatCurrency(service.unitPrice) : "-"}
+                      </span>
+                      <strong>
+                        {computeLineTotal(service) === null
+                          ? "-"
+                          : formatCurrencyFromNumber(computeLineTotal(service) ?? 0)}
+                      </strong>
                     </div>
                   ))
                 ) : (
-                  <div className="invoice-preview-table-row">
+                  <div className="invoice-preview-table-row invoice-preview-services-row">
                     <span className="invoice-placeholder">Your service lines will show here.</span>
+                    <span>-</span>
+                    <span>-</span>
                     <strong>-</strong>
                   </div>
                 )}

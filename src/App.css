@@ -316,7 +316,7 @@
 
 .invoice-service-row {
   display: grid;
-  grid-template-columns: minmax(0, 1.7fr) minmax(9rem, 0.9fr) auto;
+  grid-template-columns: minmax(0, 1.7fr) minmax(6rem, 0.65fr) minmax(8rem, 0.85fr) minmax(8rem, 0.85fr) auto;
   gap: 0.75rem;
   align-items: end;
   padding: 0.9rem 0;
@@ -328,8 +328,22 @@
 }
 
 .invoice-service-description,
-.invoice-service-amount {
+.invoice-service-units,
+.invoice-service-amount,
+.invoice-service-total {
   margin-bottom: 0;
+}
+
+.invoice-calculated-amount {
+  display: flex;
+  align-items: center;
+  min-height: 3.35rem;
+  border: 1px solid rgba(28, 43, 58, 0.12);
+  border-radius: 14px;
+  background: rgba(16, 42, 67, 0.05);
+  padding: 0.8rem 0.95rem;
+  color: #102a43;
+  font-weight: 600;
 }
 
 .invoice-route-shell .invoice-download-button,
@@ -462,6 +476,16 @@
   text-align: right;
 }
 
+.invoice-preview-services-row {
+  grid-template-columns: minmax(0, 1.7fr) 5rem 7rem 7rem;
+}
+
+.invoice-preview-services-row span:nth-child(2),
+.invoice-preview-services-row span:nth-child(3),
+.invoice-preview-services-row strong {
+  text-align: right;
+}
+
 .invoice-total-pill {
   margin: 0;
   padding: 0.55rem 0.8rem;
@@ -501,7 +525,8 @@
   .invoice-field-group,
   .invoice-preview-addresses,
   .invoice-service-row,
-  .invoice-preview-table-row {
+  .invoice-preview-table-row,
+  .invoice-preview-services-row {
     grid-template-columns: 1fr;
   }
 
