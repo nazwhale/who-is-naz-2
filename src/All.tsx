@@ -4,7 +4,6 @@ import LocalMusicLinks from "./LocalMusicLinks";
 import Music from "./Music";
 import PoemPage from "./Poems/PoemPage";
 import Projects from "./Projects";
-import Startups from "./Startups";
 
 const All = [
   {
@@ -36,11 +35,6 @@ const All = [
     path: "/articles",
     component: Blog,
     name: "words",
-  },
-  {
-    path: "/startups",
-    component: Startups,
-    name: "startups",
   },
 ];
 
