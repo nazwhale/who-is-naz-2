@@ -32,6 +32,11 @@ export const projects: ProjectT[] = [
     link: "https://familytherapy.whoisnaz.com/",
   },
   {
+    title: "Band Agreement Template",
+    description: "An agreement that you can copy and edit for your band or music project",
+    link: "https://docs.google.com/document/d/1-d47YOhSWAaJUj4-h-J-1t0CD7p6rXMtM2XW5d4YPyw/edit?tab=t.0",
+  },
+  {
     title: "Learn UK Payroll",
     description: "Learn UK payroll with interactive examples and real-world scenarios",
     link: "https://learnukpayroll.whoisnaz.com/",
