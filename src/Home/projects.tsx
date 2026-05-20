@@ -69,7 +69,7 @@ export const projects: ProjectT[] = [
     title: "Onfolk",
     description:
       "Payroll & HR software for small businesses. Exited to Tide.co in 2024",
-    link: "https://onfolk.com",
+    link: "https://www.ycombinator.com/companies/onfolk",
     archived: true,
   },
   {

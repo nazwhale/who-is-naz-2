@@ -22,11 +22,6 @@ const All = [
     name: "poems",
   },
   {
-    path: "/scotland-music-links",
-    component: LocalMusicLinks,
-    name: "local music links",
-  },
-  {
     path: "/projects",
     component: Projects,
     name: "projects",
@@ -35,6 +30,11 @@ const All = [
     path: "/articles",
     component: Blog,
     name: "words",
+  },
+  {
+    path: "/scotland-music-links",
+    component: LocalMusicLinks,
+    name: "local music links",
   },
 ];
 

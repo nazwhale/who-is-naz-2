@@ -11,7 +11,7 @@ const Navigation: React.FC = () => {
 
   return (
     <nav className="mb-3">
-      <ul className="flex flex-wrap gap-x-5 gap-y-2 list-none p-0 justify-start">
+      <ul className="flex flex-wrap gap-x-2 gap-y-2 list-none p-0 justify-start">
         {All.map((links) => (
           <li key={links.path}>
             {"external" in links && links.external ? (

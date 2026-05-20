@@ -122,18 +122,24 @@ code {
 
 /* Navigation styles */
 .nav-link {
-    transition: color 0.2s ease, border-bottom 0.15s ease;
-    padding-top: 4px;
-    padding-bottom: 4px;
+    display: inline-block;
+    padding: 0.5rem 0.88rem;
+    color: #102A43;
+    border: 1px dotted rgba(16, 42, 67, 0.8);
+    border-radius: 0;
+    text-decoration: none;
+    transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
 }
 
 .nav-link:hover {
-    color: #8A6520;
+    color: #102A43;
+    border-color: #102A43;
+    background-color: rgba(16, 42, 67, 0.03);
 }
 
 .nav-link.active-nav {
-    color: #8A6520;
-    border-bottom: 2px solid #8A6520;
+    color: #102A43;
+    border: 1px solid #102A43;
 }
 
 /* Horizontal rule styling - translucent for matte cinematic feel */
