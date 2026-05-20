@@ -11,6 +11,10 @@ const localMusicLinks = [
     href: "https://www.gloss.scot/",
     label: "GLOSS - many cool synths in a building in Glasgow",
   },
+  {
+    href: "https://paradisepalmsrecords.bandcamp.com/",
+    label: "Paradise Palms - electronic-indie label",
+  },
 ];
 
 const LocalMusicLinks = () => {

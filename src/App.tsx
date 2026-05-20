@@ -71,6 +71,7 @@ const buildBlobConfigs = (): BlobConfig[] =>
 const AppShell = () => {
   const [blobs, setBlobs] = useState(buildBlobConfigs);
   const location = useLocation();
+  const isHomeRoute = location.pathname === "/";
   const isAdminRoute = location.pathname === "/admin";
   const isInvoiceRoute = location.pathname === "/invoice";
   const hideSiteChrome = isAdminRoute || isInvoiceRoute;
@@ -101,7 +102,7 @@ const AppShell = () => {
               </h1>
             </Link>
           </div>
-          <Navigation />
+          {!isHomeRoute && <Navigation />}
         </div>
       )}
 
