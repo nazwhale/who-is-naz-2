@@ -6,6 +6,7 @@ description: A collection of git commands I constantly forget
 featured_image_url: https://post.healthline.com/wp-content/uploads/2020/07/nervous2-30.jpg
 tags:
   - coding
+  - archived
 ---
 ## Rename a branch
 

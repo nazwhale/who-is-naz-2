@@ -6,6 +6,7 @@ description: Lazy tasty food
 featured_image_url: 'https://i.imgur.com/5IrUKSX.jpg'
 tags:
   - food
+  - archived
 ---
 
 ![oily veg on toast](https://i.imgur.com/5IrUKSX.jpg)

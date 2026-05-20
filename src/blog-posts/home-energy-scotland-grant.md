@@ -5,6 +5,7 @@ description: "How to apply, what info you need, eligibility criteria"
 featured_image_url: ''
 tags:
   - life
+  - archived
 ---
 
 

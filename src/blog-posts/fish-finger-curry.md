@@ -6,6 +6,7 @@ description: Fish finger curry
 featured_image_url: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCUXFTjrXyswDpF1plezLG0nxL4k8RuuZLTWm9spThbpHCg7VpW6dk-J9_Wc-gKLl7Hu4&usqp=CAU
 tags:
   - food
+  - archived
 ---
 
 1. Heat a pan and pre-heat the oven. Put rice on if you want it. Put fish fingers in the oven when it's pre-heated

@@ -5,6 +5,7 @@ description: Asking pals their top Japan trip thing #1 favorite thing from their
 featured_image_url:
 tags:
   - travel
+  - archived
 ---
 
 _"What was your #1 favourite thing from your Japan trip?"_. Answers from my pals:

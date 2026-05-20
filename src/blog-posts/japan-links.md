@@ -5,6 +5,7 @@ description: Useful links for Japan explorers
 featured_image_url:
 tags:
   - travel
+  - archived
 ---
 
 - [Recco's from a recovering Japanese salaryman](https://www.kalzumeus.com/japan-recommendations/)

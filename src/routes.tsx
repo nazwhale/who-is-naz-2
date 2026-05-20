@@ -8,6 +8,7 @@ import NotFound from "./NotFound.tsx";
 import AllPoems from "./Poems/AllPoems.tsx";
 import PoemPage from "./Poems/PoemPage.tsx";
 import Projects from "./Projects/index.tsx";
+import Startups from "./Startups/index.tsx";
 import WeatherMusic from "./WeatherMusic/index.tsx";
 import MusicWorlds from "./MusicWorlds/index.tsx";
 import Invoices from "./Invoices/index.tsx";
@@ -28,6 +29,10 @@ const routes = [
   {
     path: "/articles",
     element: <Blog />,
+  },
+  {
+    path: "/startups",
+    element: <Startups />,
   },
   {
     path: "/articles/:slug",

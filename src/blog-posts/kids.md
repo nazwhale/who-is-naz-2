@@ -5,6 +5,7 @@ description: "Links and thoughts and questions"
 featured_image_url: ''
 tags:
   - life
+  - archived
 ---
 
 I'm 33. I'm finding that my points in conversations about kids are primative. But it's a core life task - it's worth thinking about.
