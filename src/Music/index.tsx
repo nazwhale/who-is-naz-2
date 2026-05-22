@@ -11,7 +11,7 @@ const Music = () => {
             title="Naz Samply demos"
             frameBorder="0"
             allowTransparency={true}
-            height="245px"
+            height="275px"
             className="music-embed-frame"
           />
         </div>
