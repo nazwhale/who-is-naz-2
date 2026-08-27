@@ -7,6 +7,11 @@ type ProjectT = {
 
 export const projects: ProjectT[] = [
   {
+    title: "Protools Plugins",
+    description: "Audio plugins for Pro Tools",
+    link: "https://www.itbaudio.com/",
+  },
+  {
     title: "Band Agreement Template",
     description: "An agreement that you can copy and edit for your band or music project",
     link: "https://docs.google.com/document/d/1-d47YOhSWAaJUj4-h-J-1t0CD7p6rXMtM2XW5d4YPyw/edit?tab=t.0",
