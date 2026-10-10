@@ -25,6 +25,11 @@ type InvoiceFormState = {
 
 const STORAGE_KEY = "whoisnaz.invoice-form";
 
+const todayDate = () => {
+  const now = new Date();
+  return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
+};
+
 const emptyService = (): InvoiceLineItem => ({
   id: crypto.randomUUID(),
   description: "",
@@ -552,14 +557,20 @@ const InvoiceRoute = () => {
         <section className="invoice-panel">
           <h2 className="invoice-panel-title">Invoice details</h2>
 
-          <label className="invoice-field">
-            <span>Invoice date</span>
+          <div className="invoice-field">
+            <div className="invoice-date-heading">
+              <label htmlFor="invoice-date">Invoice date</label>
+              <button type="button" className="invoice-today-button" onClick={() => updateField("invoiceDate", todayDate())}>
+                Set today
+              </button>
+            </div>
             <input
+              id="invoice-date"
               type="date"
               value={formState.invoiceDate}
               onChange={(event) => updateField("invoiceDate", event.target.value)}
             />
-          </label>
+          </div>
 
           <label className="invoice-field">
             <span>Recipient</span>
@@ -615,15 +626,21 @@ const InvoiceRoute = () => {
             </label>
           </div>
 
-          <label className="invoice-field">
-            <span>Date of services</span>
+          <div className="invoice-field">
+            <div className="invoice-date-heading">
+              <label htmlFor="service-date">Date of services</label>
+              <button type="button" className="invoice-today-button" onClick={() => updateField("serviceDate", todayDate())}>
+                Set today
+              </button>
+            </div>
             <input
+              id="service-date"
               type="text"
               placeholder="1 Apr 2026 - 30 Apr 2026"
               value={formState.serviceDate}
               onChange={(event) => updateField("serviceDate", event.target.value)}
             />
-          </label>
+          </div>
 
           <label className="invoice-field">
             <span>Description of services</span>
