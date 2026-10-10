@@ -572,6 +572,7 @@ const InvoiceRoute = () => {
             />
           </div>
 
+          <h3 className="invoice-section-heading">Recipient details</h3>
           <label className="invoice-field">
             <span>Recipient</span>
             <textarea
@@ -582,6 +583,7 @@ const InvoiceRoute = () => {
             />
           </label>
 
+          <h3 className="invoice-section-heading">Sender details</h3>
           <div className="invoice-field-group">
             <label className="invoice-field">
               <span>From name</span>
@@ -626,6 +628,7 @@ const InvoiceRoute = () => {
             </label>
           </div>
 
+          <h3 className="invoice-section-heading">Service overview</h3>
           <div className="invoice-field">
             <div className="invoice-date-heading">
               <label htmlFor="service-date">Date of services</label>
@@ -725,6 +728,7 @@ const InvoiceRoute = () => {
             ))}
           </div>
 
+          <h3 className="invoice-section-heading">Bank details</h3>
           <div className="invoice-field-group">
             <label className="invoice-field">
               <span>Account holder name</span>
