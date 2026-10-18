@@ -1,8 +1,13 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { Link } from "react-router-dom";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import AudioTrimUpload from "./AudioTrimUpload";
+import "./style.css";
 
-const API_BASE = import.meta.env.VITE_MUSIC_WORLDS_API_BASE as string;
-const WORLD_ID = import.meta.env.VITE_MUSIC_WORLDS_WORLD_ID as string;
+const API_BASE = import.meta.env.DEV
+    ? "/music-worlds-api"
+    : import.meta.env.VITE_MUSIC_WORLDS_API_BASE as string;
+const LEGACY_WORLD_ID = import.meta.env.VITE_MUSIC_WORLDS_WORLD_ID as string;
+const MICROPHONE_WORLD_ID = "a-second-of-your-time-v1";
 
 type AudioBlock = {
     block_index: number;
@@ -17,47 +22,58 @@ function fmt(i: number) {
     return `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
 }
 
-export default function MusicWorlds() {
+export default function MusicWorlds({ inputMode = "microphone" }: { inputMode?: "upload" | "microphone" }) {
+    const worldId = inputMode === "microphone" ? MICROPHONE_WORLD_ID : LEGACY_WORLD_ID;
+    const totalBlocks = inputMode === "microphone" ? 20 : 180;
     const [blocks, setBlocks] = useState<Map<number, AudioBlock>>(new Map());
     const [editingBlock, setEditingBlock] = useState<number | null>(null);
     const [isPlaying, setIsPlaying] = useState(false);
     const [currentBlockIndex, setCurrentBlockIndex] = useState<number | null>(null);
     const [isLoading, setIsLoading] = useState(true);
+    const [loadError, setLoadError] = useState<string | null>(null);
     const audioRef = useRef<HTMLAudioElement>(null);
     const silenceTimeoutRef = useRef<number | null>(null);
     const isPlayingRef = useRef(false);
 
-    const indices = useMemo(() => Array.from({ length: 180 }, (_, i) => i), []);
-    const TOTAL_BLOCKS = 180;
+    const indices = useMemo(() => Array.from({ length: totalBlocks }, (_, i) => i), [totalBlocks]);
 
-    async function loadBlocks() {
-        const res = await fetch(`${API_BASE}/api/worlds/${WORLD_ID}/audio-bundle`);
-        if (!res.ok) throw new Error(await res.text());
+    const loadBlocks = useCallback(async () => {
+        const res = await fetch(`${API_BASE}/api/worlds/${worldId}/audio-bundle`);
+        if (!res.ok) throw new Error(`Audio service returned ${res.status}`);
         const { blocks: audioBlocks }: { blocks: AudioBlock[] } = await res.json();
         console.log("Audio blocks with content:", audioBlocks.length);
         const m = new Map<number, AudioBlock>();
         for (const block of audioBlocks) m.set(block.block_index, block);
         setBlocks(m);
-    }
+        setLoadError(null);
+    }, [worldId]);
 
     useEffect(() => {
         loadBlocks()
-            .catch(console.error)
+            .catch(() => setLoadError("Couldn’t connect to the audio service. Your slots haven’t loaded. Please try Refresh."))
             .finally(() => setIsLoading(false));
+    }, [loadBlocks]);
+
+    useEffect(() => () => {
+        isPlayingRef.current = false;
+        if (silenceTimeoutRef.current !== null) clearTimeout(silenceTimeoutRef.current);
     }, []);
 
     function handleBlockClick(index: number) {
-        // Start playback from this block so user can hear what the song sounds like from here
-        isPlayingRef.current = true;
-        setIsPlaying(true);
-        playFromIndex(index);
+        if (inputMode === "upload") {
+            isPlayingRef.current = true;
+            setIsPlaying(true);
+            playFromIndex(index);
+        } else {
+            stopPlayback();
+        }
         // Also open the upload modal
         setEditingBlock(index);
     }
 
     function handleBlockRightClick(e: React.MouseEvent, index: number) {
         e.preventDefault();
-        // Right-click opens edit modal for any block
+        if (inputMode === "microphone") stopPlayback();
         setEditingBlock(index);
     }
 
@@ -70,7 +86,7 @@ export default function MusicWorlds() {
 
         if (editingBlock !== null) {
             // Play back the uploaded audio with cache-bust
-            const url = `${API_BASE}/api/worlds/${WORLD_ID}/blocks/${editingBlock}?v=${Date.now()}`;
+            const url = `${API_BASE}/api/worlds/${worldId}/blocks/${editingBlock}?v=${Date.now()}`;
             if (audioRef.current) {
                 audioRef.current.src = url;
                 await audioRef.current.play().catch(() => { });
@@ -104,7 +120,7 @@ export default function MusicWorlds() {
     function playFromIndex(index: number) {
         if (!isPlayingRef.current) return;
 
-        if (index >= TOTAL_BLOCKS) {
+        if (index >= totalBlocks) {
             // Reached the end
             stopPlayback();
             return;
@@ -139,11 +155,19 @@ export default function MusicWorlds() {
 
 
     return (
-        <div className="p-6 font-sans min-h-screen">
+        <div className="music-worlds p-6 font-sans min-h-screen">
             <h1 className="text-2xl font-bold text-primary m-0">A Second of Your Time</h1>
             <p className="text-secondary/80 mt-2 mb-4 max-w-2xl">
-                A collaborative 3-minute piece of music. Anyone can upload a 1-second audio clip to any slot below. Click a block to add or replace its audio. Check back to hear how things have evolved.
+                A collaborative {inputMode === "microphone" ? "20-second" : "3-minute"} piece of music. Anyone can {inputMode === "microphone" ? "record a sound with their microphone and add one second" : "upload a 1-second audio clip"} to any slot below. Click a block to add or replace its audio. Check back to hear how things have evolved.
             </p>
+
+            <p className="text-sm text-primary/60 mb-4">
+                <Link className="underline" to={inputMode === "microphone" ? "/v0/a-second-of-your-time" : "/a-second-of-your-time"}>
+                    {inputMode === "microphone" ? "Original file upload version (v0)" : "Try the microphone version"}
+                </Link>
+            </p>
+
+            <p className="text-sm mb-4"><Link className="underline" to="/v2/a-second-of-your-time">Try the shared note grid (v2)</Link></p>
 
             <div className="my-4 flex items-center gap-3">
                 {!isPlaying ? (
@@ -157,24 +181,27 @@ export default function MusicWorlds() {
                 ) : (
                     <button
                         onClick={stopPlayback}
-                        className="px-5 py-2.5 bg-error text-neutral-content rounded-lg hover:opacity-80 transition-colors font-medium"
+                        className="px-5 py-2.5 bg-primary text-primary-content rounded-lg hover:opacity-80 transition-colors font-medium"
                     >
                         ■ Stop
                     </button>
                 )}
                 <button
                     disabled={isPlaying}
-                    onClick={() => loadBlocks()}
-                    className="px-4 py-2 bg-neutral text-primary rounded-lg hover:bg-neutral/80 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                    onClick={() => {
+                        void loadBlocks().catch(() => setLoadError("Couldn’t connect to the audio service. Please try Refresh."));
+                    }}
+                    className="px-4 py-2 bg-base-200 text-primary rounded-lg hover:bg-base-300 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                 >
                     Refresh
                 </button>
                 {currentBlockIndex !== null && (
                     <span className="text-primary font-mono text-lg">
-                        {fmt(currentBlockIndex)} / {fmt(TOTAL_BLOCKS - 1)}
+                        {fmt(currentBlockIndex)} / {fmt(totalBlocks)}
                     </span>
                 )}
             </div>
+            {loadError && <p role="alert">{loadError}</p>}
             <audio ref={audioRef} onEnded={handleAudioEnded} className="hidden" />
 
             {isLoading ? (
@@ -222,11 +249,13 @@ export default function MusicWorlds() {
 
             {/* Audio Trim/Upload Modal */}
             {editingBlock !== null && (
-                <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+                <div role="dialog" aria-modal="true" aria-label="Add a second of audio" className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4 overflow-y-auto">
                     <div className="max-w-2xl w-full">
                         <AudioTrimUpload
+                            key={`${inputMode}-${editingBlock}`}
+                            inputMode={inputMode}
                             apiBase={API_BASE}
-                            worldId={WORLD_ID}
+                            worldId={worldId}
                             blockIndex={editingBlock}
                             onUploaded={handleAudioUploaded}
                             onClose={() => {

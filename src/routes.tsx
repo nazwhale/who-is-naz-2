@@ -11,6 +11,7 @@ import Projects from "./Projects/index.tsx";
 import Startups from "./Startups/index.tsx";
 import WeatherMusic from "./WeatherMusic/index.tsx";
 import MusicWorlds from "./MusicWorlds/index.tsx";
+import SharedScore from "./SharedScore";
 import Invoices from "./Invoices/index.tsx";
 
 const routes = [
@@ -68,7 +69,15 @@ const routes = [
   },
   {
     path: "/a-second-of-your-time",
-    element: <MusicWorlds />,
+    element: <MusicWorlds key="microphone" />,
+  },
+  {
+    path: "/v0/a-second-of-your-time",
+    element: <MusicWorlds key="upload" inputMode="upload" />,
+  },
+  {
+    path: "/v2/a-second-of-your-time",
+    element: <SharedScore />,
   },
   {
     path: "/invoice",

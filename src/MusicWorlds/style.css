@@ -1,0 +1,181 @@
+/* Keep this project's monochrome palette independent of the site theme. */
+.music-worlds {
+  --p: 0 0 0;
+  --pc: 1 0 0;
+  --s: 0 0 0;
+  --sc: 1 0 0;
+  --a: 0.25 0 0;
+  --ac: 1 0 0;
+  color: #000;
+}
+
+.music-worlds a,
+.music-worlds a:hover {
+  color: #000;
+  text-decoration-color: currentColor;
+}
+
+.microphone-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem 0;
+}
+
+.music-worlds .microphone-record-button {
+  display: grid;
+  place-items: center;
+  flex: 0 0 72px;
+  width: 72px;
+  height: 72px;
+  padding: 6px;
+  border: 2px solid #b5b5b5;
+  border-radius: 50%;
+  background: #fff;
+  cursor: pointer;
+  transition:
+    border-color 150ms,
+    box-shadow 150ms;
+}
+
+.microphone-record-button:hover:not(:disabled) {
+  border-color: #dc2626;
+}
+
+.microphone-record-button:focus-visible {
+  outline: 3px solid #000;
+  outline-offset: 4px;
+}
+
+.microphone-record-button:disabled {
+  opacity: 0.4;
+  cursor: wait;
+}
+
+.microphone-record-symbol {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #dc2626;
+  transition:
+    width 150ms,
+    height 150ms,
+    border-radius 150ms;
+}
+
+.microphone-record-button.is-recording {
+  border-color: #dc2626;
+  animation: recording-pulse 1.5s ease-in-out infinite;
+}
+
+.is-recording .microphone-record-symbol {
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+}
+
+.microphone-label {
+  margin: 0;
+  color: #000;
+  font-weight: 600;
+}
+
+.microphone-hint {
+  margin: 0.25rem 0 0;
+  color: #555;
+  font-size: 0.875rem;
+}
+
+.microphone-timer {
+  margin-left: auto;
+  flex-shrink: 0;
+  color: #000;
+  font-variant-numeric: tabular-nums;
+  font-size: 1.125rem;
+}
+
+.microphone-timer span {
+  color: #666;
+  font-size: 0.875rem;
+}
+
+@keyframes recording-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgb(220 38 38 / 0.1);
+  }
+  50% {
+    box-shadow: 0 0 0 7px rgb(220 38 38 / 0.15);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .microphone-record-button.is-recording {
+    animation: none;
+  }
+  .microphone-record-symbol {
+    transition: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .microphone-controls {
+    flex-wrap: wrap;
+  }
+  .microphone-timer {
+    margin-left: 88px;
+    margin-top: -0.5rem;
+  }
+}
+
+.audio-actions {
+  display: grid;
+  gap: 0;
+  margin-bottom: 1rem;
+}
+
+.audio-action-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem 0;
+}
+
+.music-worlds .audio-action-button {
+  display: grid;
+  place-items: center;
+  flex: 0 0 72px;
+  width: 72px;
+  height: 72px;
+  border: 2px solid #000;
+  border-radius: 50%;
+  background: #000;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 150ms;
+}
+
+.audio-action-button:hover:not(:disabled) {
+  background: #333;
+}
+
+.audio-action-button:focus-visible {
+  outline: 3px solid #000;
+  outline-offset: 4px;
+}
+
+.audio-action-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.music-worlds .audio-preview-button {
+  background: #fff;
+  color: #000;
+  border-color: #b5b5b5;
+}
+
+.music-worlds .audio-preview-button:hover:not(:disabled) {
+  background: #eee;
+  border-color: #000;
+}

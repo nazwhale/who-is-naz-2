@@ -168,3 +168,46 @@ export async function createOneSecondWav(
     const monoSamples = extractOneSecondMono(audioBuffer, startTime);
     return encodeWav(monoSamples, audioBuffer.sampleRate);
 }
+
+/** Find the first sound above the recording's noise floor, with 30ms of lead-in. */
+export function findSoundStart(audio: AudioBuffer): number {
+    const windowSize = Math.max(1, Math.floor(audio.sampleRate * 0.01));
+    const levels: number[] = [];
+    for (let start = 0; start < audio.length; start += windowSize) {
+        const end = Math.min(start + windowSize, audio.length);
+        let level = 0;
+        for (let channel = 0; channel < audio.numberOfChannels; channel++) {
+            const samples = audio.getChannelData(channel);
+            let energy = 0;
+            for (let i = start; i < end; i++) energy += samples[i] * samples[i];
+            level = Math.max(level, Math.sqrt(energy / (end - start)));
+        }
+        levels.push(level);
+    }
+    if (!levels.length) return 0;
+    const sorted = [...levels].sort((a, b) => a - b);
+    const peak = sorted[sorted.length - 1];
+    // For silence or a very quiet recording, leave the selection at the start.
+    if (peak < 0.003) return 0;
+    const noiseFloor = sorted[Math.floor(sorted.length * 0.2)];
+    const threshold = Math.min(peak * 0.5, Math.max(0.005, noiseFloor * 3, peak * 0.1));
+    const firstSound = levels.findIndex((level) => level >= threshold);
+    return Math.max(0, firstSound * windowSize / audio.sampleRate - 0.03);
+}
+
+/** Keep a full second available even when the sound begins near the recording's end. */
+export async function prepareMicrophoneRecording(file: File): Promise<{ file: File; start: number }> {
+    const audio = await decodeAudioFile(file);
+    const start = findSoundStart(audio);
+    const requiredLength = Math.ceil((start + 1) * audio.sampleRate);
+    if (requiredLength <= audio.length) return { file, start };
+    const samples = new Float32Array(requiredLength);
+    for (let channel = 0; channel < audio.numberOfChannels; channel++) {
+        const input = audio.getChannelData(channel);
+        for (let i = 0; i < input.length; i++) samples[i] += input[i] / audio.numberOfChannels;
+    }
+    return {
+        file: new File([encodeWav(samples, audio.sampleRate)], "recording.wav", { type: "audio/wav" }),
+        start,
+    };
+}

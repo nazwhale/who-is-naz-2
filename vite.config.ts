@@ -1,4 +1,4 @@
-import { defineConfig, type Plugin, type ViteDevServer } from "vite";
+import { defineConfig, loadEnv, type Plugin, type ViteDevServer } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import Markdown from "vite-plugin-md";
 import sitemap from "vite-plugin-sitemap";
@@ -378,8 +378,19 @@ function adminContentPlugin(): Plugin {
 }
 
 // https://vitejs.dev/config/
-export default defineConfig({
-  server: { port: 9999 },
+export default defineConfig(({ mode }) => {
+  const env = loadEnv(mode, process.cwd(), "VITE_MUSIC_WORLDS_");
+  return {
+  server: {
+    port: 9999,
+    proxy: {
+      "/music-worlds-api": {
+        target: env.VITE_MUSIC_WORLDS_API_BASE || "http://localhost:8787",
+        changeOrigin: true,
+        rewrite: (requestPath: string) => requestPath.replace(/^\/music-worlds-api/, ""),
+      },
+    },
+  },
   plugins: [
     react(),
     adminContentPlugin(),
@@ -393,4 +404,5 @@ export default defineConfig({
     }),
   ],
   assetsInclude: ["**/*.md"],
+  };
 });

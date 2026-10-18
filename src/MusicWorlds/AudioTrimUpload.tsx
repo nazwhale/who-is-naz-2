@@ -1,19 +1,22 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import WaveSurfer from "wavesurfer.js";
 import RegionsPlugin, { Region } from "wavesurfer.js/dist/plugins/regions.js";
-import { createOneSecondWav } from "./wav";
+import MicrophoneRecorder from "./MicrophoneRecorder";
+import { createOneSecondWav, prepareMicrophoneRecording } from "./wav";
 
 interface AudioTrimUploadProps {
+  inputMode?: "upload" | "microphone";
   apiBase: string;
   worldId: string;
   blockIndex: number;
-  onUploaded?: () => void;
+  onUploaded?: () => void | Promise<void>;
   onClose?: () => void;
 }
 
 const REGION_DURATION = 1.0; // Exactly 1 second
 
 export default function AudioTrimUpload({
+  inputMode = "upload",
   apiBase,
   worldId,
   blockIndex,
@@ -26,6 +29,8 @@ export default function AudioTrimUpload({
   const regionRef = useRef<Region | null>(null);
   const fileRef = useRef<File | null>(null);
 
+  const [isPreviewing, setIsPreviewing] = useState(false);
+  const [isRecording, setIsRecording] = useState(false);
   const [file, setFile] = useState<File | null>(null);
   const [duration, setDuration] = useState<number>(0);
   const [regionStart, setRegionStart] = useState<number>(0);
@@ -58,6 +63,8 @@ export default function AudioTrimUpload({
 
     destroyWavesurfer();
     setIsLoading(true);
+    setDuration(0);
+    setIsPreviewing(false);
     setError(null);
     fileRef.current = file;
 
@@ -76,16 +83,35 @@ export default function AudioTrimUpload({
 
     wavesurferRef.current = ws;
 
-    // Load the file
-    ws.loadBlob(file);
+    const selectedFile = file;
+    let cancelled = false;
+    let suggestedStart = 0;
+    async function loadAudio() {
+      try {
+        const recording =
+          inputMode === "microphone"
+            ? await prepareMicrophoneRecording(selectedFile)
+            : { file: selectedFile, start: 0 };
+        if (cancelled) return;
+        fileRef.current = recording.file;
+        suggestedStart = recording.start;
+        await ws.loadBlob(recording.file);
+      } catch (err) {
+        if (cancelled) return;
+        setError(
+          `Failed to load audio: ${err instanceof Error ? err.message : err}`,
+        );
+        setIsLoading(false);
+      }
+    }
+    void loadAudio();
 
     ws.on("ready", () => {
       const dur = ws.getDuration();
       setDuration(dur);
       setIsLoading(false);
 
-      // Create the 1-second region (starting at 0)
-      const initialStart = 0;
+      const initialStart = suggestedStart;
 
       const region = regions.addRegion({
         start: initialStart,
@@ -99,8 +125,12 @@ export default function AudioTrimUpload({
       setRegionStart(initialStart);
 
       // Auto-play the full clip on load so user can hear it all
-      ws.play();
+      if (inputMode === "upload") void ws.play().catch(() => {});
     });
+
+    ws.on("play", () => setIsPreviewing(true));
+    ws.on("pause", () => setIsPreviewing(false));
+    ws.on("finish", () => setIsPreviewing(false));
 
     ws.on("error", (err) => {
       setError(`Failed to load audio: ${err}`);
@@ -109,6 +139,7 @@ export default function AudioTrimUpload({
 
     // Handle region updates
     regions.on("region-updated", (region: Region) => {
+      ws.pause();
       const dur = ws.getDuration();
 
       // Clamp region to stay within bounds
@@ -129,9 +160,10 @@ export default function AudioTrimUpload({
     });
 
     return () => {
+      cancelled = true;
       destroyWavesurfer();
     };
-  }, [file, destroyWavesurfer]);
+  }, [file, destroyWavesurfer, inputMode]);
 
   const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files?.[0];
@@ -147,23 +179,21 @@ export default function AudioTrimUpload({
     const ws = wavesurferRef.current;
     const region = regionRef.current;
 
-    // Play only the selected region (start to end)
-    ws.setTime(region.start);
-    ws.play();
-
-    // Stop at region end
-    const checkEnd = () => {
-      if (ws.getCurrentTime() >= region.end) {
-        ws.pause();
-        ws.un("timeupdate", checkEnd);
-      }
-    };
-    ws.on("timeupdate", checkEnd);
+    if (ws.isPlaying()) {
+      ws.pause();
+      return;
+    }
+    // WaveSurfer stops at the end of the selected second and emits pause.
+    void ws.play(region.start, region.end).catch(() => {
+      setIsPreviewing(false);
+      setError("Couldn’t play this selection. Please try again.");
+    });
   };
 
   const handleUpload = async () => {
     if (!fileRef.current) return;
 
+    wavesurferRef.current?.pause();
     setIsUploading(true);
     setError(null);
     setUploadStatus("Processing audio...");
@@ -183,17 +213,24 @@ export default function AudioTrimUpload({
             "Content-Type": "audio/wav",
           },
           body: await wavBlob.arrayBuffer(),
-        }
+        },
       );
 
       if (!response.ok) {
-        throw new Error(`Upload failed: ${response.status} ${response.statusText}`);
+        throw new Error(
+          `Upload failed: ${response.status} ${response.statusText}`,
+        );
       }
 
       setUploadStatus("Upload complete!");
-      onUploaded?.();
+      await onUploaded?.();
     } catch (err) {
-      const message = err instanceof Error ? err.message : "Upload failed";
+      const message =
+        err instanceof TypeError
+          ? "Couldn’t connect to the audio service. Your recording is still here — check your connection and try again."
+          : err instanceof Error
+            ? err.message
+            : "Upload failed";
       setError(message);
       setUploadStatus(null);
     } finally {
@@ -209,29 +246,33 @@ export default function AudioTrimUpload({
   return (
     <div className="p-4 bg-base-200 rounded-lg border border-base-300">
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-lg font-medium text-primary">
-          Upload Audio to Block {blockIndex + 1}
-        </h3>
+        {inputMode === "upload" && (
+          <h3 className="text-lg font-medium text-primary">
+            Upload Audio to Block {blockIndex + 1}
+          </h3>
+        )}
         {onClose && (
           <button
+            aria-label="Close audio editor"
             onClick={onClose}
-            className="text-primary/60 hover:text-primary text-xl leading-none"
+            className="ml-auto text-primary/60 hover:text-primary text-xl leading-none"
           >
             ×
           </button>
         )}
       </div>
 
-      {/* File input */}
-      <div className="mb-4">
-        <input
-          type="file"
-          accept="audio/*"
-          onChange={handleFileSelect}
-          disabled={isUploading}
-          className="file-input file-input-bordered file-input-sm w-full max-w-xs"
-        />
-      </div>
+      {inputMode === "upload" && (
+        <div className="mb-4">
+          <input
+            type="file"
+            accept="audio/*"
+            onChange={handleFileSelect}
+            disabled={isUploading || isRecording}
+            className="file-input file-input-bordered file-input-sm w-full max-w-xs"
+          />
+        </div>
+      )}
 
       {/* Waveform container */}
       {file && (
@@ -245,21 +286,25 @@ export default function AudioTrimUpload({
           )}
           {!isLoading && duration > 0 && (
             <p className="text-primary/60 text-sm mt-2">
-              Drag the gold highlighted section to choose which 1 second of audio you want to use.
+              {inputMode === "microphone"
+                ? "Drag the selection if you’d like a different second."
+                : "Drag the gold highlighted section to choose which 1 second of audio you want to use."}
             </p>
           )}
         </div>
       )}
 
-      {/* Time readout */}
-      {file && !isLoading && duration > 0 && (
+      {/* Original upload editor time readout */}
+      {inputMode === "upload" && file && !isLoading && duration > 0 && (
         <div className="mb-4 text-sm font-mono text-primary/80">
           <div className="grid grid-cols-3 gap-4">
             <div>
-              <span className="text-primary/50">Start:</span> {formatTime(regionStart)}
+              <span className="text-primary/50">Start:</span>{" "}
+              {formatTime(regionStart)}
             </div>
             <div>
-              <span className="text-primary/50">End:</span> {formatTime(regionEnd)}
+              <span className="text-primary/50">End:</span>{" "}
+              {formatTime(regionEnd)}
             </div>
             <div>
               <span className="text-primary/50">Duration:</span> 1000 ms
@@ -273,32 +318,116 @@ export default function AudioTrimUpload({
         </div>
       )}
 
-      {/* Action buttons */}
-      {file && !isLoading && (
-        <div className="flex gap-2 mb-4">
-          <button
-            onClick={handlePreview}
-            disabled={isUploading}
-            className="btn btn-sm btn-outline"
-          >
-            Preview selection
-          </button>
-          <button
-            onClick={handleUpload}
-            disabled={isUploading}
-            className="btn btn-sm btn-primary"
-          >
-            {isUploading ? "Uploading..." : "Upload to this block"}
-          </button>
-        </div>
+      {inputMode === "microphone" && (
+        <MicrophoneRecorder
+          disabled={isUploading || isRecording}
+          hasRecording={!!file}
+          onRecordingChange={(recording) => {
+            setIsRecording(recording);
+            if (recording) wavesurferRef.current?.pause();
+          }}
+          onRecorded={(recording) => {
+            setFile(recording);
+            setUploadStatus(null);
+          }}
+        />
       )}
+
+      {/* Action buttons */}
+      {file &&
+        !isLoading &&
+        duration > 0 &&
+        (inputMode === "microphone" ? (
+          <div className="audio-actions">
+            <div className="audio-action-row">
+              <button
+                type="button"
+                onClick={handlePreview}
+                disabled={isUploading || isRecording}
+                aria-label={isPreviewing ? "Pause selection" : "Play selection"}
+                className="audio-action-button audio-preview-button"
+              >
+                <svg
+                  viewBox="0 0 32 32"
+                  width="32"
+                  height="32"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  {isPreviewing ? (
+                    <path d="M8 6h6v20H8zM18 6h6v20h-6z" />
+                  ) : (
+                    <path d="M11 5 28 16 11 27Z" />
+                  )}
+                </svg>
+              </button>
+              <p className="microphone-label">
+                {isPreviewing ? "Pause selection" : "Play selection"}
+              </p>
+            </div>
+            <div className="audio-action-row">
+              <button
+                type="button"
+                onClick={handleUpload}
+                disabled={isUploading || isRecording}
+                aria-label={isUploading ? "Adding sound" : "Add sound"}
+                aria-busy={isUploading}
+                className="audio-action-button"
+              >
+                {isUploading ? (
+                  <span
+                    className="loading loading-spinner loading-md"
+                    aria-hidden="true"
+                  />
+                ) : (
+                  <svg
+                    viewBox="0 0 32 32"
+                    width="32"
+                    height="32"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M16 6v20M6 16h20" />
+                  </svg>
+                )}
+              </button>
+              <p className="microphone-label">
+                {isUploading ? "Adding sound…" : "Add sound"}
+              </p>
+            </div>
+          </div>
+        ) : (
+          <div className="flex gap-2 mb-4">
+            <button
+              onClick={handlePreview}
+              disabled={isUploading}
+              className="btn btn-sm btn-outline"
+            >
+              {isPreviewing ? "Pause selection" : "Preview selection"}
+            </button>
+            <button
+              onClick={handleUpload}
+              disabled={isUploading}
+              className="btn btn-sm btn-primary"
+            >
+              {isUploading ? "Uploading..." : "Upload to this block"}
+            </button>
+          </div>
+        ))}
 
       {/* Status messages */}
       {uploadStatus && (
-        <p className="text-success text-sm">{uploadStatus}</p>
+        <p role="status" className="text-success text-sm">
+          {uploadStatus}
+        </p>
       )}
       {error && (
-        <p className="text-error text-sm">{error}</p>
+        <p role="alert" className="text-error text-sm">
+          {error}
+        </p>
       )}
     </div>
   );
