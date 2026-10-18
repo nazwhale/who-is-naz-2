@@ -1,11 +1,11 @@
 export const SCORE_ID = "a-second-of-your-time-v2";
-export const STEPS = 20;
+export const STEPS = 8;
 export const STEP_SECONDS = 0.5;
 export const VOICES = [
-  { id: "soprano", label: "Soprano", initial: 72, min: 60, max: 84 },
-  { id: "alto", label: "Alto", initial: 60, min: 48, max: 72 },
-  { id: "tenor", label: "Tenor", initial: 48, min: 36, max: 60 },
   { id: "bass", label: "Bass", initial: 36, min: 24, max: 48 },
+  { id: "tenor", label: "Tenor", initial: 48, min: 36, max: 60 },
+  { id: "alto", label: "Alto", initial: 60, min: 48, max: 72 },
+  { id: "soprano", label: "Soprano", initial: 72, min: 60, max: 84 },
 ] as const;
 export type VoiceId = (typeof VOICES)[number]["id"];
 export type Cell = {

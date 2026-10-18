@@ -70,3 +70,10 @@ on mobile. Rapid moves queue per cell and display immediately; failed or
 conflicting moves revert to the confirmed shared note. Apply the backend
 `0004_remember_note_pitch.sql` migration to retain pitches while notes are off.
 `npm run test:score` also runs the pure move/queue projection checks without an API.
+
+V2 now displays eight beats vertically, with columns ordered Bass, Tenor, Alto,
+Soprano. Playback loops over these eight beats. Migration
+`0005_eight_beat_score.sql` sets the active length to eight without deleting later
+notes. The updated frontend accepts the previous 20-beat API response, allowing
+it to be released before migrating and deploying the backend. Once both are
+updated, the API exposes 32 active notes and rejects moves beyond beat eight.

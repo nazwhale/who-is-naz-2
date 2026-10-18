@@ -14,12 +14,12 @@ test(
     const url = `${base}/api/scores/a-second-of-your-time-v2`;
     const score = await fetch(url).then((r) => r.json());
     assert.equal(score.version, 2);
-    assert.equal(score.notes.length, 80);
+    assert.equal(score.notes.length, 32);
     const original = score.notes.find(
       (n: { voice: string; step_index: number }) =>
-        n.voice === "bass" && n.step_index === 19,
+        n.voice === "bass" && n.step_index === 7,
     );
-    const target = `${url}/notes/bass/19`;
+    const target = `${url}/notes/bass/7`;
     const put = (body: unknown, endpoint = target) =>
       fetch(endpoint, {
         method: "PUT",
@@ -36,7 +36,7 @@ test(
     );
     assert.equal((await put({ note: 36 })).status, 400);
     assert.equal(
-      (await put({ note: 36, revision: 0 }, `${url}/notes/bass/20`)).status,
+      (await put({ note: 36, revision: 0 }, `${url}/notes/bass/8`)).status,
       400,
     );
     assert.equal(
@@ -57,7 +57,7 @@ test(
       const refreshed = await fetch(url).then((r) => r.json());
       const stored = refreshed.notes.find(
         (n: { voice: string; step_index: number }) =>
-          n.voice === "bass" && n.step_index === 19,
+          n.voice === "bass" && n.step_index === 7,
       );
       assert.equal(stored.note, latest.note);
       assert.equal(stored.revision, original.revision + 1);

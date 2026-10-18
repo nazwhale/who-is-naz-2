@@ -31,7 +31,9 @@ export default function SharedScore() {
   const activeRef = useRef(true);
 
   const mergeCells = useCallback((incoming: Cell[], fromMove = false) => {
-    const next = new Map(cellsRef.current);
+    const next = new Map(
+      [...cellsRef.current].filter(([, cell]) => cell.step_index < STEPS),
+    );
     for (const cell of incoming) {
       const key = cellKey(cell.voice, cell.step_index);
       if (!fromMove && queuesRef.current.has(key)) continue;
@@ -55,9 +57,11 @@ export default function SharedScore() {
         });
         if (!response.ok) throw new Error();
         const { notes }: { notes: Cell[] } = await response.json();
-        if (notes.length !== STEPS * VOICES.length) throw new Error();
+        // Accept the previous API's full score while the eight-beat release rolls out.
+        const activeNotes = notes.filter((note) => note.step_index < STEPS);
+        if (activeNotes.length !== STEPS * VOICES.length) throw new Error();
         if (disposed) return;
-        mergeCells(notes);
+        mergeCells(activeNotes);
         setError(null);
       } catch {
         if (!disposed)
@@ -166,7 +170,7 @@ export default function SharedScore() {
       <p className="score-eyebrow">A Second of Your Time · v2</p>
       <h1>A little harmony, made by everyone.</h1>
       <p className="score-intro">
-        Four voices. Twenty steps. Tap ↑ or ↓ to change a note. Tap its name to
+        Four voices. Eight beats. Tap ↑ or ↓ to change a note. Tap its name to
         turn it off or on. Every move is shared.
       </p>
       <div className="score-toolbar">
@@ -185,27 +189,30 @@ export default function SharedScore() {
         </span>
       </div>
       <div
-        className="score-scroll"
+        className="score-board"
         role="region"
         aria-label="Four voice shared score"
-        tabIndex={0}
       >
-        <div className="score-grid">
-          <span className="score-corner" aria-hidden="true" />
-          {Array.from({ length: STEPS }, (_, step) => (
-            <span
-              className={`score-step ${
-                currentStep === step ? "is-playing" : ""
-              }`}
-              key={step}
-            >
-              {step + 1}
+        <div className="score-headers" aria-hidden="true">
+          <span />
+          {VOICES.map((v) => (
+            <span className="score-voice" key={v.id}>
+              {v.label}
             </span>
           ))}
-          {VOICES.map((v) => (
-            <Fragment key={v.id}>
-              <span className="score-voice">{v.label}</span>
-              {Array.from({ length: STEPS }, (_, step) => {
+        </div>
+        <div className="score-grid">
+          {Array.from({ length: STEPS }, (_, step) => (
+            <Fragment key={step}>
+              <span
+                className={`score-step${
+                  currentStep === step ? " is-playing" : ""
+                }`}
+                aria-label={`Beat ${step + 1}`}
+              >
+                {step + 1}
+              </span>
+              {VOICES.map((v) => {
                 const key = cellKey(v.id, step);
                 const confirmed = cells.get(key);
                 const item = confirmed
@@ -214,7 +221,7 @@ export default function SharedScore() {
                       confirmed,
                     )
                   : undefined;
-                const label = `${v.label}, step ${step + 1}`;
+                const label = `${v.label}, beat ${step + 1}`;
                 return (
                   <div
                     key={key}
